@@ -22,12 +22,14 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 mixin _$UserModel {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get name_ar => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
   String? get email_verified_at => throw _privateConstructorUsedError;
   String? get belongable_type => throw _privateConstructorUsedError;
   int? get belongable_id => throw _privateConstructorUsedError;
   String? get language => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
   int? get countryid => throw _privateConstructorUsedError;
   String? get created_at => throw _privateConstructorUsedError;
   int? get active => throw _privateConstructorUsedError;
@@ -49,12 +51,14 @@ abstract class $UserModelCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
+      String? name_ar,
       String? phone,
       String? email,
       String? email_verified_at,
       String? belongable_type,
       int? belongable_id,
       String? language,
+      String? image,
       int? countryid,
       String? created_at,
       int? active,
@@ -78,12 +82,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? name_ar = freezed,
     Object? phone = freezed,
     Object? email = freezed,
     Object? email_verified_at = freezed,
     Object? belongable_type = freezed,
     Object? belongable_id = freezed,
     Object? language = freezed,
+    Object? image = freezed,
     Object? countryid = freezed,
     Object? created_at = freezed,
     Object? active = freezed,
@@ -99,6 +105,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name_ar: freezed == name_ar
+          ? _value.name_ar
+          : name_ar // ignore: cast_nullable_to_non_nullable
               as String?,
       phone: freezed == phone
           ? _value.phone
@@ -123,6 +133,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
       countryid: freezed == countryid
           ? _value.countryid
@@ -162,12 +176,14 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
   $Res call(
       {int? id,
       String? name,
+      String? name_ar,
       String? phone,
       String? email,
       String? email_verified_at,
       String? belongable_type,
       int? belongable_id,
       String? language,
+      String? image,
       int? countryid,
       String? created_at,
       int? active,
@@ -189,12 +205,14 @@ class __$$_UserModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? name_ar = freezed,
     Object? phone = freezed,
     Object? email = freezed,
     Object? email_verified_at = freezed,
     Object? belongable_type = freezed,
     Object? belongable_id = freezed,
     Object? language = freezed,
+    Object? image = freezed,
     Object? countryid = freezed,
     Object? created_at = freezed,
     Object? active = freezed,
@@ -210,6 +228,10 @@ class __$$_UserModelCopyWithImpl<$Res>
       name: freezed == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      name_ar: freezed == name_ar
+          ? _value.name_ar
+          : name_ar // ignore: cast_nullable_to_non_nullable
               as String?,
       phone: freezed == phone
           ? _value.phone
@@ -234,6 +256,10 @@ class __$$_UserModelCopyWithImpl<$Res>
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
+              as String?,
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
       countryid: freezed == countryid
           ? _value.countryid
@@ -269,12 +295,14 @@ class _$_UserModel extends _UserModel {
   const _$_UserModel(
       {this.id,
       this.name,
+      this.name_ar,
       this.phone,
       this.email,
       this.email_verified_at,
       this.belongable_type,
       this.belongable_id,
       this.language,
+      this.image,
       this.countryid,
       this.created_at,
       this.active,
@@ -291,6 +319,8 @@ class _$_UserModel extends _UserModel {
   @override
   final String? name;
   @override
+  final String? name_ar;
+  @override
   final String? phone;
   @override
   final String? email;
@@ -302,6 +332,8 @@ class _$_UserModel extends _UserModel {
   final int? belongable_id;
   @override
   final String? language;
+  @override
+  final String? image;
   @override
   final int? countryid;
   @override
@@ -317,7 +349,7 @@ class _$_UserModel extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, phone: $phone, email: $email, email_verified_at: $email_verified_at, belongable_type: $belongable_type, belongable_id: $belongable_id, language: $language, countryid: $countryid, created_at: $created_at, active: $active, updated_at: $updated_at, deleted_at: $deleted_at, fcm_token: $fcm_token)';
+    return 'UserModel(id: $id, name: $name, name_ar: $name_ar, phone: $phone, email: $email, email_verified_at: $email_verified_at, belongable_type: $belongable_type, belongable_id: $belongable_id, language: $language, image: $image, countryid: $countryid, created_at: $created_at, active: $active, updated_at: $updated_at, deleted_at: $deleted_at, fcm_token: $fcm_token)';
   }
 
   @override
@@ -327,6 +359,7 @@ class _$_UserModel extends _UserModel {
             other is _$_UserModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.name_ar, name_ar) || other.name_ar == name_ar) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.email_verified_at, email_verified_at) ||
@@ -337,6 +370,7 @@ class _$_UserModel extends _UserModel {
                 other.belongable_id == belongable_id) &&
             (identical(other.language, language) ||
                 other.language == language) &&
+            (identical(other.image, image) || other.image == image) &&
             (identical(other.countryid, countryid) ||
                 other.countryid == countryid) &&
             (identical(other.created_at, created_at) ||
@@ -356,12 +390,14 @@ class _$_UserModel extends _UserModel {
       runtimeType,
       id,
       name,
+      name_ar,
       phone,
       email,
       email_verified_at,
       belongable_type,
       belongable_id,
       language,
+      image,
       countryid,
       created_at,
       active,
@@ -387,12 +423,14 @@ abstract class _UserModel extends UserModel {
   const factory _UserModel(
       {final int? id,
       final String? name,
+      final String? name_ar,
       final String? phone,
       final String? email,
       final String? email_verified_at,
       final String? belongable_type,
       final int? belongable_id,
       final String? language,
+      final String? image,
       final int? countryid,
       final String? created_at,
       final int? active,
@@ -409,6 +447,8 @@ abstract class _UserModel extends UserModel {
   @override
   String? get name;
   @override
+  String? get name_ar;
+  @override
   String? get phone;
   @override
   String? get email;
@@ -420,6 +460,8 @@ abstract class _UserModel extends UserModel {
   int? get belongable_id;
   @override
   String? get language;
+  @override
+  String? get image;
   @override
   int? get countryid;
   @override
