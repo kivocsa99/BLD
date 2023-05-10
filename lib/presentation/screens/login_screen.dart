@@ -39,9 +39,9 @@ class LoginScreen extends HookConsumerWidget {
                     children: [
                       Column(
                         children: [
-                          const SizedBox(
-                            height: 50,
-                          ),
+                          // const SizedBox(
+                          //   height: 50,
+                          // ),
                           Image.asset(
                             "assets/Logo.png",
                             height: 177.65,
@@ -238,7 +238,8 @@ class LoginScreen extends HookConsumerWidget {
                                                       passwordController.text))
                                           .then((response) => response.fold(
                                               (l) => print("nope"),
-                                              (r) => print("yes")));
+                                              (r) => context.router.replaceAll(
+                                                  [const HomeRoute()])));
                                     }
                                   },
                                   child: Container(
@@ -267,7 +268,7 @@ class LoginScreen extends HookConsumerWidget {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(20.0),
+                        padding: const EdgeInsets.only(bottom: 10.0),
                         child: Column(
                           children: [
                             Row(

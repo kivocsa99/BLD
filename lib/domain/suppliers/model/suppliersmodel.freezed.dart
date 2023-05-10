@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'usermodel.dart';
+part of 'suppliersmodel.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-UserModel _$UserModelFromJson(Map<String, dynamic> json) {
-  return _UserModel.fromJson(json);
+SuppliersModel _$SuppliersModelFromJson(Map<String, dynamic> json) {
+  return _SuppliersModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UserModel {
+mixin _$SuppliersModel {
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get name_ar => throw _privateConstructorUsedError;
@@ -33,26 +33,28 @@ mixin _$UserModel {
   String? get image => throw _privateConstructorUsedError;
   String? get cover_image => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
-  num? get commission_rate => throw _privateConstructorUsedError;
-  int? get countryid => throw _privateConstructorUsedError;
+  String? get commission_rate => throw _privateConstructorUsedError;
   String? get created_at => throw _privateConstructorUsedError;
   String? get updated_at => throw _privateConstructorUsedError;
   String? get deleted_at => throw _privateConstructorUsedError;
   List<UserProjectsModel>? get projects => throw _privateConstructorUsedError;
   List<CustomerOrderModel>? get customer_orders =>
       throw _privateConstructorUsedError;
+  int? get UserOrdersCount => throw _privateConstructorUsedError;
+  int? get UserProjectsCount => throw _privateConstructorUsedError;
   String? get fcm_token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserModelCopyWith<UserModel> get copyWith =>
+  $SuppliersModelCopyWith<SuppliersModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserModelCopyWith<$Res> {
-  factory $UserModelCopyWith(UserModel value, $Res Function(UserModel) then) =
-      _$UserModelCopyWithImpl<$Res, UserModel>;
+abstract class $SuppliersModelCopyWith<$Res> {
+  factory $SuppliersModelCopyWith(
+          SuppliersModel value, $Res Function(SuppliersModel) then) =
+      _$SuppliersModelCopyWithImpl<$Res, SuppliersModel>;
   @useResult
   $Res call(
       {int? id,
@@ -68,20 +70,21 @@ abstract class $UserModelCopyWith<$Res> {
       String? image,
       String? cover_image,
       String? location,
-      num? commission_rate,
-      int? countryid,
+      String? commission_rate,
       String? created_at,
       String? updated_at,
       String? deleted_at,
       List<UserProjectsModel>? projects,
       List<CustomerOrderModel>? customer_orders,
+      int? UserOrdersCount,
+      int? UserProjectsCount,
       String? fcm_token});
 }
 
 /// @nodoc
-class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
-    implements $UserModelCopyWith<$Res> {
-  _$UserModelCopyWithImpl(this._value, this._then);
+class _$SuppliersModelCopyWithImpl<$Res, $Val extends SuppliersModel>
+    implements $SuppliersModelCopyWith<$Res> {
+  _$SuppliersModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -105,12 +108,13 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? cover_image = freezed,
     Object? location = freezed,
     Object? commission_rate = freezed,
-    Object? countryid = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
     Object? projects = freezed,
     Object? customer_orders = freezed,
+    Object? UserOrdersCount = freezed,
+    Object? UserProjectsCount = freezed,
     Object? fcm_token = freezed,
   }) {
     return _then(_value.copyWith(
@@ -169,11 +173,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
       commission_rate: freezed == commission_rate
           ? _value.commission_rate
           : commission_rate // ignore: cast_nullable_to_non_nullable
-              as num?,
-      countryid: freezed == countryid
-          ? _value.countryid
-          : countryid // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -194,6 +194,14 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.customer_orders
           : customer_orders // ignore: cast_nullable_to_non_nullable
               as List<CustomerOrderModel>?,
+      UserOrdersCount: freezed == UserOrdersCount
+          ? _value.UserOrdersCount
+          : UserOrdersCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      UserProjectsCount: freezed == UserProjectsCount
+          ? _value.UserProjectsCount
+          : UserProjectsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       fcm_token: freezed == fcm_token
           ? _value.fcm_token
           : fcm_token // ignore: cast_nullable_to_non_nullable
@@ -203,10 +211,11 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
 }
 
 /// @nodoc
-abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
-  factory _$$_UserModelCopyWith(
-          _$_UserModel value, $Res Function(_$_UserModel) then) =
-      __$$_UserModelCopyWithImpl<$Res>;
+abstract class _$$_SuppliersModelCopyWith<$Res>
+    implements $SuppliersModelCopyWith<$Res> {
+  factory _$$_SuppliersModelCopyWith(
+          _$_SuppliersModel value, $Res Function(_$_SuppliersModel) then) =
+      __$$_SuppliersModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -223,22 +232,23 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String? image,
       String? cover_image,
       String? location,
-      num? commission_rate,
-      int? countryid,
+      String? commission_rate,
       String? created_at,
       String? updated_at,
       String? deleted_at,
       List<UserProjectsModel>? projects,
       List<CustomerOrderModel>? customer_orders,
+      int? UserOrdersCount,
+      int? UserProjectsCount,
       String? fcm_token});
 }
 
 /// @nodoc
-class __$$_UserModelCopyWithImpl<$Res>
-    extends _$UserModelCopyWithImpl<$Res, _$_UserModel>
-    implements _$$_UserModelCopyWith<$Res> {
-  __$$_UserModelCopyWithImpl(
-      _$_UserModel _value, $Res Function(_$_UserModel) _then)
+class __$$_SuppliersModelCopyWithImpl<$Res>
+    extends _$SuppliersModelCopyWithImpl<$Res, _$_SuppliersModel>
+    implements _$$_SuppliersModelCopyWith<$Res> {
+  __$$_SuppliersModelCopyWithImpl(
+      _$_SuppliersModel _value, $Res Function(_$_SuppliersModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -258,15 +268,16 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? cover_image = freezed,
     Object? location = freezed,
     Object? commission_rate = freezed,
-    Object? countryid = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
     Object? projects = freezed,
     Object? customer_orders = freezed,
+    Object? UserOrdersCount = freezed,
+    Object? UserProjectsCount = freezed,
     Object? fcm_token = freezed,
   }) {
-    return _then(_$_UserModel(
+    return _then(_$_SuppliersModel(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -322,11 +333,7 @@ class __$$_UserModelCopyWithImpl<$Res>
       commission_rate: freezed == commission_rate
           ? _value.commission_rate
           : commission_rate // ignore: cast_nullable_to_non_nullable
-              as num?,
-      countryid: freezed == countryid
-          ? _value.countryid
-          : countryid // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as String?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -347,6 +354,14 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value._customer_orders
           : customer_orders // ignore: cast_nullable_to_non_nullable
               as List<CustomerOrderModel>?,
+      UserOrdersCount: freezed == UserOrdersCount
+          ? _value.UserOrdersCount
+          : UserOrdersCount // ignore: cast_nullable_to_non_nullable
+              as int?,
+      UserProjectsCount: freezed == UserProjectsCount
+          ? _value.UserProjectsCount
+          : UserProjectsCount // ignore: cast_nullable_to_non_nullable
+              as int?,
       fcm_token: freezed == fcm_token
           ? _value.fcm_token
           : fcm_token // ignore: cast_nullable_to_non_nullable
@@ -357,8 +372,8 @@ class __$$_UserModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UserModel extends _UserModel {
-  const _$_UserModel(
+class _$_SuppliersModel extends _SuppliersModel {
+  const _$_SuppliersModel(
       {this.id,
       this.name,
       this.name_ar,
@@ -373,19 +388,20 @@ class _$_UserModel extends _UserModel {
       this.cover_image,
       this.location,
       this.commission_rate,
-      this.countryid,
       this.created_at,
       this.updated_at,
       this.deleted_at,
       final List<UserProjectsModel>? projects,
       final List<CustomerOrderModel>? customer_orders,
+      this.UserOrdersCount,
+      this.UserProjectsCount,
       this.fcm_token})
       : _projects = projects,
         _customer_orders = customer_orders,
         super._();
 
-  factory _$_UserModel.fromJson(Map<String, dynamic> json) =>
-      _$$_UserModelFromJson(json);
+  factory _$_SuppliersModel.fromJson(Map<String, dynamic> json) =>
+      _$$_SuppliersModelFromJson(json);
 
   @override
   final int? id;
@@ -414,9 +430,7 @@ class _$_UserModel extends _UserModel {
   @override
   final String? location;
   @override
-  final num? commission_rate;
-  @override
-  final int? countryid;
+  final String? commission_rate;
   @override
   final String? created_at;
   @override
@@ -444,18 +458,22 @@ class _$_UserModel extends _UserModel {
   }
 
   @override
+  final int? UserOrdersCount;
+  @override
+  final int? UserProjectsCount;
+  @override
   final String? fcm_token;
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, name_ar: $name_ar, phone: $phone, email: $email, email_verified_at: $email_verified_at, belongable_type: $belongable_type, belongable_id: $belongable_id, active: $active, language: $language, image: $image, cover_image: $cover_image, location: $location, commission_rate: $commission_rate, countryid: $countryid, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, projects: $projects, customer_orders: $customer_orders, fcm_token: $fcm_token)';
+    return 'SuppliersModel(id: $id, name: $name, name_ar: $name_ar, phone: $phone, email: $email, email_verified_at: $email_verified_at, belongable_type: $belongable_type, belongable_id: $belongable_id, active: $active, language: $language, image: $image, cover_image: $cover_image, location: $location, commission_rate: $commission_rate, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, projects: $projects, customer_orders: $customer_orders, UserOrdersCount: $UserOrdersCount, UserProjectsCount: $UserProjectsCount, fcm_token: $fcm_token)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UserModel &&
+            other is _$_SuppliersModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.name_ar, name_ar) || other.name_ar == name_ar) &&
@@ -477,8 +495,6 @@ class _$_UserModel extends _UserModel {
                 other.location == location) &&
             (identical(other.commission_rate, commission_rate) ||
                 other.commission_rate == commission_rate) &&
-            (identical(other.countryid, countryid) ||
-                other.countryid == countryid) &&
             (identical(other.created_at, created_at) ||
                 other.created_at == created_at) &&
             (identical(other.updated_at, updated_at) ||
@@ -488,6 +504,10 @@ class _$_UserModel extends _UserModel {
             const DeepCollectionEquality().equals(other._projects, _projects) &&
             const DeepCollectionEquality()
                 .equals(other._customer_orders, _customer_orders) &&
+            (identical(other.UserOrdersCount, UserOrdersCount) ||
+                other.UserOrdersCount == UserOrdersCount) &&
+            (identical(other.UserProjectsCount, UserProjectsCount) ||
+                other.UserProjectsCount == UserProjectsCount) &&
             (identical(other.fcm_token, fcm_token) ||
                 other.fcm_token == fcm_token));
   }
@@ -510,31 +530,32 @@ class _$_UserModel extends _UserModel {
         cover_image,
         location,
         commission_rate,
-        countryid,
         created_at,
         updated_at,
         deleted_at,
         const DeepCollectionEquality().hash(_projects),
         const DeepCollectionEquality().hash(_customer_orders),
+        UserOrdersCount,
+        UserProjectsCount,
         fcm_token
       ]);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UserModelCopyWith<_$_UserModel> get copyWith =>
-      __$$_UserModelCopyWithImpl<_$_UserModel>(this, _$identity);
+  _$$_SuppliersModelCopyWith<_$_SuppliersModel> get copyWith =>
+      __$$_SuppliersModelCopyWithImpl<_$_SuppliersModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UserModelToJson(
+    return _$$_SuppliersModelToJson(
       this,
     );
   }
 }
 
-abstract class _UserModel extends UserModel {
-  const factory _UserModel(
+abstract class _SuppliersModel extends SuppliersModel {
+  const factory _SuppliersModel(
       {final int? id,
       final String? name,
       final String? name_ar,
@@ -548,18 +569,19 @@ abstract class _UserModel extends UserModel {
       final String? image,
       final String? cover_image,
       final String? location,
-      final num? commission_rate,
-      final int? countryid,
+      final String? commission_rate,
       final String? created_at,
       final String? updated_at,
       final String? deleted_at,
       final List<UserProjectsModel>? projects,
       final List<CustomerOrderModel>? customer_orders,
-      final String? fcm_token}) = _$_UserModel;
-  const _UserModel._() : super._();
+      final int? UserOrdersCount,
+      final int? UserProjectsCount,
+      final String? fcm_token}) = _$_SuppliersModel;
+  const _SuppliersModel._() : super._();
 
-  factory _UserModel.fromJson(Map<String, dynamic> json) =
-      _$_UserModel.fromJson;
+  factory _SuppliersModel.fromJson(Map<String, dynamic> json) =
+      _$_SuppliersModel.fromJson;
 
   @override
   int? get id;
@@ -588,9 +610,7 @@ abstract class _UserModel extends UserModel {
   @override
   String? get location;
   @override
-  num? get commission_rate;
-  @override
-  int? get countryid;
+  String? get commission_rate;
   @override
   String? get created_at;
   @override
@@ -602,9 +622,13 @@ abstract class _UserModel extends UserModel {
   @override
   List<CustomerOrderModel>? get customer_orders;
   @override
+  int? get UserOrdersCount;
+  @override
+  int? get UserProjectsCount;
+  @override
   String? get fcm_token;
   @override
   @JsonKey(ignore: true)
-  _$$_UserModelCopyWith<_$_UserModel> get copyWith =>
+  _$$_SuppliersModelCopyWith<_$_SuppliersModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

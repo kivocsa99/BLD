@@ -4,12 +4,12 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../customordersmodel/model/customerordermodel.dart';
 import '../../projects/model/userprojectsmodel.dart';
-part 'usermodel.freezed.dart';
-part 'usermodel.g.dart';
+part 'suppliersmodel.freezed.dart';
+part 'suppliersmodel.g.dart';
 
 @freezed
-class UserModel with _$UserModel {
-  const factory UserModel({
+class SuppliersModel with _$SuppliersModel {
+  const factory SuppliersModel({
     int? id,
     String? name,
     String? name_ar,
@@ -23,16 +23,17 @@ class UserModel with _$UserModel {
     String? image,
     String? cover_image,
     String? location,
-    num? commission_rate,
-    int? countryid,
+    String? commission_rate,
     String? created_at,
     String? updated_at,
     String? deleted_at,
     List<UserProjectsModel>? projects,
     List<CustomerOrderModel>? customer_orders,
+    int? UserOrdersCount,
+    int? UserProjectsCount,
     String? fcm_token,
-  }) = _UserModel;
-  const UserModel._();
-  factory UserModel.fromJson(Map<String, dynamic> json) =>
-      _$UserModelFromJson(json);
+  }) = _SuppliersModel;
+  const SuppliersModel._();
+  factory SuppliersModel.fromJson(Map<String, dynamic> json) =>
+      _$SuppliersModelFromJson(json);
 }

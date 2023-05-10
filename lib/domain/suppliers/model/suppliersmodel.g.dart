@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'usermodel.dart';
+part of 'suppliersmodel.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
+_$_SuppliersModel _$$_SuppliersModelFromJson(Map<String, dynamic> json) =>
+    _$_SuppliersModel(
       id: json['id'] as int?,
       name: json['name'] as String?,
       name_ar: json['name_ar'] as String?,
@@ -20,8 +21,7 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       image: json['image'] as String?,
       cover_image: json['cover_image'] as String?,
       location: json['location'] as String?,
-      commission_rate: json['commission_rate'] as num?,
-      countryid: json['countryid'] as int?,
+      commission_rate: json['commission_rate'] as String?,
       created_at: json['created_at'] as String?,
       updated_at: json['updated_at'] as String?,
       deleted_at: json['deleted_at'] as String?,
@@ -31,10 +31,12 @@ _$_UserModel _$$_UserModelFromJson(Map<String, dynamic> json) => _$_UserModel(
       customer_orders: (json['customer_orders'] as List<dynamic>?)
           ?.map((e) => CustomerOrderModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      UserOrdersCount: json['UserOrdersCount'] as int?,
+      UserProjectsCount: json['UserProjectsCount'] as int?,
       fcm_token: json['fcm_token'] as String?,
     );
 
-Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
+Map<String, dynamic> _$$_SuppliersModelToJson(_$_SuppliersModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
@@ -50,11 +52,12 @@ Map<String, dynamic> _$$_UserModelToJson(_$_UserModel instance) =>
       'cover_image': instance.cover_image,
       'location': instance.location,
       'commission_rate': instance.commission_rate,
-      'countryid': instance.countryid,
       'created_at': instance.created_at,
       'updated_at': instance.updated_at,
       'deleted_at': instance.deleted_at,
       'projects': instance.projects,
       'customer_orders': instance.customer_orders,
+      'UserOrdersCount': instance.UserOrdersCount,
+      'UserProjectsCount': instance.UserProjectsCount,
       'fcm_token': instance.fcm_token,
     };

@@ -79,6 +79,7 @@ dependencies:
   flutter_localization: ^0.1.10
   hand_signature: ^3.0.1
   path_provider: ^2.0.14
+  curved_navigation_bar: ^1.0.3
 
 dev_dependencies:
   flutter_test:
