@@ -1,4 +1,4 @@
-import 'package:bld/domain/auth/contracts/auth.facade.dart';
+import 'package:bld/domain/auth/contracts/i.auth.facade.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
@@ -133,47 +133,7 @@ class AuthFacade implements IAuthFacade {
   }
 
 //ask ali for api token
-  @override
-  Future<Either<ApiFailures, dynamic>> updateuser({
-    required String urlvalue,
-    required String value,
-    required String token,
-  }) async {
-    var dio = Dio();
-    dio.options.headers = {'Content-Type': "application/json"};
-
-    final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
-      final result = await dio
-          .get("$baseUrl/Users/Update?$urlvalue=$value&api_token=$token");
-      if (result.data["AZSVR"] == "SUCCESS") {
-        setting = Hive.box('setting');
-        UserModel user = UserModel.fromJson(result.data["UserData"]);
-        await setting.put("apitoken", result.data["api_token"]);
-        await setting.put("name", user.name);
-        await setting.put("email", user.email);
-        await setting.put("phone", user.phone);
-
-        return user;
-      } else {
-        return const ApiFailures.internalError();
-      }
-    }, (error, stackTrace) {
-      if (error is DioError) {
-        switch (error.type) {
-          case DioErrorType.connectionTimeout:
-            return const ApiFailures.connnectionTimeOut();
-          case DioErrorType.cancel:
-            return const ApiFailures.cancel();
-          case DioErrorType.badResponse:
-            return const ApiFailures.noResponse();
-          default:
-            return const ApiFailures.internalError();
-        }
-      }
-      return const ApiFailures.internalError();
-    });
-    return result.map((r) => r).run();
-  }
+  
 
   @override
   Future<Either<ApiFailures, dynamic>> forgetpassword({
@@ -207,37 +167,5 @@ class AuthFacade implements IAuthFacade {
     return result.map((r) => r).run();
   }
 
-  @override
-  Future<Either<ApiFailures, dynamic>> deleteaccount({
-    required String token,
-  }) async {
-    var dio = Dio();
-    final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
-      final result =
-          await dio.get("$baseUrl/Users/DeleteMyAccount?api_token=$token");
-      if (result.data["AZSVR"] == "SUCCESS") {
-        return await Future.delayed(const Duration(milliseconds: 500),
-            (() async {
-          await setting.clear();
-        }));
-      } else {
-        return const ApiFailures.authFailed();
-      }
-    }, (error, stackTrace) {
-      if (error is DioError) {
-        switch (error.type) {
-          case DioErrorType.connectionTimeout:
-            return const ApiFailures.connnectionTimeOut();
-          case DioErrorType.cancel:
-            return const ApiFailures.cancel();
-          case DioErrorType.badResponse:
-            return const ApiFailures.noResponse();
-          default:
-            return const ApiFailures.noResponse();
-        }
-      }
-      return const ApiFailures.internalError();
-    });
-    return result.map((r) => r).run();
-  }
+  
 }

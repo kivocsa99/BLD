@@ -7,8 +7,9 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math' as math;
-
 import 'firebase_options.dart';
+//notes for ali
+//Should Review the ads
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

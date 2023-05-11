@@ -20,16 +20,9 @@ abstract class IAuthFacade {
 
   Future<void> signOut(BuildContext context);
 
-  Future<Either<ApiFailures, dynamic>> updateuser({
-    required String urlvalue,
-    required String value,
-    required String token,
-  });
 
   Future<Either<ApiFailures, Unit>> otpVerfication({
     required String phone,
   });
-  Future<Either<ApiFailures, dynamic>> deleteaccount({
-    required String token,
-  });
+
 }

@@ -1,7 +1,7 @@
 import "package:fpdart/fpdart.dart";
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-import '../../../domain/auth/contracts/auth.facade.dart';
+import '../../../domain/auth/contracts/i.auth.facade.dart';
 
 import '../../../domain/failures/api.failures.dart';
 import '../../core/use_cases/i.no_input_use_case.dart';

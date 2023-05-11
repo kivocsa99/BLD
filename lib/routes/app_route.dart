@@ -3,7 +3,12 @@ import 'package:bld/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import '../presentation/screens/home_screen.dart';
 import '../presentation/screens/dashboard_screen.dart';
+import '../presentation/screens/main_screen.dart';
+import '../presentation/screens/new_consultation_screen.dart';
 import '../presentation/screens/register_screen.dart';
+import '../presentation/screens/consultation_screen.dart';
+import '../presentation/screens/orders_screen.dart';
+import '../presentation/screens/projects_screen.dart';
 
 part 'app_route.gr.dart';
 
@@ -16,6 +21,7 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
         AutoRoute(
+            initial: true,
             page: LoginRoute.page,
             type: RouteType.custom(
               transitionsBuilder:
@@ -29,8 +35,13 @@ class AppRouter extends _$AppRouter {
               ),
             )),
         AutoRoute(
-            initial: true,
-            page: HomeRoute.page,
+            page: MainRoute.page,
+            children: [
+              AutoRoute(page: HomeRoute.page),
+              AutoRoute(page: OrdersRoute.page),
+              AutoRoute(page: ProjectsRoute.page),
+              AutoRoute(page: ConsultationRoute.page),
+            ],
             type: RouteType.custom(
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) =>
@@ -44,6 +55,19 @@ class AppRouter extends _$AppRouter {
             )),
         AutoRoute(
             page: DashBoardRoute.page,
+            type: RouteType.custom(
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(-1.0, 0.0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: FadeTransition(opacity: animation, child: child),
+              ),
+            )),
+        AutoRoute(
+            page: NewConsultationRoute.page,
             type: RouteType.custom(
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) =>

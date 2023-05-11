@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.repository.provider.dart';
+part of 'project.repository.provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getnotificationsHash() => r'b47281b3560ab0ba97d7799bb2923245d557d51c';
+String _$getprojectsHash() => r'86108c8c809690c1ec31c3122c57f12882fc2484';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,31 +29,31 @@ class _SystemHash {
   }
 }
 
-typedef GetnotificationsRef
+typedef GetprojectsRef
     = AutoDisposeFutureProviderRef<Either<ApiFailures, dynamic>>;
 
-/// See also [getnotifications].
-@ProviderFor(getnotifications)
-const getnotificationsProvider = GetnotificationsFamily();
+/// See also [getprojects].
+@ProviderFor(getprojects)
+const getprojectsProvider = GetprojectsFamily();
 
-/// See also [getnotifications].
-class GetnotificationsFamily
+/// See also [getprojects].
+class GetprojectsFamily
     extends Family<AsyncValue<Either<ApiFailures, dynamic>>> {
-  /// See also [getnotifications].
-  const GetnotificationsFamily();
+  /// See also [getprojects].
+  const GetprojectsFamily();
 
-  /// See also [getnotifications].
-  GetnotificationsProvider call(
+  /// See also [getprojects].
+  GetprojectsProvider call(
     String token,
   ) {
-    return GetnotificationsProvider(
+    return GetprojectsProvider(
       token,
     );
   }
 
   @override
-  GetnotificationsProvider getProviderOverride(
-    covariant GetnotificationsProvider provider,
+  GetprojectsProvider getProviderOverride(
+    covariant GetprojectsProvider provider,
   ) {
     return call(
       provider.token,
@@ -72,36 +72,36 @@ class GetnotificationsFamily
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'getnotificationsProvider';
+  String? get name => r'getprojectsProvider';
 }
 
-/// See also [getnotifications].
-class GetnotificationsProvider
+/// See also [getprojects].
+class GetprojectsProvider
     extends AutoDisposeFutureProvider<Either<ApiFailures, dynamic>> {
-  /// See also [getnotifications].
-  GetnotificationsProvider(
+  /// See also [getprojects].
+  GetprojectsProvider(
     this.token,
   ) : super.internal(
-          (ref) => getnotifications(
+          (ref) => getprojects(
             ref,
             token,
           ),
-          from: getnotificationsProvider,
-          name: r'getnotificationsProvider',
+          from: getprojectsProvider,
+          name: r'getprojectsProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$getnotificationsHash,
-          dependencies: GetnotificationsFamily._dependencies,
+                  : _$getprojectsHash,
+          dependencies: GetprojectsFamily._dependencies,
           allTransitiveDependencies:
-              GetnotificationsFamily._allTransitiveDependencies,
+              GetprojectsFamily._allTransitiveDependencies,
         );
 
   final String token;
 
   @override
   bool operator ==(Object other) {
-    return other is GetnotificationsProvider && other.token == token;
+    return other is GetprojectsProvider && other.token == token;
   }
 
   @override

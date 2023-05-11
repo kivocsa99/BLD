@@ -5,7 +5,7 @@ import 'package:bld/constatns.dart';
 import '../../domain/homepagemodel/contracts/i.home.repository.dart';
 import '../../domain/homepagemodel/model/homepagemodel.dart';
 
-class HomeRepository extends IHomeRepository {
+class HomeRepository implements IHomeRepository {
   @override
   Future<Either<ApiFailures, dynamic>> getHomePage({required String apitoken}) {
     var dio = Dio();
