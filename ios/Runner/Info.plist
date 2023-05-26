@@ -24,6 +24,10 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>used for the client to be able to capture photos from his camera to complete his order process by capturing car , pet ,etc.. photos</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>used for the client to be able to pick photos from his gallery to complete his order process by selecting car , pet ,etc.. photos</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "991380975284",
-    "project_id": "bldd-591fe",
-    "storage_bucket": "bldd-591fe.appspot.com"
+    "project_number": "811227293444",
+    "project_id": "bldmain",
+    "storage_bucket": "bldmain.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:991380975284:android:5e3ae90ab4576c4ee2b1e1",
+        "mobilesdk_app_id": "1:811227293444:android:856c29469de0cf36b91251",
         "android_client_info": {
           "package_name": "com.kivocsa99.bld"
         }
       },
       "oauth_client": [
         {
-          "client_id": "991380975284-vgu8hm3ka6ilia04m8vfl31uteln6vtb.apps.googleusercontent.com",
+          "client_id": "811227293444-oe3a3k7uvu24ddej0b4ghvjvgtr4dfc5.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA0OX7q_CooHMvufZS7EQhKWQWtnYRBgFM"
+          "current_key": "AIzaSyCAH3p-rvLjqAyl66frl2AMNUnJTjxWP8M"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "991380975284-vgu8hm3ka6ilia04m8vfl31uteln6vtb.apps.googleusercontent.com",
+              "client_id": "811227293444-oe3a3k7uvu24ddej0b4ghvjvgtr4dfc5.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

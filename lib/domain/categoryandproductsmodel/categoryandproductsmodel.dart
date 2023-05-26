@@ -2,6 +2,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../files/model/filesmodel.dart';
 import '../products/model/productmodel.dart';
 
 part 'categoryandproductsmodel.freezed.dart';
@@ -22,6 +23,7 @@ class CategoryAndProductsModel with _$CategoryAndProductsModel {
     String? updated_at,
     String? deleted_at,
     ProductModel? product,
+    List<FilesModel>? files,
   }) = _CategoryAndProductsModel;
   const CategoryAndProductsModel._();
   factory CategoryAndProductsModel.fromJson(Map<String, dynamic> json) =>

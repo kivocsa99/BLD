@@ -7,11 +7,11 @@ import '../../../domain/failures/api.failures.dart';
 import '../../core/use_cases/i.use_case.dart';
 import 'attach.file.use.case.input.dart';
 
-final motorattachfileProvider = Provider((ref) => ProjectAttachFileUseCase(
+final ProjectattachfileProvider = Provider((ref) => ProjectAttachFileUseCase(
     projectRepository: ref.watch(projectrepoprovider)));
 
 class ProjectAttachFileUseCase
-    implements IUseCase<MotorAttachFileUseCaseInput, dynamic> {
+    implements IUseCase<ProjectAttachFileUseCaseInput, dynamic> {
   final IProjectRepository? _projectRepository;
 
   ProjectAttachFileUseCase({IProjectRepository? projectRepository})
@@ -19,7 +19,7 @@ class ProjectAttachFileUseCase
 
   @override
   Future<Either<ApiFailures, dynamic>> execute(
-      MotorAttachFileUseCaseInput input) async {
+      ProjectAttachFileUseCaseInput input) async {
     return await _projectRepository!.attachFile(
       apitoken: input.token!,
       file: input.file!,

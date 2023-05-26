@@ -17,14 +17,16 @@ class ProjectRepository implements IProjectRepository {
       required String location}) {
     var dio = Dio();
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
+      print("$name$description$area$location");
       FormData formData = FormData.fromMap({
         "name": name,
         "description": description,
         "area": area,
         "location": location
       });
-      final result = await dio
-          .post("$baseUrl/Projects/AddNew?api_token=$apitoken", data: formData);
+      final result = await dio.get(
+          "$baseUrl/Projects/AddNew?name=$name&description=$description&area=$area&location=$location&api_token=$apitoken",
+          data: formData);
       if (result.data["AZSVR"] == "SUCCESS") {
         return result.data;
       } else {
@@ -32,7 +34,7 @@ class ProjectRepository implements IProjectRepository {
       }
     }, (error, stackTrace) {
       if (error is DioError) {
-        print("Dio$error");
+        print(error.requestOptions.uri);
 
         switch (error.type) {
           case DioErrorType.connectionTimeout:

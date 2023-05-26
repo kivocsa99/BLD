@@ -20,6 +20,7 @@ Future<void> main() async {
   );
   await Hive.initFlutter();
   await Hive.openBox("setting");
+  await Hive.openBox("category");
   runApp(ProviderScope(
     child: MainTree(),
   ));
@@ -33,7 +34,7 @@ class MainTree extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: "Bolisati",
+      title: "BLD",
       debugShowCheckedModeBanner: false,
       routerConfig: _appRouter.config(),
     );

@@ -1,10 +1,9 @@
 import 'dart:io';
 
-class MotorAttachFileUseCaseInput {
+class ProjectAttachFileUseCaseInput {
   final File? file;
   final int? orderid;
   final String? token;
-  final String? seg;
 
-  MotorAttachFileUseCaseInput({this.file, this.orderid, this.token,this.seg});
+  ProjectAttachFileUseCaseInput({this.file, this.orderid, this.token});
 }

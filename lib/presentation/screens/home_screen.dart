@@ -1,15 +1,16 @@
 import 'package:auto_route/auto_route.dart';
-import 'package:bld/domain/categoryandproductsmodel/categoryandproductsmodel.dart';
 import 'package:bld/domain/user/model/usermodel.dart';
+import 'package:bld/routes/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:transparent_image/transparent_image.dart';
-
+import 'main_screen.dart';
 import '../../application/provider/homepage.provider.dart';
+import '../../constatns.dart';
 import '../../domain/homepagemodel/model/homepagemodel.dart';
 import '../../domain/suppliers/model/suppliersmodel.dart';
+import '../components/adsbanner.dart';
+import '../components/horizontalproducts.dart';
 
 @RoutePage()
 class HomeScreen extends HookConsumerWidget {
@@ -17,24 +18,21 @@ class HomeScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final setting = Hive.box("setting");
-    final apitoken = setting.get("apitoken");
     final homeprovider = ref.watch(gethomeProvider(apitoken));
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: const Color(0xFFF2F2F2),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          return homeprovider.when(
-              data: (data) {
-                return data.fold((l) => Text(l.toString()), (r) {
-                  final HomePageModel homemodel = r;
-                  final UserModel user = homemodel.User!;
-                  final List<CategoryAndProductsModel> homeproducts =
-                      homemodel.CategoryAndProducts!;
-                  final List<SuppliersModel> suppliers =
-                      homemodel.RandomSuppliers!;
-                  return ListView(
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return homeprovider.when(
+            data: (data) {
+              return data.fold((l) => Text(l.toString()), (r) {
+                final HomePageModel homemodel = r;
+                final UserModel user = homemodel.User!;
+
+                final List<SuppliersModel> suppliers =
+                    homemodel.RandomSuppliers!;
+                return RefreshIndicator(
+                  onRefresh: () =>
+                      ref.refresh(gethomeProvider(apitoken).future),
+                  child: ListView(
                     children: [
                       const SizedBox(
                         height: 10,
@@ -203,49 +201,64 @@ class HomeScreen extends HookConsumerWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Container(
-                              height: 100,
-                              width: constraints.maxWidth / 3.5,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(14)),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Image.asset("assets/rowshopping.png"),
-                                  const Text("Start Shopping")
-                                ],
+                            GestureDetector(
+                              onTap: () =>
+                                  context.router.push(const NewOrdersRoute()),
+                              child: Container(
+                                height: 100,
+                                width: constraints.maxWidth / 3.5,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(14)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset("assets/rowshopping.png"),
+                                    const Text("Start Shopping")
+                                  ],
+                                ),
                               ),
                             ),
-                            Container(
-                              height: 100,
-                              width: constraints.maxWidth / 3.5,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(14)),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Image.asset("assets/rowProject.png"),
-                                  const Text("Create Project")
-                                ],
+                            GestureDetector(
+                              onTap: () =>
+                                  context.router.push(const NewProjectRoute()),
+                              child: Container(
+                                height: 100,
+                                width: constraints.maxWidth / 3.5,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(14)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset("assets/rowProject.png"),
+                                    const Text("Create Project")
+                                  ],
+                                ),
                               ),
                             ),
-                            Container(
-                              height: 100,
-                              width: constraints.maxWidth / 3.5,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(14)),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Image.asset("assets/rowconsult.png"),
-                                  const Text("Consult an\n    Expert")
-                                ],
+                            GestureDetector(
+                              onTap: () {
+                                context.router.push(
+                                  const NewConsultationRoute(),
+                                );
+                              },
+                              child: Container(
+                                height: 100,
+                                width: constraints.maxWidth / 3.5,
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(14)),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    Image.asset("assets/rowconsult.png"),
+                                    const Text("Consult an\n    Expert")
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -254,20 +267,8 @@ class HomeScreen extends HookConsumerWidget {
                       const SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                                begin: Alignment.center,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color(0xff373B43),
-                                  Color(0xff0B0C0D),
-                                ]),
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(25)),
-                        child: const Text(""),
+                      AdsBanner(
+                        adsList: homemodel.Ads,
                       ),
                       const SizedBox(
                         height: 30,
@@ -277,110 +278,20 @@ class HomeScreen extends HookConsumerWidget {
                         child: Text(
                           "Best Deals",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: 20, fontWeight: FontWeight.normal),
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 210,
-                        child: ListView.separated(
-                          scrollDirection: Axis.horizontal,
-                          separatorBuilder: (context, index) => const SizedBox(
-                            width: 10,
-                          ),
-                          itemCount: homemodel.CategoryAndProducts!.length,
-                          itemBuilder: (context, index) {
-                            final CategoryAndProductsModel product =
-                                homeproducts[index];
-                            return Container(
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(25)),
-                                height: 200,
-                                width: 200,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                          width: double.infinity,
-                                          height: 120,
-                                          decoration: BoxDecoration(
-                                              color: const Color(0xffE2E2E2),
-                                              borderRadius:
-                                                  BorderRadius.circular(25)),
-                                          child: Center(
-                                            child: FadeInImage.memoryNetwork(
-                                              placeholder: kTransparentImage,
-                                              image:
-                                                  "https://bld-main.bitsblend.org/storage/${product.product!.image}",
-                                            ),
-                                          )),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          product.product!.brand!,
-                                          style: const TextStyle(
-                                              color: Colors.grey,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          product.product!.name!,
-                                          style: const TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5,
-                                      ),
-                                      Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text(
-                                          "JOD ${product.price.toString()}",
-                                          style: const TextStyle(
-                                              color: Colors.blue,
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ));
-                          },
-                        ),
+                      HorizontalProducts(
+                        products: homemodel.CategoryAndProducts,
                       ),
                       const SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        width: double.infinity,
-                        height: 120,
-                        decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                                begin: Alignment.center,
-                                end: Alignment.bottomCenter,
-                                colors: [
-                                  Color(0xff373B43),
-                                  Color(0xff0B0C0D),
-                                ]),
-                            color: Colors.black,
-                            borderRadius: BorderRadius.circular(25)),
-                        child: const Text(""),
+                      AdsBanner(
+                        adsList: homemodel.Ads,
                       ),
                       const SizedBox(
                         height: 30,
@@ -390,7 +301,7 @@ class HomeScreen extends HookConsumerWidget {
                         child: Text(
                           "Popular Suppliers",
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
+                              fontSize: 20, fontWeight: FontWeight.normal),
                         ),
                       ),
                       const SizedBox(
@@ -436,21 +347,21 @@ class HomeScreen extends HookConsumerWidget {
                           },
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       )
                     ],
-                  );
-                });
-              },
-              error: (error, stacktrace) => Text(error.toString()),
-              loading: () => const Center(
-                    child: SpinKitCubeGrid(
-                      color: Colors.blue,
-                    ),
-                  ));
-        },
-      ),
-    ));
+                  ),
+                );
+              });
+            },
+            error: (error, stacktrace) => Text(error.toString()),
+            loading: () => const Center(
+                  child: SpinKitCubeGrid(
+                    color: Colors.blue,
+                  ),
+                ));
+      },
+    );
   }
 }

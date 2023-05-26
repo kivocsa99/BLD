@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bld/routes/app_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+
 
 @RoutePage()
 class MainScreen extends HookWidget {
@@ -10,7 +10,7 @@ class MainScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final pageIndex = useState(0);
+    int pageIndex = 0;
 
     return AutoTabsRouter(
       routes: const [
@@ -28,10 +28,9 @@ class MainScreen extends HookWidget {
         return SafeArea(
             child: Scaffold(
           bottomNavigationBar: Container(
-            height: 60,
-            decoration: BoxDecoration(
-              color: Theme.of(context).primaryColor,
-              borderRadius: const BorderRadius.only(
+            height: 90,
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 topRight: Radius.circular(20),
               ),
@@ -40,77 +39,44 @@ class MainScreen extends HookWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  enableFeedback: false,
-                  onPressed: () async {
-                    pageIndex.value = 0;
-                    tabsRouter.setActiveIndex(pageIndex.value);
-                  },
-                  icon: pageIndex.value == 0
-                      ? const Icon(
-                          Icons.home_filled,
-                          color: Colors.white,
-                          size: 35,
-                        )
-                      : const Icon(
-                          Icons.home_outlined,
-                          color: Colors.white,
-                          size: 35,
-                        ),
-                ),
+                    enableFeedback: false,
+                    onPressed: () async {
+                      pageIndex = 0;
+                      tabsRouter.setActiveIndex(pageIndex);
+                    },
+                    icon: pageIndex == 0
+                        ? Image.asset("assets/nav/homeactive.png")
+                        : Image.asset("assets/nav/home.png")),
                 IconButton(
                   enableFeedback: false,
                   onPressed: () {
-                    pageIndex.value = 1;
-                    tabsRouter.setActiveIndex(pageIndex.value);
+                    pageIndex = 1;
+                    tabsRouter.setActiveIndex(pageIndex);
                   },
-                  icon: pageIndex.value == 1
-                      ? const Icon(
-                          Icons.work_rounded,
-                          color: Colors.white,
-                          size: 35,
-                        )
-                      : const Icon(
-                          Icons.work_outline_outlined,
-                          color: Colors.white,
-                          size: 35,
-                        ),
+                  icon: pageIndex == 1
+                      ? Image.asset("assets/nav/orderactive.png")
+                      : Image.asset("assets/nav/orders.png"),
                 ),
                 IconButton(
                   enableFeedback: false,
                   onPressed: () async {
-                    pageIndex.value = 2;
-                    tabsRouter.setActiveIndex(pageIndex.value);
+                    pageIndex = 2;
+                    tabsRouter.setActiveIndex(pageIndex);
                   },
-                  icon: pageIndex.value == 2
-                      ? const Icon(
-                          Icons.widgets_rounded,
-                          color: Colors.white,
-                          size: 35,
-                        )
-                      : const Icon(
-                          Icons.widgets_outlined,
-                          color: Colors.white,
-                          size: 35,
-                        ),
+                  icon: pageIndex == 2
+                      ? Image.asset("assets/nav/project.png")
+                      : Image.asset("assets/nav/projectactive.png"),
                 ),
                 IconButton(
                   splashRadius: 20,
                   enableFeedback: false,
                   onPressed: () async {
-                    pageIndex.value = 3;
-                    tabsRouter.setActiveIndex(pageIndex.value);
+                    pageIndex = 3;
+                    tabsRouter.setActiveIndex(pageIndex);
                   },
-                  icon: pageIndex.value == 3
-                      ? const Icon(
-                          Icons.person,
-                          color: Colors.white,
-                          size: 35,
-                        )
-                      : const Icon(
-                          Icons.person_outline,
-                          color: Colors.white,
-                          size: 35,
-                        ),
+                  icon: pageIndex == 3
+                      ? Image.asset("assets/nav/consultactive.png")
+                      : Image.asset("assets/nav/consult.png"),
                 ),
               ],
             ),
@@ -145,10 +111,16 @@ class MainScreen extends HookWidget {
                                 child: Image.asset("assets/Menu.png"),
                               ),
                             ),
-                            const Center(
+                            Center(
                               child: Text(
-                                "Home",
-                                style: TextStyle(
+                                pageIndex == 0
+                                    ? "Home"
+                                    : pageIndex == 1
+                                        ? "Orders"
+                                        : pageIndex == 2
+                                            ? "Projects"
+                                            : "Consultations",
+                                style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ),
                             ),

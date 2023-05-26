@@ -23,6 +23,9 @@ _$_CategoryAndProductsModel _$$_CategoryAndProductsModelFromJson(
       product: json['product'] == null
           ? null
           : ProductModel.fromJson(json['product'] as Map<String, dynamic>),
+      files: (json['files'] as List<dynamic>?)
+          ?.map((e) => FilesModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_CategoryAndProductsModelToJson(
@@ -40,4 +43,5 @@ Map<String, dynamic> _$$_CategoryAndProductsModelToJson(
       'updated_at': instance.updated_at,
       'deleted_at': instance.deleted_at,
       'product': instance.product,
+      'files': instance.files,
     };

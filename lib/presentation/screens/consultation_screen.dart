@@ -1,14 +1,15 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../routes/app_route.dart';
 
 @RoutePage()
-class ConsultationScreen extends StatelessWidget {
+class ConsultationScreen extends HookConsumerWidget {
   const ConsultationScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context,WidgetRef ref) {
     return Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25.0),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [

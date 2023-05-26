@@ -33,6 +33,7 @@ mixin _$CategoryAndProductsModel {
   String? get updated_at => throw _privateConstructorUsedError;
   String? get deleted_at => throw _privateConstructorUsedError;
   ProductModel? get product => throw _privateConstructorUsedError;
+  List<FilesModel>? get files => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +59,8 @@ abstract class $CategoryAndProductsModelCopyWith<$Res> {
       String? created_at,
       String? updated_at,
       String? deleted_at,
-      ProductModel? product});
+      ProductModel? product,
+      List<FilesModel>? files});
 
   $ProductModelCopyWith<$Res>? get product;
 }
@@ -89,6 +91,7 @@ class _$CategoryAndProductsModelCopyWithImpl<$Res,
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
     Object? product = freezed,
+    Object? files = freezed,
   }) {
     return _then(_value.copyWith(
       id: freezed == id
@@ -139,6 +142,10 @@ class _$CategoryAndProductsModelCopyWithImpl<$Res,
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
+      files: freezed == files
+          ? _value.files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<FilesModel>?,
     ) as $Val);
   }
 
@@ -176,7 +183,8 @@ abstract class _$$_CategoryAndProductsModelCopyWith<$Res>
       String? created_at,
       String? updated_at,
       String? deleted_at,
-      ProductModel? product});
+      ProductModel? product,
+      List<FilesModel>? files});
 
   @override
   $ProductModelCopyWith<$Res>? get product;
@@ -206,6 +214,7 @@ class __$$_CategoryAndProductsModelCopyWithImpl<$Res>
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
     Object? product = freezed,
+    Object? files = freezed,
   }) {
     return _then(_$_CategoryAndProductsModel(
       id: freezed == id
@@ -256,6 +265,10 @@ class __$$_CategoryAndProductsModelCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
+      files: freezed == files
+          ? _value._files
+          : files // ignore: cast_nullable_to_non_nullable
+              as List<FilesModel>?,
     ));
   }
 }
@@ -275,8 +288,10 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
       this.created_at,
       this.updated_at,
       this.deleted_at,
-      this.product})
-      : super._();
+      this.product,
+      final List<FilesModel>? files})
+      : _files = files,
+        super._();
 
   factory _$_CategoryAndProductsModel.fromJson(Map<String, dynamic> json) =>
       _$$_CategoryAndProductsModelFromJson(json);
@@ -305,10 +320,19 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
   final String? deleted_at;
   @override
   final ProductModel? product;
+  final List<FilesModel>? _files;
+  @override
+  List<FilesModel>? get files {
+    final value = _files;
+    if (value == null) return null;
+    if (_files is EqualUnmodifiableListView) return _files;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CategoryAndProductsModel(id: $id, supplier_id: $supplier_id, product_id: $product_id, price: $price, quantity: $quantity, is_published: $is_published, name: $name, image: $image, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, product: $product)';
+    return 'CategoryAndProductsModel(id: $id, supplier_id: $supplier_id, product_id: $product_id, price: $price, quantity: $quantity, is_published: $is_published, name: $name, image: $image, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, product: $product, files: $files)';
   }
 
   @override
@@ -334,7 +358,8 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
                 other.updated_at == updated_at) &&
             (identical(other.deleted_at, deleted_at) ||
                 other.deleted_at == deleted_at) &&
-            (identical(other.product, product) || other.product == product));
+            (identical(other.product, product) || other.product == product) &&
+            const DeepCollectionEquality().equals(other._files, _files));
   }
 
   @JsonKey(ignore: true)
@@ -352,7 +377,8 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
       created_at,
       updated_at,
       deleted_at,
-      product);
+      product,
+      const DeepCollectionEquality().hash(_files));
 
   @JsonKey(ignore: true)
   @override
@@ -382,7 +408,8 @@ abstract class _CategoryAndProductsModel extends CategoryAndProductsModel {
       final String? created_at,
       final String? updated_at,
       final String? deleted_at,
-      final ProductModel? product}) = _$_CategoryAndProductsModel;
+      final ProductModel? product,
+      final List<FilesModel>? files}) = _$_CategoryAndProductsModel;
   const _CategoryAndProductsModel._() : super._();
 
   factory _CategoryAndProductsModel.fromJson(Map<String, dynamic> json) =
@@ -412,6 +439,8 @@ abstract class _CategoryAndProductsModel extends CategoryAndProductsModel {
   String? get deleted_at;
   @override
   ProductModel? get product;
+  @override
+  List<FilesModel>? get files;
   @override
   @JsonKey(ignore: true)
   _$$_CategoryAndProductsModelCopyWith<_$_CategoryAndProductsModel>
