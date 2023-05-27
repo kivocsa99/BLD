@@ -3,7 +3,6 @@ import 'package:bld/routes/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-
 @RoutePage()
 class MainScreen extends HookWidget {
   const MainScreen({super.key});
@@ -27,58 +26,68 @@ class MainScreen extends HookWidget {
         final tabsRouter = AutoTabsRouter.of(context);
         return SafeArea(
             child: Scaffold(
+          extendBody: true,
           bottomNavigationBar: Container(
             height: 90,
             decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(20),
-                topRight: Radius.circular(20),
-              ),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                    enableFeedback: false,
-                    onPressed: () async {
-                      pageIndex = 0;
-                      tabsRouter.setActiveIndex(pageIndex);
-                    },
-                    icon: pageIndex == 0
-                        ? Image.asset("assets/nav/homeactive.png")
-                        : Image.asset("assets/nav/home.png")),
-                IconButton(
-                  enableFeedback: false,
-                  onPressed: () {
-                    pageIndex = 1;
-                    tabsRouter.setActiveIndex(pageIndex);
-                  },
-                  icon: pageIndex == 1
-                      ? Image.asset("assets/nav/orderactive.png")
-                      : Image.asset("assets/nav/orders.png"),
-                ),
-                IconButton(
-                  enableFeedback: false,
-                  onPressed: () async {
-                    pageIndex = 2;
-                    tabsRouter.setActiveIndex(pageIndex);
-                  },
-                  icon: pageIndex == 2
-                      ? Image.asset("assets/nav/project.png")
-                      : Image.asset("assets/nav/projectactive.png"),
-                ),
-                IconButton(
-                  splashRadius: 20,
-                  enableFeedback: false,
-                  onPressed: () async {
-                    pageIndex = 3;
-                    tabsRouter.setActiveIndex(pageIndex);
-                  },
-                  icon: pageIndex == 3
-                      ? Image.asset("assets/nav/consultactive.png")
-                      : Image.asset("assets/nav/consult.png"),
+              borderRadius: BorderRadius.vertical(top: Radius.circular(30.0)),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10.0,
+                  offset: Offset(0, -2),
                 ),
               ],
+            ),
+            child: ClipRRect(
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(30.0)),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconButton(
+                      enableFeedback: false,
+                      onPressed: () async {
+                        pageIndex = 0;
+                        tabsRouter.setActiveIndex(pageIndex);
+                      },
+                      icon: pageIndex == 0
+                          ? Image.asset("assets/nav/homeactive.png")
+                          : Image.asset("assets/nav/home.png")),
+                  IconButton(
+                    enableFeedback: false,
+                    onPressed: () {
+                      pageIndex = 1;
+                      tabsRouter.setActiveIndex(pageIndex);
+                    },
+                    icon: pageIndex == 1
+                        ? Image.asset("assets/nav/orderactive.png")
+                        : Image.asset("assets/nav/orders.png"),
+                  ),
+                  IconButton(
+                    enableFeedback: false,
+                    onPressed: () async {
+                      pageIndex = 2;
+                      tabsRouter.setActiveIndex(pageIndex);
+                    },
+                    icon: pageIndex == 2
+                        ? Image.asset("assets/nav/project.png")
+                        : Image.asset("assets/nav/projectactive.png"),
+                  ),
+                  IconButton(
+                    splashRadius: 20,
+                    enableFeedback: false,
+                    onPressed: () async {
+                      pageIndex = 3;
+                      tabsRouter.setActiveIndex(pageIndex);
+                    },
+                    icon: pageIndex == 3
+                        ? Image.asset("assets/nav/consultactive.png")
+                        : Image.asset("assets/nav/consult.png"),
+                  ),
+                ],
+              ),
             ),
           ),
           body: LayoutBuilder(

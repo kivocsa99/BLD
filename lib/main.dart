@@ -20,6 +20,7 @@ Future<void> main() async {
   );
   await Hive.initFlutter();
   await Hive.openBox("setting");
+  await Hive.openBox("project");
   await Hive.openBox("category");
   runApp(ProviderScope(
     child: MainTree(),

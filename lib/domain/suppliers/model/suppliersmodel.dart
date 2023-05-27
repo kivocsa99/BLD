@@ -15,6 +15,7 @@ class SuppliersModel with _$SuppliersModel {
     String? name_ar,
     String? phone,
     String? email,
+    String? address,
     String? email_verified_at,
     String? belongable_type,
     int? belongable_id,

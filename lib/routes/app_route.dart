@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bld/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 import '../domain/cart/model/cartmodel.dart';
 import '../domain/categoryandproductsmodel/categoryandproductsmodel.dart';
 import '../presentation/screens/cart_screen.dart';
@@ -128,6 +129,19 @@ class AppRouter extends _$AppRouter {
             )),
         AutoRoute(
             page: CartRoute.page,
+            type: RouteType.custom(
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 1.0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: FadeTransition(opacity: animation, child: child),
+              ),
+            )),
+        AutoRoute(
+            page: LocationRoute.page,
             type: RouteType.custom(
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) =>

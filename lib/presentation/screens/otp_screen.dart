@@ -26,20 +26,20 @@ class OtpScreen extends StatelessWidget {
             height: constraints.maxHeight,
             color: Colors.white,
             child: Padding(
-              padding: EdgeInsets.only(left: 25, right: 25),
+              padding: const EdgeInsets.only(left: 25, right: 25),
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 50,
                   ),
-                  Text(
+                  const Text(
                     "Please enter the 4-digit code\nthat was sent to your mobile number",
                     style: TextStyle(color: Colors.black, fontSize: 14),
                   ),
                   const SizedBox(
                     height: 40,
                   ),
-                  Align(
+                  const Align(
                     alignment: Alignment.centerLeft,
                     child: Text("4- Code Digit"),
                   ),

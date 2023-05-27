@@ -33,6 +33,7 @@ mixin _$CategoryAndProductsModel {
   String? get updated_at => throw _privateConstructorUsedError;
   String? get deleted_at => throw _privateConstructorUsedError;
   ProductModel? get product => throw _privateConstructorUsedError;
+  SuppliersModel? get supplier => throw _privateConstructorUsedError;
   List<FilesModel>? get files => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -60,9 +61,11 @@ abstract class $CategoryAndProductsModelCopyWith<$Res> {
       String? updated_at,
       String? deleted_at,
       ProductModel? product,
+      SuppliersModel? supplier,
       List<FilesModel>? files});
 
   $ProductModelCopyWith<$Res>? get product;
+  $SuppliersModelCopyWith<$Res>? get supplier;
 }
 
 /// @nodoc
@@ -91,6 +94,7 @@ class _$CategoryAndProductsModelCopyWithImpl<$Res,
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
     Object? product = freezed,
+    Object? supplier = freezed,
     Object? files = freezed,
   }) {
     return _then(_value.copyWith(
@@ -142,6 +146,10 @@ class _$CategoryAndProductsModelCopyWithImpl<$Res,
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
+      supplier: freezed == supplier
+          ? _value.supplier
+          : supplier // ignore: cast_nullable_to_non_nullable
+              as SuppliersModel?,
       files: freezed == files
           ? _value.files
           : files // ignore: cast_nullable_to_non_nullable
@@ -158,6 +166,18 @@ class _$CategoryAndProductsModelCopyWithImpl<$Res,
 
     return $ProductModelCopyWith<$Res>(_value.product!, (value) {
       return _then(_value.copyWith(product: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SuppliersModelCopyWith<$Res>? get supplier {
+    if (_value.supplier == null) {
+      return null;
+    }
+
+    return $SuppliersModelCopyWith<$Res>(_value.supplier!, (value) {
+      return _then(_value.copyWith(supplier: value) as $Val);
     });
   }
 }
@@ -184,10 +204,13 @@ abstract class _$$_CategoryAndProductsModelCopyWith<$Res>
       String? updated_at,
       String? deleted_at,
       ProductModel? product,
+      SuppliersModel? supplier,
       List<FilesModel>? files});
 
   @override
   $ProductModelCopyWith<$Res>? get product;
+  @override
+  $SuppliersModelCopyWith<$Res>? get supplier;
 }
 
 /// @nodoc
@@ -214,6 +237,7 @@ class __$$_CategoryAndProductsModelCopyWithImpl<$Res>
     Object? updated_at = freezed,
     Object? deleted_at = freezed,
     Object? product = freezed,
+    Object? supplier = freezed,
     Object? files = freezed,
   }) {
     return _then(_$_CategoryAndProductsModel(
@@ -265,6 +289,10 @@ class __$$_CategoryAndProductsModelCopyWithImpl<$Res>
           ? _value.product
           : product // ignore: cast_nullable_to_non_nullable
               as ProductModel?,
+      supplier: freezed == supplier
+          ? _value.supplier
+          : supplier // ignore: cast_nullable_to_non_nullable
+              as SuppliersModel?,
       files: freezed == files
           ? _value._files
           : files // ignore: cast_nullable_to_non_nullable
@@ -289,6 +317,7 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
       this.updated_at,
       this.deleted_at,
       this.product,
+      this.supplier,
       final List<FilesModel>? files})
       : _files = files,
         super._();
@@ -320,6 +349,8 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
   final String? deleted_at;
   @override
   final ProductModel? product;
+  @override
+  final SuppliersModel? supplier;
   final List<FilesModel>? _files;
   @override
   List<FilesModel>? get files {
@@ -332,7 +363,7 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
 
   @override
   String toString() {
-    return 'CategoryAndProductsModel(id: $id, supplier_id: $supplier_id, product_id: $product_id, price: $price, quantity: $quantity, is_published: $is_published, name: $name, image: $image, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, product: $product, files: $files)';
+    return 'CategoryAndProductsModel(id: $id, supplier_id: $supplier_id, product_id: $product_id, price: $price, quantity: $quantity, is_published: $is_published, name: $name, image: $image, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, product: $product, supplier: $supplier, files: $files)';
   }
 
   @override
@@ -359,6 +390,8 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
             (identical(other.deleted_at, deleted_at) ||
                 other.deleted_at == deleted_at) &&
             (identical(other.product, product) || other.product == product) &&
+            (identical(other.supplier, supplier) ||
+                other.supplier == supplier) &&
             const DeepCollectionEquality().equals(other._files, _files));
   }
 
@@ -378,6 +411,7 @@ class _$_CategoryAndProductsModel extends _CategoryAndProductsModel {
       updated_at,
       deleted_at,
       product,
+      supplier,
       const DeepCollectionEquality().hash(_files));
 
   @JsonKey(ignore: true)
@@ -409,6 +443,7 @@ abstract class _CategoryAndProductsModel extends CategoryAndProductsModel {
       final String? updated_at,
       final String? deleted_at,
       final ProductModel? product,
+      final SuppliersModel? supplier,
       final List<FilesModel>? files}) = _$_CategoryAndProductsModel;
   const _CategoryAndProductsModel._() : super._();
 
@@ -439,6 +474,8 @@ abstract class _CategoryAndProductsModel extends CategoryAndProductsModel {
   String? get deleted_at;
   @override
   ProductModel? get product;
+  @override
+  SuppliersModel? get supplier;
   @override
   List<FilesModel>? get files;
   @override

@@ -127,6 +127,22 @@ class GetCartProvider
   }
 }
 
+String _$getdeliveryHash() => r'203737f679b471ae292171aec651fdf6ea386a77';
+
+/// See also [getdelivery].
+@ProviderFor(getdelivery)
+final getdeliveryProvider =
+    AutoDisposeFutureProvider<Either<ApiFailures, dynamic>>.internal(
+  getdelivery,
+  name: r'getdeliveryProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getdeliveryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetdeliveryRef
+    = AutoDisposeFutureProviderRef<Either<ApiFailures, dynamic>>;
 String _$searchItemsHash() => r'30d64dcc4eff53d1779384ca2298062951a3640d';
 typedef SearchItemsRef
     = AutoDisposeFutureProviderRef<Either<ApiFailures, dynamic>>;

@@ -23,6 +23,13 @@ Future<Either<ApiFailures, dynamic>> getCart(
 }
 
 @riverpod
+Future<Either<ApiFailures, dynamic>> getdelivery(
+    GetdeliveryRef ref) async {
+  final ordersprovider = ref.watch(ordersRepositoryProvider);
+  return ordersprovider.getTimePayment();
+}
+
+@riverpod
 Future<Either<ApiFailures, dynamic>> searchItems(
   SearchItemsRef ref, {
   String? title,

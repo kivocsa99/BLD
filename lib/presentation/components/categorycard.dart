@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bld/constatns.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CategoryCard extends StatelessWidget {
   final String? title;
@@ -17,16 +18,14 @@ class CategoryCard extends StatelessWidget {
           Container(
             height: 60,
             width: 70,
+            padding: const EdgeInsets.all(5),
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(20))),
-            child: Center(
-              child: Image.network(
-                "$storageUrl$icon",
-                width: 50,
-                height: 50,
-                fit: BoxFit.fitWidth,
-              ),
+            child: FadeInImage.memoryNetwork(
+              placeholder: kTransparentImage,
+              image: "$storageUrl$icon",
+              fit: BoxFit.contain,
             ),
           ),
           const SizedBox(

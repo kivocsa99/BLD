@@ -359,6 +359,9 @@ class RegisterScreen extends HookWidget {
                       SpinKitCubeGrid(
                         color: Colors.blue,
                       ),
+                      SizedBox(
+                        height: 10,
+                      ),
                       Text("Loading ...")
                     ],
                   ),

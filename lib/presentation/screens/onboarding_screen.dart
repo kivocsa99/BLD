@@ -1,10 +1,6 @@
-import 'dart:math' as math;
-
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-
-import '../components/diamond_painter.dart';
 
 @RoutePage()
 class OnBoardingScreen extends HookWidget {
@@ -46,7 +42,7 @@ class OnBoardingScreen extends HookWidget {
                       child: Container(
                         width: 300,
                         height: 300,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: Colors.blue,
                         ),
                       ),

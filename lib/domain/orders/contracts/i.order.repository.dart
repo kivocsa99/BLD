@@ -14,6 +14,13 @@ abstract class IOrderRepository {
     String? supplierid,
     String? categoryid,
   });
+  Future<Either<ApiFailures, dynamic>> setQuantity({
+    String? quantity,
+    String? cartitemid,
+  });
+  Future<Either<ApiFailures, dynamic>> removeFromCart({
+    String? cartitemid,
+  });
   Future<Either<ApiFailures, dynamic>> getSupplierItems({
     String? supplierid,
     String? categoryid,
@@ -41,5 +48,6 @@ abstract class IOrderRepository {
   Future<Either<ApiFailures, dynamic>> initPayment({
     required String id,
   });
+  Future<Either<ApiFailures, dynamic>> getTimePayment();
   Future<Either<ApiFailures, dynamic>> getOrdersHistory();
 }

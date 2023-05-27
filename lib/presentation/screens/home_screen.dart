@@ -4,7 +4,7 @@ import 'package:bld/routes/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'main_screen.dart';
+
 import '../../application/provider/homepage.provider.dart';
 import '../../constatns.dart';
 import '../../domain/homepagemodel/model/homepagemodel.dart';
@@ -222,7 +222,7 @@ class HomeScreen extends HookConsumerWidget {
                             ),
                             GestureDetector(
                               onTap: () =>
-                                  context.router.push(const NewProjectRoute()),
+                                  context.router.push(NewProjectRoute()),
                               child: Container(
                                 height: 100,
                                 width: constraints.maxWidth / 3.5,

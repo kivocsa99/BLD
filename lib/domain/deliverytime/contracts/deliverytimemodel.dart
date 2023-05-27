@@ -2,8 +2,6 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../files/model/filesmodel.dart';
-import '../../orderitems/model/orderitemsmodel.dart';
 part 'deliverytimemodel.freezed.dart';
 part 'deliverytimemodel.g.dart';
 

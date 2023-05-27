@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../files/model/filesmodel.dart';
 import '../products/model/productmodel.dart';
+import '../suppliers/model/suppliersmodel.dart';
 
 part 'categoryandproductsmodel.freezed.dart';
 part 'categoryandproductsmodel.g.dart';
@@ -23,6 +24,7 @@ class CategoryAndProductsModel with _$CategoryAndProductsModel {
     String? updated_at,
     String? deleted_at,
     ProductModel? product,
+    SuppliersModel? supplier,
     List<FilesModel>? files,
   }) = _CategoryAndProductsModel;
   const CategoryAndProductsModel._();

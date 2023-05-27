@@ -15,6 +15,17 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    CartRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<CartRouteArgs>(orElse: () => const CartRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: CartScreen(
+          key: args.key,
+          supplierid: args.supplierid,
+        ),
+      );
+    },
     CategoryRoute.name: (routeData) {
       final args = routeData.argsAs<CategoryRouteArgs>(
           orElse: () => const CategoryRouteArgs());
@@ -46,9 +57,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     LocationRoute.name: (routeData) {
+      final args = routeData.argsAs<LocationRouteArgs>(
+          orElse: () => const LocationRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const LocationScreen(),
+        child: LocationScreen(
+          key: args.key,
+          isproject: args.isproject,
+        ),
       );
     },
     LoginRoute.name: (routeData) {
@@ -76,9 +92,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     NewProjectRoute.name: (routeData) {
+      final args = routeData.argsAs<NewProjectRouteArgs>(
+          orElse: () => const NewProjectRouteArgs());
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const NewProjectScreen(),
+        child: NewProjectScreen(
+          key: args.key,
+          maplat: args.maplat,
+        ),
       );
     },
     OnBoardingRoute.name: (routeData) {
@@ -108,6 +129,17 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
+    ProductRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductRouteArgs>(
+          orElse: () => const ProductRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProductScreen(
+          key: args.key,
+          product: args.product,
+        ),
+      );
+    },
     ProjectsRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -120,29 +152,44 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RegisterScreen(),
       );
     },
-    ProductRoute.name: (routeData) {
-      final args = routeData.argsAs<ProductRouteArgs>(
-          orElse: () => const ProductRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: ProductScreen(
-          key: args.key,
-          product: args.product,
-        ),
-      );
-    },
-    CartRoute.name: (routeData) {
-      final args =
-          routeData.argsAs<CartRouteArgs>(orElse: () => const CartRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: CartScreen(
-          key: args.key,
-          cart: args.cart,
-        ),
-      );
-    },
   };
+}
+
+/// generated route for
+/// [CartScreen]
+class CartRoute extends PageRouteInfo<CartRouteArgs> {
+  CartRoute({
+    Key? key,
+    String? supplierid,
+    List<PageRouteInfo>? children,
+  }) : super(
+          CartRoute.name,
+          args: CartRouteArgs(
+            key: key,
+            supplierid: supplierid,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'CartRoute';
+
+  static const PageInfo<CartRouteArgs> page = PageInfo<CartRouteArgs>(name);
+}
+
+class CartRouteArgs {
+  const CartRouteArgs({
+    this.key,
+    this.supplierid,
+  });
+
+  final Key? key;
+
+  final String? supplierid;
+
+  @override
+  String toString() {
+    return 'CartRouteArgs{key: $key, supplierid: $supplierid}';
+  }
 }
 
 /// generated route for
@@ -232,16 +279,40 @@ class HomeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [LocationScreen]
-class LocationRoute extends PageRouteInfo<void> {
-  const LocationRoute({List<PageRouteInfo>? children})
-      : super(
+class LocationRoute extends PageRouteInfo<LocationRouteArgs> {
+  LocationRoute({
+    Key? key,
+    bool? isproject,
+    List<PageRouteInfo>? children,
+  }) : super(
           LocationRoute.name,
+          args: LocationRouteArgs(
+            key: key,
+            isproject: isproject,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'LocationRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<LocationRouteArgs> page =
+      PageInfo<LocationRouteArgs>(name);
+}
+
+class LocationRouteArgs {
+  const LocationRouteArgs({
+    this.key,
+    this.isproject,
+  });
+
+  final Key? key;
+
+  final bool? isproject;
+
+  @override
+  String toString() {
+    return 'LocationRouteArgs{key: $key, isproject: $isproject}';
+  }
 }
 
 /// generated route for
@@ -302,16 +373,40 @@ class NewOrdersRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [NewProjectScreen]
-class NewProjectRoute extends PageRouteInfo<void> {
-  const NewProjectRoute({List<PageRouteInfo>? children})
-      : super(
+class NewProjectRoute extends PageRouteInfo<NewProjectRouteArgs> {
+  NewProjectRoute({
+    Key? key,
+    LatLng? maplat,
+    List<PageRouteInfo>? children,
+  }) : super(
           NewProjectRoute.name,
+          args: NewProjectRouteArgs(
+            key: key,
+            maplat: maplat,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'NewProjectRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<NewProjectRouteArgs> page =
+      PageInfo<NewProjectRouteArgs>(name);
+}
+
+class NewProjectRouteArgs {
+  const NewProjectRouteArgs({
+    this.key,
+    this.maplat,
+  });
+
+  final Key? key;
+
+  final LatLng? maplat;
+
+  @override
+  String toString() {
+    return 'NewProjectRouteArgs{key: $key, maplat: $maplat}';
+  }
 }
 
 /// generated route for
@@ -400,34 +495,6 @@ class OtpRouteArgs {
 }
 
 /// generated route for
-/// [ProjectsScreen]
-class ProjectsRoute extends PageRouteInfo<void> {
-  const ProjectsRoute({List<PageRouteInfo>? children})
-      : super(
-          ProjectsRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ProjectsRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [RegisterScreen]
-class RegisterRoute extends PageRouteInfo<void> {
-  const RegisterRoute({List<PageRouteInfo>? children})
-      : super(
-          RegisterRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'RegisterRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [ProductScreen]
 class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
   ProductRoute({
@@ -466,38 +533,29 @@ class ProductRouteArgs {
 }
 
 /// generated route for
-/// [CartScreen]
-class CartRoute extends PageRouteInfo<CartRouteArgs> {
-  CartRoute({
-    Key? key,
-    List<CartModel>? cart,
-    List<PageRouteInfo>? children,
-  }) : super(
-          CartRoute.name,
-          args: CartRouteArgs(
-            key: key,
-            cart: cart,
-          ),
+/// [ProjectsScreen]
+class ProjectsRoute extends PageRouteInfo<void> {
+  const ProjectsRoute({List<PageRouteInfo>? children})
+      : super(
+          ProjectsRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'CartRoute';
+  static const String name = 'ProjectsRoute';
 
-  static const PageInfo<CartRouteArgs> page = PageInfo<CartRouteArgs>(name);
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
-class CartRouteArgs {
-  const CartRouteArgs({
-    this.key,
-    this.cart,
-  });
+/// generated route for
+/// [RegisterScreen]
+class RegisterRoute extends PageRouteInfo<void> {
+  const RegisterRoute({List<PageRouteInfo>? children})
+      : super(
+          RegisterRoute.name,
+          initialChildren: children,
+        );
 
-  final Key? key;
+  static const String name = 'RegisterRoute';
 
-  final List<CartModel>? cart;
-
-  @override
-  String toString() {
-    return 'CartRouteArgs{key: $key, cart: $cart}';
-  }
+  static const PageInfo<void> page = PageInfo<void>(name);
 }

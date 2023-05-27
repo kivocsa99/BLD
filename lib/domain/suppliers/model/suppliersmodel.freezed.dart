@@ -25,6 +25,7 @@ mixin _$SuppliersModel {
   String? get name_ar => throw _privateConstructorUsedError;
   String? get phone => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+  String? get address => throw _privateConstructorUsedError;
   String? get email_verified_at => throw _privateConstructorUsedError;
   String? get belongable_type => throw _privateConstructorUsedError;
   int? get belongable_id => throw _privateConstructorUsedError;
@@ -62,6 +63,7 @@ abstract class $SuppliersModelCopyWith<$Res> {
       String? name_ar,
       String? phone,
       String? email,
+      String? address,
       String? email_verified_at,
       String? belongable_type,
       int? belongable_id,
@@ -99,6 +101,7 @@ class _$SuppliersModelCopyWithImpl<$Res, $Val extends SuppliersModel>
     Object? name_ar = freezed,
     Object? phone = freezed,
     Object? email = freezed,
+    Object? address = freezed,
     Object? email_verified_at = freezed,
     Object? belongable_type = freezed,
     Object? belongable_id = freezed,
@@ -137,6 +140,10 @@ class _$SuppliersModelCopyWithImpl<$Res, $Val extends SuppliersModel>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String?,
       email_verified_at: freezed == email_verified_at
           ? _value.email_verified_at
@@ -224,6 +231,7 @@ abstract class _$$_SuppliersModelCopyWith<$Res>
       String? name_ar,
       String? phone,
       String? email,
+      String? address,
       String? email_verified_at,
       String? belongable_type,
       int? belongable_id,
@@ -259,6 +267,7 @@ class __$$_SuppliersModelCopyWithImpl<$Res>
     Object? name_ar = freezed,
     Object? phone = freezed,
     Object? email = freezed,
+    Object? address = freezed,
     Object? email_verified_at = freezed,
     Object? belongable_type = freezed,
     Object? belongable_id = freezed,
@@ -297,6 +306,10 @@ class __$$_SuppliersModelCopyWithImpl<$Res>
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      address: freezed == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
               as String?,
       email_verified_at: freezed == email_verified_at
           ? _value.email_verified_at
@@ -379,6 +392,7 @@ class _$_SuppliersModel extends _SuppliersModel {
       this.name_ar,
       this.phone,
       this.email,
+      this.address,
       this.email_verified_at,
       this.belongable_type,
       this.belongable_id,
@@ -413,6 +427,8 @@ class _$_SuppliersModel extends _SuppliersModel {
   final String? phone;
   @override
   final String? email;
+  @override
+  final String? address;
   @override
   final String? email_verified_at;
   @override
@@ -466,7 +482,7 @@ class _$_SuppliersModel extends _SuppliersModel {
 
   @override
   String toString() {
-    return 'SuppliersModel(id: $id, name: $name, name_ar: $name_ar, phone: $phone, email: $email, email_verified_at: $email_verified_at, belongable_type: $belongable_type, belongable_id: $belongable_id, active: $active, language: $language, image: $image, cover_image: $cover_image, location: $location, commission_rate: $commission_rate, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, projects: $projects, customer_orders: $customer_orders, UserOrdersCount: $UserOrdersCount, UserProjectsCount: $UserProjectsCount, fcm_token: $fcm_token)';
+    return 'SuppliersModel(id: $id, name: $name, name_ar: $name_ar, phone: $phone, email: $email, address: $address, email_verified_at: $email_verified_at, belongable_type: $belongable_type, belongable_id: $belongable_id, active: $active, language: $language, image: $image, cover_image: $cover_image, location: $location, commission_rate: $commission_rate, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, projects: $projects, customer_orders: $customer_orders, UserOrdersCount: $UserOrdersCount, UserProjectsCount: $UserProjectsCount, fcm_token: $fcm_token)';
   }
 
   @override
@@ -479,6 +495,7 @@ class _$_SuppliersModel extends _SuppliersModel {
             (identical(other.name_ar, name_ar) || other.name_ar == name_ar) &&
             (identical(other.phone, phone) || other.phone == phone) &&
             (identical(other.email, email) || other.email == email) &&
+            (identical(other.address, address) || other.address == address) &&
             (identical(other.email_verified_at, email_verified_at) ||
                 other.email_verified_at == email_verified_at) &&
             (identical(other.belongable_type, belongable_type) ||
@@ -521,6 +538,7 @@ class _$_SuppliersModel extends _SuppliersModel {
         name_ar,
         phone,
         email,
+        address,
         email_verified_at,
         belongable_type,
         belongable_id,
@@ -561,6 +579,7 @@ abstract class _SuppliersModel extends SuppliersModel {
       final String? name_ar,
       final String? phone,
       final String? email,
+      final String? address,
       final String? email_verified_at,
       final String? belongable_type,
       final int? belongable_id,
@@ -593,6 +612,8 @@ abstract class _SuppliersModel extends SuppliersModel {
   String? get phone;
   @override
   String? get email;
+  @override
+  String? get address;
   @override
   String? get email_verified_at;
   @override

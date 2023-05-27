@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../constatns.dart';
+import '../../domain/deliverytime/contracts/deliverytimemodel.dart';
 
 class OrdersRepository implements IOrderRepository {
   @override
@@ -16,6 +17,7 @@ class OrdersRepository implements IOrderRepository {
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
       final result = await dio.get(
           "$baseUrl/Shopping/AddToCart?supplier_id=$supplierid&supplier_product_id=$supplierproductid&quantity=$quantity&api_token=$apitoken");
+      print(result.realUri);
       if (result.data["AZSVR"] == "SUCCESS") {
         final response = result.data;
         return response;
@@ -52,6 +54,7 @@ class OrdersRepository implements IOrderRepository {
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
       final result = await dio.get(
           "$baseUrl/Shopping/GetCartItems?supplier_id=$supplierid&api_token=$apitoken");
+      print(result.realUri);
       if (result.data["AZSVR"] == "SUCCESS") {
         Map<String, dynamic> map = result.data;
         List<dynamic> data = map["CartItems"];
@@ -119,6 +122,7 @@ class OrdersRepository implements IOrderRepository {
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
       final result =
           await dio.get("$baseUrl/Shopping/GetSearchPage?api_token=$apitoken");
+      print(result.realUri);
       if (result.data["AZSVR"] == "SUCCESS") {
         final response = SearchPageModel.fromJson(result.data);
         return response;
@@ -249,5 +253,102 @@ class OrdersRepository implements IOrderRepository {
       {String? title, String? supplierid, String? categoryid}) {
     // TODO: implement searchSupplires
     throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<ApiFailures, dynamic>> removeFromCart({String? cartitemid}) {
+    var dio = Dio();
+    final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
+      final result = await dio.get(
+          "$baseUrl/Shopping/RemoveFromCart?cart_item_id=$cartitemid&api_token=$apitoken");
+
+      if (result.data["AZSVR"] == "SUCCESS") {
+        return result.data;
+      } else {
+        return const ApiFailures.internalError();
+      }
+    }, (error, stackTrace) {
+      if (error is DioError) {
+        print(error.requestOptions.uri);
+        switch (error.type) {
+          case DioErrorType.connectionTimeout:
+            return const ApiFailures.connnectionTimeOut();
+          case DioErrorType.cancel:
+            return const ApiFailures.cancel();
+          case DioErrorType.badResponse:
+            return const ApiFailures.noResponse();
+          default:
+            return const ApiFailures.noResponse();
+        }
+      }
+      return const ApiFailures.internalError();
+    });
+    return result.map((r) => r).run();
+  }
+
+  @override
+  Future<Either<ApiFailures, dynamic>> setQuantity(
+      {String? quantity, String? cartitemid}) {
+    var dio = Dio();
+    final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
+      final result = await dio.get(
+          "$baseUrl/Shopping/SetQuantity?cart_item_id=$cartitemid&quantity=$quantity&api_token=$apitoken");
+
+      if (result.data["AZSVR"] == "SUCCESS") {
+        return result.data;
+      } else {
+        return const ApiFailures.internalError();
+      }
+    }, (error, stackTrace) {
+      if (error is DioError) {
+        print(error.requestOptions.uri);
+        switch (error.type) {
+          case DioErrorType.connectionTimeout:
+            return const ApiFailures.connnectionTimeOut();
+          case DioErrorType.cancel:
+            return const ApiFailures.cancel();
+          case DioErrorType.badResponse:
+            return const ApiFailures.noResponse();
+          default:
+            return const ApiFailures.noResponse();
+        }
+      }
+      return const ApiFailures.internalError();
+    });
+    return result.map((r) => r).run();
+  }
+
+  @override
+  Future<Either<ApiFailures, dynamic>> getTimePayment() {
+    var dio = Dio();
+    final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
+      final result = await dio.get("$baseUrl/Misc/GetDeliveryTimes");
+      print(result.realUri);
+      if (result.data["AZSVR"] == "SUCCESS") {
+        Map<String, dynamic> map = result.data;
+        List<dynamic> data = map["DeliveryTimes"];
+        List<DeliveryTimeModel> response =
+            data.map((e) => DeliveryTimeModel.fromJson(e)).toList();
+        return response;
+      } else {
+        return const ApiFailures.internalError();
+      }
+    }, (error, stackTrace) {
+      if (error is DioError) {
+        print(error.requestOptions.uri);
+        switch (error.type) {
+          case DioErrorType.connectionTimeout:
+            return const ApiFailures.connnectionTimeOut();
+          case DioErrorType.cancel:
+            return const ApiFailures.cancel();
+          case DioErrorType.badResponse:
+            return const ApiFailures.noResponse();
+          default:
+            return const ApiFailures.noResponse();
+        }
+      }
+      return const ApiFailures.internalError();
+    });
+    return result.map((r) => r).run();
   }
 }
