@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bld/application/cart/removefromcart/remove.from.cart.use.case.dart';
 import 'package:bld/application/cart/removefromcart/remove.from.cart.use.case.input.dart';
 import 'package:bld/application/cart/setquantity/cart.quantity.use.case.input.dart';
+import 'package:bld/application/orders/placeorder/placeorder.use.case.input.dart';
 import 'package:bld/constatns.dart';
 import 'package:bld/domain/deliverytime/contracts/deliverytimemodel.dart';
 import 'package:bld/domain/suppliers/model/suppliersmodel.dart';
@@ -15,6 +16,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 import '../../application/cart/setquantity/cart.quantity.use.case.dart';
+import '../../application/orders/placeorder/placeorder.use.case.dart';
 import '../../application/provider/orders.repository.provider.dart';
 import '../../domain/cart/model/cartmodel.dart';
 import '../../domain/categoryandproductsmodel/categoryandproductsmodel.dart';
@@ -417,8 +419,9 @@ class CartScreen extends HookConsumerWidget {
                                               height: 10,
                                             ),
                                             GestureDetector(
-                                              onTap: () => context.router
-                                                  .push( LocationRoute(isproject: false)),
+                                              onTap: () => context.router.push(
+                                                  LocationRoute(
+                                                      isproject: false)),
                                               child: Container(
                                                 width: double.infinity,
                                                 height: 50,
@@ -742,7 +745,13 @@ class CartScreen extends HookConsumerWidget {
                                         top: 25.0,
                                         bottom: 25.0),
                                     child: GestureDetector(
-                                      onTap: () {},
+                                      onTap: () {
+                                        ref
+                                            .read(placeOrderprovider)
+                                            .execute(PlaceOrderUseCaseInput())
+                                            .then((value) => value.fold(
+                                                (l) => null, (r) => null));
+                                      },
                                       child: Container(
                                         decoration: const BoxDecoration(
                                             borderRadius: BorderRadius.all(

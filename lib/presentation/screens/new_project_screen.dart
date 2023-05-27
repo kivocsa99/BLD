@@ -488,7 +488,7 @@ class NewProjectScreen extends HookConsumerWidget {
                                             width: 1,
                                           )),
                                       height: 50,
-                                      width: 170,
+                                      width: constraints.maxWidth / 2 - 50,
                                       child: const Center(
                                         child: Text(
                                           "Create",
@@ -533,7 +533,7 @@ class NewProjectScreen extends HookConsumerWidget {
                                                 Color(0xff3B788B),
                                                 Color(0xff2B4D58)
                                               ])),
-                                      width: 170,
+                                      width: constraints.maxWidth / 2 - 50,
                                       child: const Center(
                                         child: Text(
                                           "Create & Order",

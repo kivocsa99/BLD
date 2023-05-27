@@ -6,6 +6,7 @@ import 'package:bld/presentation/components/projectcontainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../routes/app_route.dart';
@@ -136,23 +137,46 @@ class ProjectsScreen extends HookConsumerWidget {
                                       title: "Error Occured please contact us",
                                       scaffoldMessengerKey: scaffoldKey.value),
                               (r) => null)),
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 25,
-                        ),
-                        child: ListView.separated(
-                          separatorBuilder: (context, index) {
-                            return const SizedBox(
-                              height: 10,
-                            );
-                          },
-                          itemCount: projects.length,
-                          itemBuilder: (context, index) {
-                            final List<UserProjectsModel> projects = r;
-                            return ProjectContainer(
-                              project: projects[index],
-                            );
-                          },
+                      child: SizedBox(
+                        height: MediaQuery.of(context).size.height - 250,
+                        width: double.infinity,
+                        child: Scaffold(
+                          backgroundColor: const Color(0xFFF2F2F2),
+                          floatingActionButton: GestureDetector(
+                            onTap: () => context.router.push(NewProjectRoute()),
+                            child: Container(
+                              width: 55,
+                              height: 55,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: const Color(0xff4264D4),
+                              ),
+                              child: const Center(
+                                  child: Icon(
+                                FontAwesomeIcons.plus,
+                                color: Colors.white,
+                              )),
+                            ),
+                          ),
+                          body: Padding(
+                            padding: const EdgeInsets.only(
+                              top: 25,
+                            ),
+                            child: ListView.separated(
+                              separatorBuilder: (context, index) {
+                                return const SizedBox(
+                                  height: 10,
+                                );
+                              },
+                              itemCount: projects.length,
+                              itemBuilder: (context, index) {
+                                final List<UserProjectsModel> projects = r;
+                                return ProjectContainer(
+                                  project: projects[index],
+                                );
+                              },
+                            ),
+                          ),
                         ),
                       ),
                     );

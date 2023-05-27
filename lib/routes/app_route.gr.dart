@@ -15,6 +15,12 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    DashBoardRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const DashBoardScreen(),
+      );
+    },
     CartRoute.name: (routeData) {
       final args =
           routeData.argsAs<CartRouteArgs>(orElse: () => const CartRouteArgs());
@@ -24,6 +30,70 @@ abstract class _$AppRouter extends RootStackRouter {
           key: args.key,
           supplierid: args.supplierid,
         ),
+      );
+    },
+    ProductRoute.name: (routeData) {
+      final args = routeData.argsAs<ProductRouteArgs>(
+          orElse: () => const ProductRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: ProductScreen(
+          key: args.key,
+          product: args.product,
+        ),
+      );
+    },
+    NewProjectRoute.name: (routeData) {
+      final args = routeData.argsAs<NewProjectRouteArgs>(
+          orElse: () => const NewProjectRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: NewProjectScreen(
+          key: args.key,
+          maplat: args.maplat,
+        ),
+      );
+    },
+    OrdersRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OrdersScreen(),
+      );
+    },
+    RegisterRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const RegisterScreen(),
+      );
+    },
+    OnBoardingRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const OnBoardingScreen(),
+      );
+    },
+    ProjectsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ProjectsScreen(),
+      );
+    },
+    LoginRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const LoginScreen(),
+      );
+    },
+    ConsultationRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ConsultationScreen(),
+      );
+    },
+    NewOrdersRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const NewOrdersScreen(),
       );
     },
     CategoryRoute.name: (routeData) {
@@ -38,80 +108,10 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    ConsultationRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const ConsultationScreen(),
-      );
-    },
-    DashBoardRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const DashBoardScreen(),
-      );
-    },
-    HomeRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const HomeScreen(),
-      );
-    },
-    LocationRoute.name: (routeData) {
-      final args = routeData.argsAs<LocationRouteArgs>(
-          orElse: () => const LocationRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: LocationScreen(
-          key: args.key,
-          isproject: args.isproject,
-        ),
-      );
-    },
-    LoginRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const LoginScreen(),
-      );
-    },
-    MainRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const MainScreen(),
-      );
-    },
     NewConsultationRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const NewConsultationScreen(),
-      );
-    },
-    NewOrdersRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const NewOrdersScreen(),
-      );
-    },
-    NewProjectRoute.name: (routeData) {
-      final args = routeData.argsAs<NewProjectRouteArgs>(
-          orElse: () => const NewProjectRouteArgs());
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: NewProjectScreen(
-          key: args.key,
-          maplat: args.maplat,
-        ),
-      );
-    },
-    OnBoardingRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const OnBoardingScreen(),
-      );
-    },
-    OrdersRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const OrdersScreen(),
       );
     },
     OtpRoute.name: (routeData) {
@@ -129,30 +129,44 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    ProductRoute.name: (routeData) {
-      final args = routeData.argsAs<ProductRouteArgs>(
-          orElse: () => const ProductRouteArgs());
+    MainRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: ProductScreen(
+        child: const MainScreen(),
+      );
+    },
+    LocationRoute.name: (routeData) {
+      final args = routeData.argsAs<LocationRouteArgs>(
+          orElse: () => const LocationRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: LocationScreen(
           key: args.key,
-          product: args.product,
+          isproject: args.isproject,
         ),
       );
     },
-    ProjectsRoute.name: (routeData) {
+    HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ProjectsScreen(),
-      );
-    },
-    RegisterRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const RegisterScreen(),
+        child: const HomeScreen(),
       );
     },
   };
+}
+
+/// generated route for
+/// [DashBoardScreen]
+class DashBoardRoute extends PageRouteInfo<void> {
+  const DashBoardRoute({List<PageRouteInfo>? children})
+      : super(
+          DashBoardRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DashBoardRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -190,6 +204,180 @@ class CartRouteArgs {
   String toString() {
     return 'CartRouteArgs{key: $key, supplierid: $supplierid}';
   }
+}
+
+/// generated route for
+/// [ProductScreen]
+class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
+  ProductRoute({
+    Key? key,
+    CategoryAndProductsModel? product,
+    List<PageRouteInfo>? children,
+  }) : super(
+          ProductRoute.name,
+          args: ProductRouteArgs(
+            key: key,
+            product: product,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'ProductRoute';
+
+  static const PageInfo<ProductRouteArgs> page =
+      PageInfo<ProductRouteArgs>(name);
+}
+
+class ProductRouteArgs {
+  const ProductRouteArgs({
+    this.key,
+    this.product,
+  });
+
+  final Key? key;
+
+  final CategoryAndProductsModel? product;
+
+  @override
+  String toString() {
+    return 'ProductRouteArgs{key: $key, product: $product}';
+  }
+}
+
+/// generated route for
+/// [NewProjectScreen]
+class NewProjectRoute extends PageRouteInfo<NewProjectRouteArgs> {
+  NewProjectRoute({
+    Key? key,
+    LatLng? maplat,
+    List<PageRouteInfo>? children,
+  }) : super(
+          NewProjectRoute.name,
+          args: NewProjectRouteArgs(
+            key: key,
+            maplat: maplat,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'NewProjectRoute';
+
+  static const PageInfo<NewProjectRouteArgs> page =
+      PageInfo<NewProjectRouteArgs>(name);
+}
+
+class NewProjectRouteArgs {
+  const NewProjectRouteArgs({
+    this.key,
+    this.maplat,
+  });
+
+  final Key? key;
+
+  final LatLng? maplat;
+
+  @override
+  String toString() {
+    return 'NewProjectRouteArgs{key: $key, maplat: $maplat}';
+  }
+}
+
+/// generated route for
+/// [OrdersScreen]
+class OrdersRoute extends PageRouteInfo<void> {
+  const OrdersRoute({List<PageRouteInfo>? children})
+      : super(
+          OrdersRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OrdersRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [RegisterScreen]
+class RegisterRoute extends PageRouteInfo<void> {
+  const RegisterRoute({List<PageRouteInfo>? children})
+      : super(
+          RegisterRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'RegisterRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [OnBoardingScreen]
+class OnBoardingRoute extends PageRouteInfo<void> {
+  const OnBoardingRoute({List<PageRouteInfo>? children})
+      : super(
+          OnBoardingRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'OnBoardingRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ProjectsScreen]
+class ProjectsRoute extends PageRouteInfo<void> {
+  const ProjectsRoute({List<PageRouteInfo>? children})
+      : super(
+          ProjectsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ProjectsRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [LoginScreen]
+class LoginRoute extends PageRouteInfo<void> {
+  const LoginRoute({List<PageRouteInfo>? children})
+      : super(
+          LoginRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'LoginRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ConsultationScreen]
+class ConsultationRoute extends PageRouteInfo<void> {
+  const ConsultationRoute({List<PageRouteInfo>? children})
+      : super(
+          ConsultationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ConsultationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [NewOrdersScreen]
+class NewOrdersRoute extends PageRouteInfo<void> {
+  const NewOrdersRoute({List<PageRouteInfo>? children})
+      : super(
+          NewOrdersRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'NewOrdersRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -236,114 +424,6 @@ class CategoryRouteArgs {
 }
 
 /// generated route for
-/// [ConsultationScreen]
-class ConsultationRoute extends PageRouteInfo<void> {
-  const ConsultationRoute({List<PageRouteInfo>? children})
-      : super(
-          ConsultationRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'ConsultationRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [DashBoardScreen]
-class DashBoardRoute extends PageRouteInfo<void> {
-  const DashBoardRoute({List<PageRouteInfo>? children})
-      : super(
-          DashBoardRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'DashBoardRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [HomeScreen]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
-      : super(
-          HomeRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'HomeRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [LocationScreen]
-class LocationRoute extends PageRouteInfo<LocationRouteArgs> {
-  LocationRoute({
-    Key? key,
-    bool? isproject,
-    List<PageRouteInfo>? children,
-  }) : super(
-          LocationRoute.name,
-          args: LocationRouteArgs(
-            key: key,
-            isproject: isproject,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'LocationRoute';
-
-  static const PageInfo<LocationRouteArgs> page =
-      PageInfo<LocationRouteArgs>(name);
-}
-
-class LocationRouteArgs {
-  const LocationRouteArgs({
-    this.key,
-    this.isproject,
-  });
-
-  final Key? key;
-
-  final bool? isproject;
-
-  @override
-  String toString() {
-    return 'LocationRouteArgs{key: $key, isproject: $isproject}';
-  }
-}
-
-/// generated route for
-/// [LoginScreen]
-class LoginRoute extends PageRouteInfo<void> {
-  const LoginRoute({List<PageRouteInfo>? children})
-      : super(
-          LoginRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'LoginRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [MainScreen]
-class MainRoute extends PageRouteInfo<void> {
-  const MainRoute({List<PageRouteInfo>? children})
-      : super(
-          MainRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'MainRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [NewConsultationScreen]
 class NewConsultationRoute extends PageRouteInfo<void> {
   const NewConsultationRoute({List<PageRouteInfo>? children})
@@ -353,86 +433,6 @@ class NewConsultationRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'NewConsultationRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [NewOrdersScreen]
-class NewOrdersRoute extends PageRouteInfo<void> {
-  const NewOrdersRoute({List<PageRouteInfo>? children})
-      : super(
-          NewOrdersRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'NewOrdersRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [NewProjectScreen]
-class NewProjectRoute extends PageRouteInfo<NewProjectRouteArgs> {
-  NewProjectRoute({
-    Key? key,
-    LatLng? maplat,
-    List<PageRouteInfo>? children,
-  }) : super(
-          NewProjectRoute.name,
-          args: NewProjectRouteArgs(
-            key: key,
-            maplat: maplat,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'NewProjectRoute';
-
-  static const PageInfo<NewProjectRouteArgs> page =
-      PageInfo<NewProjectRouteArgs>(name);
-}
-
-class NewProjectRouteArgs {
-  const NewProjectRouteArgs({
-    this.key,
-    this.maplat,
-  });
-
-  final Key? key;
-
-  final LatLng? maplat;
-
-  @override
-  String toString() {
-    return 'NewProjectRouteArgs{key: $key, maplat: $maplat}';
-  }
-}
-
-/// generated route for
-/// [OnBoardingScreen]
-class OnBoardingRoute extends PageRouteInfo<void> {
-  const OnBoardingRoute({List<PageRouteInfo>? children})
-      : super(
-          OnBoardingRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'OnBoardingRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
-/// [OrdersScreen]
-class OrdersRoute extends PageRouteInfo<void> {
-  const OrdersRoute({List<PageRouteInfo>? children})
-      : super(
-          OrdersRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'OrdersRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -495,67 +495,67 @@ class OtpRouteArgs {
 }
 
 /// generated route for
-/// [ProductScreen]
-class ProductRoute extends PageRouteInfo<ProductRouteArgs> {
-  ProductRoute({
-    Key? key,
-    CategoryAndProductsModel? product,
-    List<PageRouteInfo>? children,
-  }) : super(
-          ProductRoute.name,
-          args: ProductRouteArgs(
-            key: key,
-            product: product,
-          ),
-          initialChildren: children,
-        );
-
-  static const String name = 'ProductRoute';
-
-  static const PageInfo<ProductRouteArgs> page =
-      PageInfo<ProductRouteArgs>(name);
-}
-
-class ProductRouteArgs {
-  const ProductRouteArgs({
-    this.key,
-    this.product,
-  });
-
-  final Key? key;
-
-  final CategoryAndProductsModel? product;
-
-  @override
-  String toString() {
-    return 'ProductRouteArgs{key: $key, product: $product}';
-  }
-}
-
-/// generated route for
-/// [ProjectsScreen]
-class ProjectsRoute extends PageRouteInfo<void> {
-  const ProjectsRoute({List<PageRouteInfo>? children})
+/// [MainScreen]
+class MainRoute extends PageRouteInfo<void> {
+  const MainRoute({List<PageRouteInfo>? children})
       : super(
-          ProjectsRoute.name,
+          MainRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ProjectsRoute';
+  static const String name = 'MainRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
-/// [RegisterScreen]
-class RegisterRoute extends PageRouteInfo<void> {
-  const RegisterRoute({List<PageRouteInfo>? children})
-      : super(
-          RegisterRoute.name,
+/// [LocationScreen]
+class LocationRoute extends PageRouteInfo<LocationRouteArgs> {
+  LocationRoute({
+    Key? key,
+    bool? isproject,
+    List<PageRouteInfo>? children,
+  }) : super(
+          LocationRoute.name,
+          args: LocationRouteArgs(
+            key: key,
+            isproject: isproject,
+          ),
           initialChildren: children,
         );
 
-  static const String name = 'RegisterRoute';
+  static const String name = 'LocationRoute';
+
+  static const PageInfo<LocationRouteArgs> page =
+      PageInfo<LocationRouteArgs>(name);
+}
+
+class LocationRouteArgs {
+  const LocationRouteArgs({
+    this.key,
+    this.isproject,
+  });
+
+  final Key? key;
+
+  final bool? isproject;
+
+  @override
+  String toString() {
+    return 'LocationRouteArgs{key: $key, isproject: $isproject}';
+  }
+}
+
+/// generated route for
+/// [HomeScreen]
+class HomeRoute extends PageRouteInfo<void> {
+  const HomeRoute({List<PageRouteInfo>? children})
+      : super(
+          HomeRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'HomeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
