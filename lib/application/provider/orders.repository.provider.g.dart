@@ -143,7 +143,109 @@ final getdeliveryProvider =
 
 typedef GetdeliveryRef
     = AutoDisposeFutureProviderRef<Either<ApiFailures, dynamic>>;
-String _$searchItemsHash() => r'30d64dcc4eff53d1779384ca2298062951a3640d';
+String _$getOrderHistoryHash() => r'f7a7a98596c7a09371dc7ab4a10c83f3ee43e425';
+
+/// See also [getOrderHistory].
+@ProviderFor(getOrderHistory)
+final getOrderHistoryProvider =
+    AutoDisposeFutureProvider<Either<ApiFailures, dynamic>>.internal(
+  getOrderHistory,
+  name: r'getOrderHistoryProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$getOrderHistoryHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetOrderHistoryRef
+    = AutoDisposeFutureProviderRef<Either<ApiFailures, dynamic>>;
+String _$getSuppliersHash() => r'4d17817021e1e170dfdd013719263ad809ef161c';
+typedef GetSuppliersRef
+    = AutoDisposeFutureProviderRef<Either<ApiFailures, dynamic>>;
+
+/// See also [getSuppliers].
+@ProviderFor(getSuppliers)
+const getSuppliersProvider = GetSuppliersFamily();
+
+/// See also [getSuppliers].
+class GetSuppliersFamily
+    extends Family<AsyncValue<Either<ApiFailures, dynamic>>> {
+  /// See also [getSuppliers].
+  const GetSuppliersFamily();
+
+  /// See also [getSuppliers].
+  GetSuppliersProvider call(
+    String? url,
+  ) {
+    return GetSuppliersProvider(
+      url,
+    );
+  }
+
+  @override
+  GetSuppliersProvider getProviderOverride(
+    covariant GetSuppliersProvider provider,
+  ) {
+    return call(
+      provider.url,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'getSuppliersProvider';
+}
+
+/// See also [getSuppliers].
+class GetSuppliersProvider
+    extends AutoDisposeFutureProvider<Either<ApiFailures, dynamic>> {
+  /// See also [getSuppliers].
+  GetSuppliersProvider(
+    this.url,
+  ) : super.internal(
+          (ref) => getSuppliers(
+            ref,
+            url,
+          ),
+          from: getSuppliersProvider,
+          name: r'getSuppliersProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$getSuppliersHash,
+          dependencies: GetSuppliersFamily._dependencies,
+          allTransitiveDependencies:
+              GetSuppliersFamily._allTransitiveDependencies,
+        );
+
+  final String? url;
+
+  @override
+  bool operator ==(Object other) {
+    return other is GetSuppliersProvider && other.url == url;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, url.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+String _$searchItemsHash() => r'12ce29b28f42f0eed7d3a82ae89de30d00bf03e2';
 typedef SearchItemsRef
     = AutoDisposeFutureProviderRef<Either<ApiFailures, dynamic>>;
 
@@ -162,11 +264,13 @@ class SearchItemsFamily
     String? title,
     String? supplierid,
     String? categoryid,
+    String? nextUrl,
   }) {
     return SearchItemsProvider(
       title: title,
       supplierid: supplierid,
       categoryid: categoryid,
+      nextUrl: nextUrl,
     );
   }
 
@@ -178,6 +282,7 @@ class SearchItemsFamily
       title: provider.title,
       supplierid: provider.supplierid,
       categoryid: provider.categoryid,
+      nextUrl: provider.nextUrl,
     );
   }
 
@@ -204,12 +309,14 @@ class SearchItemsProvider
     this.title,
     this.supplierid,
     this.categoryid,
+    this.nextUrl,
   }) : super.internal(
           (ref) => searchItems(
             ref,
             title: title,
             supplierid: supplierid,
             categoryid: categoryid,
+            nextUrl: nextUrl,
           ),
           from: searchItemsProvider,
           name: r'searchItemsProvider',
@@ -225,13 +332,15 @@ class SearchItemsProvider
   final String? title;
   final String? supplierid;
   final String? categoryid;
+  final String? nextUrl;
 
   @override
   bool operator ==(Object other) {
     return other is SearchItemsProvider &&
         other.title == title &&
         other.supplierid == supplierid &&
-        other.categoryid == categoryid;
+        other.categoryid == categoryid &&
+        other.nextUrl == nextUrl;
   }
 
   @override
@@ -240,6 +349,7 @@ class SearchItemsProvider
     hash = _SystemHash.combine(hash, title.hashCode);
     hash = _SystemHash.combine(hash, supplierid.hashCode);
     hash = _SystemHash.combine(hash, categoryid.hashCode);
+    hash = _SystemHash.combine(hash, nextUrl.hashCode);
 
     return _SystemHash.finish(hash);
   }

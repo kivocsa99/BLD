@@ -5,8 +5,9 @@ import 'package:transparent_image/transparent_image.dart';
 class CategoryCard extends StatelessWidget {
   final String? title;
   final String? icon;
+  final double? width;
 
-  const CategoryCard({super.key, this.title, this.icon});
+  const CategoryCard({super.key, this.width, this.title, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -16,12 +17,12 @@ class CategoryCard extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            height: 60,
-            width: 70,
+            height: width! < 400 ? 40 : 60,
+            width: width! < 400 ? 50 : 70,
             padding: const EdgeInsets.all(5),
             decoration: const BoxDecoration(
                 color: Colors.white,
-                borderRadius: BorderRadius.all(Radius.circular(20))),
+                borderRadius: BorderRadius.all(Radius.circular(10))),
             child: FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
               image: "$storageUrl$icon",

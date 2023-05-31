@@ -105,7 +105,7 @@ class ProjectRepository implements IProjectRepository {
     dio.options.headers = {'Content-Type': "application/json"};
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
       FormData formData = FormData.fromMap({
-        "order_id": orderid,
+        "project_id": orderid,
         "file": await MultipartFile.fromFile(file.path, filename: file.path),
       });
       final result = await dio.post(
@@ -118,6 +118,9 @@ class ProjectRepository implements IProjectRepository {
       }
     }, (error, stackTrace) {
       if (error is DioError) {
+        print(error.requestOptions.data);
+        print(error.message);
+        print(error.response);
         switch (error.type) {
           case DioErrorType.connectionTimeout:
             return const ApiFailures.connnectionTimeOut();

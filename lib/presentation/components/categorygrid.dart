@@ -1,17 +1,18 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:bld/domain/category/model/categorymodel.dart';
-import 'package:bld/routes/app_route.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:auto_route/auto_route.dart';
+import 'package:bld/domain/category/model/categorymodel.dart';
+import 'package:bld/presentation/components/scrollglowbehavior.dart';
+import 'package:bld/routes/app_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import 'categorycard.dart';
 
 class CategoryGrid extends HookWidget {
   final List<CategoryModel>? categories;
-  const CategoryGrid({super.key, this.categories});
+  final double? width;
+  const CategoryGrid({this.width, super.key, this.categories});
 
   @override
   Widget build(BuildContext context) {
@@ -19,43 +20,48 @@ class CategoryGrid extends HookWidget {
     final maxColumns = useState(5);
     final currentPageIndex = useState(0);
     return SizedBox(
-      height: 250,
+      height: width! < 400 ? 200 : 250,
       child: Column(
         children: [
           Expanded(
-            child: PageView.builder(
-              onPageChanged: (index) {
-                currentPageIndex.value = index;
-              },
-              itemCount: (categories!.length / maxItemsPerPage.value).ceil(),
-              itemBuilder: (context, pageIndex) {
-                final startIndex =
-                    currentPageIndex.value * maxItemsPerPage.value;
-                final endIndex =
-                    (startIndex + maxItemsPerPage.value) > categories!.length
-                        ? categories!.length
-                        : startIndex + maxItemsPerPage.value;
-                final data = categories!.sublist(startIndex, endIndex);
-                return GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: maxColumns.value,
-                    mainAxisSpacing: 20.0,
-                  ),
-                  itemCount: data.length,
-                  itemBuilder: (context, index) {
-                    final item = data[index];
-                    return GestureDetector(
-                      onTap: () => context.router.push(CategoryRoute(
-                          categoryName: item.name,
-                          categoryId: item.id.toString())),
-                      child: CategoryCard(
-                        title: item.name,
-                        icon: item.image,
-                      ),
-                    );
-                  },
-                );
-              },
+            child: ScrollConfiguration(
+              behavior: GlowBehavior(),
+              child: PageView.builder(
+                onPageChanged: (index) {
+                  currentPageIndex.value = index;
+                },
+                itemCount: (categories!.length / maxItemsPerPage.value).ceil(),
+                itemBuilder: (context, pageIndex) {
+                  final startIndex =
+                      currentPageIndex.value * maxItemsPerPage.value;
+                  final endIndex =
+                      (startIndex + maxItemsPerPage.value) > categories!.length
+                          ? categories!.length
+                          : startIndex + maxItemsPerPage.value;
+                  final data = categories!.sublist(startIndex, endIndex);
+                  return GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: maxColumns.value,
+                      mainAxisSpacing: 20.0,
+                    ),
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      final item = data[index];
+                      return GestureDetector(
+                        onTap: () => context.router.push(CategoryRoute(
+                            categoryName: item.name,
+                            categoryId: item.id.toString())),
+                        child: CategoryCard(
+                          width: width,
+                          title: item.name,
+                          icon: item.image,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
             ),
           ),
           Row(

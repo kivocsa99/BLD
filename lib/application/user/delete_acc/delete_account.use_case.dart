@@ -17,6 +17,6 @@ class DeleteAccountUseCase
       : _userRepository = userRepository;
   @override
   Future<Either<ApiFailures, dynamic>> execute(input) {
-    return _userRepository!.deleteaccount(token: input.token!);
+    return _userRepository!.deleteaccount();
   }
 }

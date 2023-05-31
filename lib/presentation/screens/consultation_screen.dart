@@ -6,6 +6,7 @@ import '../../routes/app_route.dart';
 
 @RoutePage()
 class ConsultationScreen extends HookConsumerWidget {
+  
   const ConsultationScreen({super.key});
 
   @override

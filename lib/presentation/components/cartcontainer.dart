@@ -1,7 +1,6 @@
 import 'package:bld/domain/categoryandproductsmodel/categoryandproductsmodel.dart';
 import 'package:bld/domain/suppliers/model/suppliersmodel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -15,9 +14,11 @@ class CartContainer extends HookConsumerWidget {
   final VoidCallback? increase;
   final VoidCallback? trash;
   final int? quantity;
+  final double? width;
   const CartContainer(
       {super.key,
       this.product,
+      this.width,
       this.supplier,
       this.minus,
       this.quantity,
@@ -38,7 +39,7 @@ class CartContainer extends HookConsumerWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
@@ -82,10 +83,10 @@ class CartContainer extends HookConsumerWidget {
                       height: 10,
                     ),
                     Text(
-                      product!.price!.toString(),
+                      "JOD ${product!.price!.toString()}",
                       style: const TextStyle(
                         fontSize: 16,
-                        color: Colors.grey,
+                        color: Color(0xff3B788B),
                       ),
                     ),
                   ],
@@ -93,6 +94,7 @@ class CartContainer extends HookConsumerWidget {
               ],
             ),
             Column(
+              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -105,6 +107,7 @@ class CartContainer extends HookConsumerWidget {
                   ),
                 ),
                 Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     IconButton(
                         onPressed: trash,
@@ -114,7 +117,7 @@ class CartContainer extends HookConsumerWidget {
                           size: 20,
                         )),
                     Container(
-                      width: 150,
+                      width: width! > 400 ? 140 : 120,
                       height: 40,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),

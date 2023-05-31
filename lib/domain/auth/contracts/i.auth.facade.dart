@@ -6,8 +6,10 @@ import '../../user/model/usermodel.dart';
 
 abstract class IAuthFacade {
   Future<Either<ApiFailures, dynamic>> signUpWithCredintials({
-    required UserModel user,
     required String password,
+    required String name,
+    required String email,
+    required String phone,
   });
   Future<Either<ApiFailures, dynamic>> signInWithEmailAndPassword({
     required String phone,

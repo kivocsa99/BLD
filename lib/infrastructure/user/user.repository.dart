@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:bld/domain/cart/model/cartmodel.dart';
 import 'package:bld/domain/failures/api.failures.dart';
 import 'package:dio/dio.dart';
 import 'package:fpdart/fpdart.dart';
@@ -66,13 +67,11 @@ class UserRepository implements IUserRepository {
   }
 
   @override
-  Future<Either<ApiFailures, dynamic>> deleteaccount({
-    required String token,
-  }) async {
+  Future<Either<ApiFailures, dynamic>> deleteaccount() async {
     var dio = Dio();
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
       final result =
-          await dio.get("$baseUrl/Users/DeleteMyAccount?api_token=$token");
+          await dio.get("$baseUrl/Users/DeleteMyAccount?api_token=$apitoken");
       if (result.data["AZSVR"] == "SUCCESS") {
         return await Future.delayed(const Duration(milliseconds: 500),
             (() async {
@@ -103,33 +102,31 @@ class UserRepository implements IUserRepository {
   @override
   Future<Either<ApiFailures, dynamic>> deleteImage(
       {required String token, required String type}) {
-    {
-      var dio = Dio();
-      final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
-        final result = await dio
-            .get("$baseUrl/Users/UpdateImage?type=$type&api_token=$token");
-        if (result.data["AZSVR"] == "SUCCESS") {
-          return result.data;
-        } else {
-          return const ApiFailures.authFailed();
+    var dio = Dio();
+    final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
+      final result = await dio
+          .get("$baseUrl/Users/UpdateImage?type=$type&api_token=$token");
+      if (result.data["AZSVR"] == "SUCCESS") {
+        return result.data;
+      } else {
+        return const ApiFailures.authFailed();
+      }
+    }, (error, stackTrace) {
+      if (error is DioError) {
+        switch (error.type) {
+          case DioErrorType.connectionTimeout:
+            return const ApiFailures.connnectionTimeOut();
+          case DioErrorType.cancel:
+            return const ApiFailures.cancel();
+          case DioErrorType.badResponse:
+            return const ApiFailures.noResponse();
+          default:
+            return const ApiFailures.noResponse();
         }
-      }, (error, stackTrace) {
-        if (error is DioError) {
-          switch (error.type) {
-            case DioErrorType.connectionTimeout:
-              return const ApiFailures.connnectionTimeOut();
-            case DioErrorType.cancel:
-              return const ApiFailures.cancel();
-            case DioErrorType.badResponse:
-              return const ApiFailures.noResponse();
-            default:
-              return const ApiFailures.noResponse();
-          }
-        }
-        return const ApiFailures.internalError();
-      });
-      return result.map((r) => r).run();
-    }
+      }
+      return const ApiFailures.internalError();
+    });
+    return result.map((r) => r).run();
   }
 
   @override
@@ -169,5 +166,38 @@ class UserRepository implements IUserRepository {
       });
       return result.map((r) => r).run();
     }
+  }
+
+  @override
+  Future<Either<ApiFailures, dynamic>> getwishlist() {
+    var dio = Dio();
+    final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
+      final result =
+          await dio.get("$baseUrl/Misc/GetWishlistItems&api_token=$apitoken");
+      if (result.data["AZSVR"] == "SUCCESS") {
+        Map<String, dynamic> map = result.data;
+        List<dynamic> data = map["WishlistItems"];
+        List<CartModel> response =
+            data.map((e) => CartModel.fromJson(e)).toList();
+        return response;
+      } else {
+        return const ApiFailures.authFailed();
+      }
+    }, (error, stackTrace) {
+      if (error is DioError) {
+        switch (error.type) {
+          case DioErrorType.connectionTimeout:
+            return const ApiFailures.connnectionTimeOut();
+          case DioErrorType.cancel:
+            return const ApiFailures.cancel();
+          case DioErrorType.badResponse:
+            return const ApiFailures.noResponse();
+          default:
+            return const ApiFailures.noResponse();
+        }
+      }
+      return const ApiFailures.internalError();
+    });
+    return result.map((r) => r).run();
   }
 }

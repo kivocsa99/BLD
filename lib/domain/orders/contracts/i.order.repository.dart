@@ -3,13 +3,14 @@ import 'package:fpdart/fpdart.dart';
 
 abstract class IOrderRepository {
   Future<Either<ApiFailures, dynamic>> getSearchPage();
-  Future<Either<ApiFailures, dynamic>> getSuppliers();
+  Future<Either<ApiFailures, dynamic>> getSuppliers({String? supllierUrl});
   Future<Either<ApiFailures, dynamic>> searchSupplires({
     String? title,
     String? supplierid,
     String? categoryid,
   });
   Future<Either<ApiFailures, dynamic>> searchItems({
+    String? nextUrl,
     String? title,
     String? supplierid,
     String? categoryid,
@@ -24,6 +25,7 @@ abstract class IOrderRepository {
   Future<Either<ApiFailures, dynamic>> getSupplierItems({
     String? supplierid,
     String? categoryid,
+    String? nexturl,
   });
   Future<Either<ApiFailures, dynamic>> getSimilarItems({
     String? supplierproductid,

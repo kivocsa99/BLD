@@ -9,9 +9,11 @@ class AuthField extends HookWidget {
   final String? Function(String?)? validator;
   final Function(String)? finished;
   final FocusNode? focusNode;
+  final double? width;
   const AuthField(
       {this.hint,
       this.inputType,
+      this.width,
       this.finished,
       this.validator,
       this.focusNode,
@@ -23,7 +25,7 @@ class AuthField extends HookWidget {
   Widget build(BuildContext context) {
     final hidden = useState(obsecuretext);
     return Container(
-      width: double.infinity,
+      width: width,
       height: 56,
       decoration: const BoxDecoration(
           color: Color(0xffF2F2F2),

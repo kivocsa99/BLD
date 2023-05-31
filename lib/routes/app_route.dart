@@ -2,24 +2,32 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bld/presentation/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
-import '../domain/cart/model/cartmodel.dart';
+
 import '../domain/categoryandproductsmodel/categoryandproductsmodel.dart';
+import '../domain/projects/model/userprojectsmodel.dart';
+import '../presentation/screens/aboutus_screen.dart';
 import '../presentation/screens/cart_screen.dart';
 import '../presentation/screens/category_screen.dart';
-import '../presentation/screens/home_screen.dart';
+import '../presentation/screens/changelanguage_screen.dart';
+import '../presentation/screens/consultation_screen.dart';
+import '../presentation/screens/contactus_screen.dart';
 import '../presentation/screens/dashboard_screen.dart';
+import '../presentation/screens/home_screen.dart';
 import '../presentation/screens/location_screen.dart';
 import '../presentation/screens/main_screen.dart';
 import '../presentation/screens/new_consultation_screen.dart';
 import '../presentation/screens/new_order_screen.dart';
 import '../presentation/screens/new_project_screen.dart';
 import '../presentation/screens/onboarding_screen.dart';
-import '../presentation/screens/otp_screen.dart';
-import '../presentation/screens/product_screen.dart';
-import '../presentation/screens/register_screen.dart';
-import '../presentation/screens/consultation_screen.dart';
 import '../presentation/screens/orders_screen.dart';
+import '../presentation/screens/otp_screen.dart';
+import '../presentation/screens/payment_screen.dart';
+import '../presentation/screens/product_screen.dart';
 import '../presentation/screens/projects_screen.dart';
+import '../presentation/screens/register_screen.dart';
+import '../presentation/screens/userproject_screen.dart';
+import '../presentation/screens/wishlist_screen.dart';
+
 part 'app_route.gr.dart';
 
 @AutoRouterConfig(replaceInRouteName: 'Screen,Route')
@@ -90,6 +98,58 @@ class AppRouter extends _$AppRouter {
             )),
         AutoRoute(
             page: NewConsultationRoute.page,
+            type: RouteType.custom(
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 1.0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: FadeTransition(opacity: animation, child: child),
+              ),
+            )),
+        AutoRoute(
+            page: ChangeLangRoute.page,
+            type: RouteType.custom(
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 1.0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: FadeTransition(opacity: animation, child: child),
+              ),
+            )),
+        AutoRoute(
+            page: ContactUsRoute.page,
+            type: RouteType.custom(
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 1.0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: FadeTransition(opacity: animation, child: child),
+              ),
+            )),
+        AutoRoute(
+            page: WishListRoute.page,
+            type: RouteType.custom(
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 1.0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: FadeTransition(opacity: animation, child: child),
+              ),
+            )),
+        AutoRoute(
+            page: UserProjectRoute.page,
             type: RouteType.custom(
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) =>

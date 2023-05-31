@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bld/constatns.dart';
-import 'package:bld/routes/app_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -18,7 +17,7 @@ class LocationScreen extends HookWidget {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          context.router.pop(NewProjectRoute());
+          context.router.pop();
         },
         child: const Icon(FontAwesomeIcons.check),
       ),
@@ -26,8 +25,8 @@ class LocationScreen extends HookWidget {
         options: MapOptions(
           onTap: (tapPosition, point) {
             isproject == true
-                ? projectbox.put("location", point)
-                : projectbox.put("orderlocation", point);
+                ? projectbox.put("location", point.toString())
+                : projectbox.put("orderlocation", point.toString());
             markpointer.value = point;
           },
           center: LatLng(31.9539, 35.9106),

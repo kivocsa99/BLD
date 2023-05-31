@@ -112,4 +112,21 @@ class GetnotificationsProvider
     return _SystemHash.finish(hash);
   }
 }
+
+String _$getWishlistHash() => r'c83107569fe2a723e89992b42320dc824213ee8f';
+
+/// See also [getWishlist].
+@ProviderFor(getWishlist)
+final getWishlistProvider =
+    AutoDisposeFutureProvider<Either<ApiFailures, dynamic>>.internal(
+  getWishlist,
+  name: r'getWishlistProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$getWishlistHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef GetWishlistRef
+    = AutoDisposeFutureProviderRef<Either<ApiFailures, dynamic>>;
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

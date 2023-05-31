@@ -9,11 +9,15 @@ part 'user.repository.provider.g.dart';
 
 final userProvider = Provider<IUserRepository>((ref) => UserRepository());
 
-
-
 @riverpod
 Future<Either<ApiFailures, dynamic>> getnotifications(
     GetnotificationsRef ref, String token) async {
   final userprovider = ref.watch(userProvider);
   return userprovider.notification(token: token);
+}
+
+@riverpod
+Future<Either<ApiFailures, dynamic>> getWishlist(GetWishlistRef ref) async {
+  final userprovider = ref.watch(userProvider);
+  return userprovider.getwishlist();
 }

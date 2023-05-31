@@ -20,9 +20,22 @@ class CategoryScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final scrollController = useScrollController();
     final categoryItems = ref.watch(searchItemsProvider(
         supplierid: "", categoryid: categoryId!, title: ""));
+    final itemsScrollController = useScrollController();
+    useEffect(() {
+      print("hey");
+      () => itemsScrollController
+        ..addListener(() => itemsScrollController.position.maxScrollExtent ==
+                itemsScrollController.offset
+            ?
+            // User has scrolled to the end
+            print("hello")
+            : print("no"));
+      print("object");
+
+      return () => itemsScrollController.removeListener(() {});
+    });
     return SafeArea(
       child: Scaffold(
         body: LayoutBuilder(
@@ -39,7 +52,31 @@ class CategoryScreen extends HookConsumerWidget {
                                     categoryid: categoryId!,
                                     title: "")),
                               ), (r) {
-                        final List<CategoryAndProductsModel> categories = r;
+                        List<CategoryAndProductsModel> categories = r;
+
+                        // WidgetsBinding.instance.addPostFrameCallback((_) async {
+                        //   // Check if the list is scrolled to the maximum extent after initial data is available
+                        //   if (itemsScrollController.position.maxScrollExtent ==
+                        //       itemsScrollController.offset) {
+                        //     return await ref
+                        //         .watch(searchItemsProvider(
+                        //             nextUrl: categorybox
+                        //                 .get("categoryproductnexturl"),
+                        //             supplierid: "",
+                        //             categoryid: "",
+                        //             title: ""))
+                        //         .when(
+                        //             data: (data) =>
+                        //                 data.fold((l) => print(l), (r) {
+                        //                   List<CategoryAndProductsModel>
+                        //                       newproducts = r;
+                        //                   return print(newproducts.length);
+                        //                 }),
+                        //             error: (error, stackTrace) => null,
+                        //             loading: () => null);
+                        //   }
+                        // });
+
                         return categories.isEmpty
                             ? const Center(
                                 child: Text(
@@ -131,7 +168,7 @@ class CategoryScreen extends HookConsumerWidget {
                                                 );
                                               },
                                               itemCount: categories.length,
-                                              controller: scrollController,
+                                              controller: itemsScrollController,
                                               itemBuilder: (context, index) {
                                                 final CategoryAndProductsModel
                                                     category =

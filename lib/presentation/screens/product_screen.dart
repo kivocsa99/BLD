@@ -12,6 +12,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+import '../components/scrollglowbehavior.dart';
+
 @RoutePage()
 class ProductScreen extends HookConsumerWidget {
   final CategoryAndProductsModel? product;
@@ -108,7 +110,7 @@ class ProductScreen extends HookConsumerWidget {
                                                 ),
                                               )),
                                         ), (r) {
-                                  if (r.toString() == "Your cart is empty") {
+                                  if (r.toString() == "CART_IS_EMPTY") {
                                     return Container(
                                         decoration: BoxDecoration(
                                             borderRadius:
@@ -131,6 +133,7 @@ class ProductScreen extends HookConsumerWidget {
                                           ),
                                         ));
                                   } else {
+                                    print(r);
                                     final List<CartModel> cart = r;
                                     num totalPrice = 0.0;
                                     for (var product in cart) {
@@ -304,220 +307,238 @@ class ProductScreen extends HookConsumerWidget {
                                     ),
                                   ),
                                   Expanded(
-                                    child: ListView(
-                                      children: [
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          width: double.infinity,
-                                          height: 340,
-                                          decoration: BoxDecoration(
-                                              color: const Color(0xffE2E2E2),
-                                              borderRadius:
-                                                  BorderRadius.circular(25)),
-                                          child: Center(
-                                              child: FadeInImage.memoryNetwork(
-                                            placeholder: kTransparentImage,
-                                            image:
-                                                "$storageUrl${product!.product!.image}",
-                                          )),
-                                        ),
-                                        const SizedBox(
-                                          height: 40,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                Container(
-                                                  height: 46,
-                                                  width: 46,
-                                                  padding:
-                                                      const EdgeInsets.all(5),
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              25),
-                                                      border: Border.all(
-                                                          width: 2,
-                                                          color: const Color(
-                                                              0xff3B788B))),
-                                                  child: Center(
-                                                      child: FadeInImage
-                                                          .memoryNetwork(
-                                                    placeholder:
-                                                        kTransparentImage,
-                                                    image:
-                                                        "$storageUrl${product!.supplier!.image}",
-                                                  )),
-                                                ),
-                                                const SizedBox(
-                                                  width: 15,
-                                                ),
-                                                Column(
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                    child: ScrollConfiguration(
+                                      behavior: GlowBehavior(),
+                                      child: ListView(
+                                        children: [
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Container(
+                                            width: double.infinity,
+                                            height: 340,
+                                            decoration: BoxDecoration(
+                                                color: const Color(0xffE2E2E2),
+                                                borderRadius:
+                                                    BorderRadius.circular(25)),
+                                            child: Center(
+                                                child:
+                                                    FadeInImage.memoryNetwork(
+                                              placeholder: kTransparentImage,
+                                              image:
+                                                  "$storageUrl${product!.product!.image}",
+                                            )),
+                                          ),
+                                          const SizedBox(
+                                            height: 40,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
+                                                children: [
+                                                  Container(
+                                                    height: 46,
+                                                    width: 46,
+                                                    padding:
+                                                        const EdgeInsets.all(5),
+                                                    decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25),
+                                                        border: Border.all(
+                                                            width: 2,
+                                                            color: const Color(
+                                                                0xff3B788B))),
+                                                    child: Center(
+                                                        child: FadeInImage
+                                                            .memoryNetwork(
+                                                      placeholder:
+                                                          kTransparentImage,
+                                                      image:
+                                                          "$storageUrl${product!.supplier!.image}",
+                                                    )),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 15,
+                                                  ),
+                                                  Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                      Text(
+                                                        product!
+                                                            .supplier!.name!,
+                                                        style: const TextStyle(
+                                                            color: Colors.black,
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      ),
+                                                      const SizedBox(
+                                                        height: 5,
+                                                      ),
+                                                      Text(
+                                                        product!
+                                                            .supplier!.address!,
+                                                        style: const TextStyle(
+                                                            fontSize: 14,
+                                                            color: Colors.grey,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                              Container(
+                                                width: 130,
+                                                height: 40,
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            15),
+                                                    border: Border.all(
+                                                        width: 2,
+                                                        color: const Color(
+                                                            0xff3B788B))),
+                                                child: Row(
                                                   mainAxisAlignment:
-                                                      MainAxisAlignment.center,
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: [
+                                                    IconButton(
+                                                        onPressed: () =>
+                                                            quantity.value != 1
+                                                                ? quantity
+                                                                    .value--
+                                                                : null,
+                                                        icon: const Icon(
+                                                          FontAwesomeIcons
+                                                              .minus,
+                                                          size: 20,
+                                                        )),
                                                     Text(
-                                                      product!.supplier!.name!,
+                                                      quantity.value.toString(),
                                                       style: const TextStyle(
-                                                          color: Colors.black,
-                                                          fontSize: 16,
                                                           fontWeight:
                                                               FontWeight.bold),
                                                     ),
-                                                    const SizedBox(
-                                                      height: 5,
-                                                    ),
-                                                    Text(
-                                                      product!
-                                                          .supplier!.address!,
-                                                      style: const TextStyle(
-                                                          fontSize: 14,
-                                                          fontWeight: FontWeight
-                                                              .normal),
-                                                    ),
+                                                    IconButton(
+                                                        onPressed: () =>
+                                                            quantity.value++,
+                                                        icon: const Icon(
+                                                          FontAwesomeIcons.plus,
+                                                          size: 20,
+                                                        )),
                                                   ],
-                                                )
-                                              ],
-                                            ),
-                                            Container(
-                                              width: 130,
-                                              height: 40,
-                                              decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                  border: Border.all(
-                                                      width: 2,
-                                                      color: const Color(
-                                                          0xff3B788B))),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Row(
                                                 children: [
-                                                  IconButton(
-                                                      onPressed: () =>
-                                                          quantity.value != 1
-                                                              ? quantity.value--
-                                                              : null,
-                                                      icon: const Icon(
-                                                        FontAwesomeIcons.minus,
-                                                        size: 20,
-                                                      )),
-                                                  Text(
-                                                    quantity.value.toString(),
-                                                    style: const TextStyle(
+                                                  const Text(
+                                                    "Price ",
+                                                    style: TextStyle(
+                                                        fontSize: 18,
                                                         fontWeight:
                                                             FontWeight.bold),
                                                   ),
-                                                  IconButton(
-                                                      onPressed: () =>
-                                                          quantity.value++,
-                                                      icon: const Icon(
-                                                        FontAwesomeIcons.plus,
-                                                        size: 20,
-                                                      )),
+                                                  Text(
+                                                    "JOD ${product!.price!}",
+                                                    style: const TextStyle(
+                                                        color:
+                                                            Color(0xff3B788B),
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                            FontWeight.bold),
+                                                  ),
                                                 ],
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 20,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                const Text(
-                                                  "Price ",
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Text(
-                                                  "JOD ${product!.price!}",
-                                                  style: const TextStyle(
-                                                      color: Color(0xff3B788B),
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ],
-                                            ),
-                                            Text(
-                                              "Quantity / (${product!.product!.unit})",
-                                              style: const TextStyle(
-                                                  fontSize: 18,
+                                              Text(
+                                                "Quantity / (${product!.product!.unit})",
+                                                style: const TextStyle(
+                                                    fontSize: 18,
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 25,
+                                          ),
+                                          const Divider(
+                                            color: Color(0xffDEF0F5),
+                                            thickness: 2,
+                                          ),
+                                          const SizedBox(
+                                            height: 25,
+                                          ),
+                                          const Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              "Description",
+                                              style: TextStyle(
+                                                  color: Colors.black,
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                          ],
-                                        ),
-                                        const SizedBox(
-                                          height: 25,
-                                        ),
-                                        const Divider(
-                                          color: Color(0xffDEF0F5),
-                                          thickness: 2,
-                                        ),
-                                        const SizedBox(
-                                          height: 25,
-                                        ),
-                                        const Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            "Description",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            product!.product!.description!,
-                                            style: const TextStyle(
-                                              color: Colors.grey,
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              product!.product!.description!,
+                                              style: const TextStyle(
+                                                color: Colors.grey,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 25,
-                                        ),
-                                        const Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            "Brand Name",
-                                            style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold),
+                                          const SizedBox(
+                                            height: 25,
                                           ),
-                                        ),
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Text(
-                                            product!.product!.brand!,
-                                            style: const TextStyle(
-                                              color: Colors.grey,
+                                          const Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              "Brand Name",
+                                              style: TextStyle(
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold),
                                             ),
                                           ),
-                                        )
-                                      ],
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Text(
+                                              product!.product!.brand!,
+                                              style: const TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 20,
+                                          )
+                                        ],
+                                      ),
                                     ),
                                   )
                                 ],

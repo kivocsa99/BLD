@@ -8,6 +8,22 @@ final setting = Hive.box("setting");
 final categorybox = Hive.box("category");
 final projectbox = Hive.box("project");
 final apitoken = setting.get("apitoken");
+String supllierItemsUrl(
+        {String? supplierid, String? categoryid, String? nexturl}) =>
+    nexturl == null || nexturl == ""
+        ? "$baseUrl/Shopping/GetSupplierItems?supplier_id=$supplierid&category_id=$categoryid&api_token=$apitoken"
+        : nexturl;
+String suppliersUrl({String? nexturl}) => nexturl == null || nexturl == ""
+    ? "$baseUrl/Shopping/GetSuppliers?api_token=$apitoken"
+    : nexturl;
+String searchItemsUrl(
+        {String? nexturl,
+        String? title,
+        String? supplierid,
+        String? categoryid}) =>
+    nexturl == null || nexturl == ""
+        ? "$baseUrl/Shopping/SearchItems?title=$title&supplier_id=$supplierid&category_id=$categoryid&api_token=$apitoken"
+        : nexturl;
 Widget visibile({bool? loding, double? height}) {
   return Visibility(
     visible: loding!,

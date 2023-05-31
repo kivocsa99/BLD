@@ -5,7 +5,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../domain/auth/contracts/i.auth.facade.dart';
 
 import '../../../domain/failures/api.failures.dart';
-import '../../core/use_cases/i.no_input_use_case.dart';
+import '../../core/use_cases/i.use_case.dart';
 import '../../provider/auth.facade.provider.dart';
 import 'sign_in_with_email_and_password.input.dart';
 

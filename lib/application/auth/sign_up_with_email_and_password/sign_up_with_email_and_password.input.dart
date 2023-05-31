@@ -1,11 +1,15 @@
 import '../../../domain/user/model/usermodel.dart';
 
 class SignUpWithEmailAndPasswordUseCaseInput {
-  final UserModel? user;
   final String? password;
+  final String? name;
+  final String? email;
+  final String? phone;
 
   SignUpWithEmailAndPasswordUseCaseInput({
-    this.user,
+    this.name,
+    this.email,
+    this.phone,
     this.password,
   });
 }

@@ -1,10 +1,14 @@
 class PlaceOrderUseCaseInput {
-  final String? apitoken;
-  final String? name;
-  final String? description;
-  final String? area;
+  final String? supplierid;
+  final String? deliverytimeid;
+  final String? paymentmethod;
   final String? location;
+  final String? notes;
 
   PlaceOrderUseCaseInput(
-      {this.apitoken, this.name, this.description, this.area, this.location});
+      {this.supplierid,
+      this.notes,
+      this.deliverytimeid,
+      this.paymentmethod,
+      this.location});
 }

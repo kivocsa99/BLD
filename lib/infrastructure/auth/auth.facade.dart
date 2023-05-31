@@ -67,23 +67,31 @@ class AuthFacade implements IAuthFacade {
 
     return await Future.delayed(const Duration(milliseconds: 500), (() async {
       await setting.clear();
+      await projectbox.clear();
+      await categorybox.clear();
     }));
   }
 
   @override
-  Future<Either<ApiFailures, dynamic>> signUpWithCredintials(
-      {required UserModel user, required String password}) async {
+  Future<Either<ApiFailures, dynamic>> signUpWithCredintials({
+    required String password,
+    required String name,
+    required String email,
+    required String phone,
+  }) async {
     var dio = Dio();
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
       final result = await dio.get(
-          "$baseUrl/Users/Register?name=${user.name}&password=$password&phone=${user.phone}&email=${user.email}");
+          "$baseUrl/Users/Register?name=$name&password=$password&phone=$phone&email=$email");
+      print(result.data);
+      print(result.realUri);
       if (result.data["AZSVR"] == "SUCCESS") {
         setting = Hive.box('setting');
         await setting.put("login", true);
-        await setting.put("name", user.name);
-        await setting.put("email", user.email);
+        await setting.put("name", name);
+        await setting.put("email", email);
         await setting.put("password", password);
-        await setting.put("phone", user.phone);
+        await setting.put("phone", phone);
         await setting.put("firsttime", false);
 
         await setting.put('apitoken', result.data["api_token"]);
@@ -94,6 +102,7 @@ class AuthFacade implements IAuthFacade {
       }
     }, (error, stackTrace) {
       if (error is DioError) {
+        print(error.requestOptions.uri);
         switch (error.type) {
           case DioErrorType.connectionTimeout:
             return const ApiFailures.connnectionTimeOut();
@@ -133,7 +142,6 @@ class AuthFacade implements IAuthFacade {
   }
 
 //ask ali for api token
-  
 
   @override
   Future<Either<ApiFailures, dynamic>> forgetpassword({
@@ -166,6 +174,4 @@ class AuthFacade implements IAuthFacade {
     });
     return result.map((r) => r).run();
   }
-
-  
 }

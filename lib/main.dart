@@ -7,6 +7,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math' as math;
+import 'package:easy_localization/easy_localization.dart';
 import 'firebase_options.dart';
 //notes for ali
 //Should Review the ads
@@ -18,12 +19,21 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await EasyLocalization.ensureInitialized();
+
   await Hive.initFlutter();
   await Hive.openBox("setting");
   await Hive.openBox("project");
   await Hive.openBox("category");
-  runApp(ProviderScope(
-    child: MainTree(),
+  runApp(EasyLocalization(
+    path: "assets",
+    supportedLocales: const [
+      Locale("ar"),
+      Locale("en"),
+    ],
+    child: ProviderScope(
+      child: MainTree(),
+    ),
   ));
 }
 

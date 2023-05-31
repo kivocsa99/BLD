@@ -10,8 +10,6 @@ class OrdersScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    
-  
     return Padding(
       padding: const EdgeInsets.only(left: 25.0, right: 25.0),
       child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -41,7 +39,7 @@ class OrdersScreen extends HookConsumerWidget {
         ),
         GestureDetector(
           onTap: () {
-            context.router.push(const NewOrdersRoute());
+            context.router.push(NewOrdersRoute(comingroute: "orderscreen"));
           },
           child: Container(
             decoration: BoxDecoration(
@@ -62,6 +60,9 @@ class OrdersScreen extends HookConsumerWidget {
               ),
             ),
           ),
+        ),
+        SizedBox(
+          height: 10,
         )
       ]),
     );

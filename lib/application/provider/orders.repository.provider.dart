@@ -23,10 +23,23 @@ Future<Either<ApiFailures, dynamic>> getCart(
 }
 
 @riverpod
-Future<Either<ApiFailures, dynamic>> getdelivery(
-    GetdeliveryRef ref) async {
+Future<Either<ApiFailures, dynamic>> getdelivery(GetdeliveryRef ref) async {
   final ordersprovider = ref.watch(ordersRepositoryProvider);
   return ordersprovider.getTimePayment();
+}
+
+@riverpod
+Future<Either<ApiFailures, dynamic>> getOrderHistory(
+    GetOrderHistoryRef ref) async {
+  final ordersprovider = ref.watch(ordersRepositoryProvider);
+  return ordersprovider.getOrdersHistory();
+}
+
+@riverpod
+Future<Either<ApiFailures, dynamic>> getSuppliers(
+    GetSuppliersRef ref, String? url) async {
+  final ordersprovider = ref.watch(ordersRepositoryProvider);
+  return ordersprovider.getSuppliers(supllierUrl: url);
 }
 
 @riverpod
@@ -35,8 +48,12 @@ Future<Either<ApiFailures, dynamic>> searchItems(
   String? title,
   String? supplierid,
   String? categoryid,
+  String? nextUrl,
 }) async {
   final ordersprovider = ref.watch(ordersRepositoryProvider);
   return ordersprovider.searchItems(
-      categoryid: categoryid, supplierid: supplierid, title: title);
+      categoryid: categoryid,
+      supplierid: supplierid,
+      title: title,
+      nextUrl: nextUrl);
 }
