@@ -1,4 +1,3 @@
-import '../../../domain/user/model/usermodel.dart';
 
 class SignUpWithEmailAndPasswordUseCaseInput {
   final String? password;

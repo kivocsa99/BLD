@@ -56,6 +56,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const ConsultationScreen(),
       );
     },
+    ContactUsRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const ContactUsScreen(),
+      );
+    },
     DashBoardRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -179,12 +185,6 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const RegisterScreen(),
       );
     },
-    WishListRoute.name: (routeData) {
-      return AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const WishListScreen(),
-      );
-    },
     UserProjectRoute.name: (routeData) {
       final args = routeData.argsAs<UserProjectRouteArgs>(
           orElse: () => const UserProjectRouteArgs());
@@ -196,10 +196,10 @@ abstract class _$AppRouter extends RootStackRouter {
         ),
       );
     },
-    ContactUsRoute.name: (routeData) {
+    WishListRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const ContactUsScreen(),
+        child: const WishListScreen(),
       );
     },
   };
@@ -323,6 +323,20 @@ class ConsultationRoute extends PageRouteInfo<void> {
         );
 
   static const String name = 'ConsultationRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [ContactUsScreen]
+class ContactUsRoute extends PageRouteInfo<void> {
+  const ContactUsRoute({List<PageRouteInfo>? children})
+      : super(
+          ContactUsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'ContactUsRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
@@ -696,20 +710,6 @@ class RegisterRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [WishListScreen]
-class WishListRoute extends PageRouteInfo<void> {
-  const WishListRoute({List<PageRouteInfo>? children})
-      : super(
-          WishListRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'WishListRoute';
-
-  static const PageInfo<void> page = PageInfo<void>(name);
-}
-
-/// generated route for
 /// [UserProjectScreen]
 class UserProjectRoute extends PageRouteInfo<UserProjectRouteArgs> {
   UserProjectRoute({
@@ -748,15 +748,15 @@ class UserProjectRouteArgs {
 }
 
 /// generated route for
-/// [ContactUsScreen]
-class ContactUsRoute extends PageRouteInfo<void> {
-  const ContactUsRoute({List<PageRouteInfo>? children})
+/// [WishListScreen]
+class WishListRoute extends PageRouteInfo<void> {
+  const WishListRoute({List<PageRouteInfo>? children})
       : super(
-          ContactUsRoute.name,
+          WishListRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'ContactUsRoute';
+  static const String name = 'WishListRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
 }
