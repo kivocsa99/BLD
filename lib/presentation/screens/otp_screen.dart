@@ -48,7 +48,7 @@ class OtpScreen extends HookConsumerWidget {
                           height: 100,
                         ),
                         const Text(
-                          "Please enter the 4-digit code\nthat was sent to your mobile number",
+                          "Please enter the 6-digit code\nthat was sent to your mobile number",
                           style: TextStyle(fontSize: 16),
                           textAlign: TextAlign.center,
                         ),
@@ -58,7 +58,7 @@ class OtpScreen extends HookConsumerWidget {
                         const Align(
                           alignment: Alignment.centerLeft,
                           child: Text(
-                            "4- Code Digit",
+                            "6- Code Digit",
                             style: TextStyle(fontSize: 16),
                             textAlign: TextAlign.left,
                           ),

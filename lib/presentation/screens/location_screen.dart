@@ -24,12 +24,14 @@ class LocationScreen extends HookWidget {
       body: FlutterMap(
         options: MapOptions(
           onTap: (tapPosition, point) {
+            print(point);
             isproject == true
                 ? projectbox.put(
                     "location", "${point.latitude},${point.longitude}")
                 : categorybox.put(
                     "orderlocation", "${point.latitude},${point.longitude}");
             markpointer.value = point;
+            print(projectbox.get("location"));
           },
           center: LatLng(31.9539, 35.9106),
           zoom: 10,

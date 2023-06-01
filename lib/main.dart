@@ -9,8 +9,6 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'dart:math' as math;
 import 'package:easy_localization/easy_localization.dart';
 import 'firebase_options.dart';
-//notes for ali
-//Should Review the ads
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

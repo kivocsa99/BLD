@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bld/domain/files/model/filesmodel.dart';
 import 'package:bld/domain/projects/model/userprojectsmodel.dart';
 import 'package:bld/presentation/components/projectinfo.dart';
+import 'package:bld/presentation/components/projectorderhistory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -20,8 +21,12 @@ class UserProjectScreen extends HookWidget {
     final animatedlist = useState<List<Widget>>([
       ProjectInfo(
         project: project,
+      ),
+      ProjectOrderHistory(
+        orderItems: project!.order_items,
       )
     ]);
+
     final snakKey = useState(GlobalKey<ScaffoldMessengerState>());
     final isLoading = useState(false);
     final imageindex = useState(0);
@@ -245,22 +250,39 @@ class UserProjectScreen extends HookWidget {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Container(
-                                        height: 40,
-                                        width: 120,
-                                        color: const Color(0xffDEF0F5),
-                                        child: const Center(
-                                            child: Text("Project Info")),
+                                      GestureDetector(
+                                        onTap: () => selectedIndex.value = 0,
+                                        child: Container(
+                                          height: 40,
+                                          width: 120,
+                                          decoration: BoxDecoration(
+                                              color: selectedIndex.value == 0
+                                                  ? const Color(0xff3B788B)
+                                                  : const Color(0xffDEF0F5),
+                                              borderRadius:
+                                                  BorderRadius.circular(16)),
+                                          child: const Center(
+                                              child: Text("Project Info")),
+                                        ),
                                       ),
                                       const SizedBox(
                                         width: 10,
                                       ),
-                                      Container(
-                                        height: 40,
-                                        width: 120,
-                                        color: const Color(0xffDEF0F5),
-                                        child: const Center(
-                                            child: Text("Orders History")),
+                                      GestureDetector(
+                                        onTap: () => selectedIndex.value = 1,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(16),
+                                            color: selectedIndex.value == 1
+                                                ? const Color(0xff3B788B)
+                                                : const Color(0xffDEF0F5),
+                                          ),
+                                          height: 40,
+                                          width: 120,
+                                          child: const Center(
+                                              child: Text("Orders History")),
+                                        ),
                                       ),
                                     ],
                                   ),

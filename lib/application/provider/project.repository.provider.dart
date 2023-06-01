@@ -9,7 +9,7 @@ final projectrepoprovider =
     Provider<IProjectRepository>((ref) => ProjectRepository());
 @riverpod
 Future<Either<ApiFailures, dynamic>> getprojects(
-    GetprojectsRef ref, String token) async {
+    GetprojectsRef ref) async {
   final projectsprovider = ref.watch(projectrepoprovider);
-  return projectsprovider.getProjects(apitoken: token);
+  return projectsprovider.getProjects();
 }

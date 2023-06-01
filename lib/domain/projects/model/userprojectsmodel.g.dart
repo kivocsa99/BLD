@@ -18,7 +18,8 @@ _$_UserProjectsModel _$$_UserProjectsModelFromJson(Map<String, dynamic> json) =>
           ?.map((e) => FilesModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       order_items: (json['order_items'] as List<dynamic>?)
-          ?.map((e) => OrderItemsModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) =>
+              CategoryAndProductsModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       created_at: json['created_at'] as String?,
       updated_at: json['updated_at'] as String?,

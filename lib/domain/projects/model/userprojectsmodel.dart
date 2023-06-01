@@ -2,6 +2,7 @@
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../categoryandproductsmodel/categoryandproductsmodel.dart';
 import '../../files/model/filesmodel.dart';
 import '../../orderitems/model/orderitemsmodel.dart';
 part 'userprojectsmodel.freezed.dart';
@@ -17,7 +18,7 @@ class UserProjectsModel with _$UserProjectsModel {
     String? area,
     String? location,
     List<FilesModel>? files,
-    List<OrderItemsModel>? order_items,
+    List<CategoryAndProductsModel>? order_items,
     String? created_at,
     String? updated_at,
     String? deleted_at,

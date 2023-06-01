@@ -13,6 +13,7 @@ class MainScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    apitoken = setting.get("apitoken");
     int pageIndex = 0;
     final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
     toggleMenu() {

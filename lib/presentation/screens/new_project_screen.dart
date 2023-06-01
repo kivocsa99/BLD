@@ -4,6 +4,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:bld/application/projects/addproject/addproject.use.case.dart';
 import 'package:bld/application/projects/addproject/addproject.use.case.input.dart';
 import 'package:bld/application/projects/attachfile/attach.file.use.case.input.dart';
+import 'package:bld/application/provider/project.repository.provider.dart';
 import 'package:bld/presentation/components/picker_dialog.dart';
 import 'package:bld/presentation/components/scrollglowbehavior.dart';
 import 'package:bld/routes/app_route.dart';
@@ -29,7 +30,6 @@ class NewProjectScreen extends HookConsumerWidget {
     final titleController = useTextEditingController(text: "");
     final desController = useTextEditingController(text: "");
     final areaController = useTextEditingController(text: "");
-    final locationController = useTextEditingController(text: "124.00,129.00");
     final nameNode = useFocusNode();
     final desNode = useFocusNode();
     final areaNode = useFocusNode();
@@ -467,8 +467,8 @@ class NewProjectScreen extends HookConsumerWidget {
                                                   description:
                                                       desController.text,
                                                   area: areaController.text,
-                                                  location:
-                                                      locationController.text,
+                                                  location: projectbox
+                                                      .get("location"),
                                                   name: titleController.text))
                                               .then(
                                                 (value) => value.fold(
@@ -487,9 +487,10 @@ class NewProjectScreen extends HookConsumerWidget {
                                                             title:
                                                                 "Error Occured while creating project , please contact us");
                                                   },
-                                                  (r) {
-                                                    print(r["ID"]);
-
+                                                  (r) async {
+                                                    () => ref.refresh(
+                                                        getprojectsProvider
+                                                            .future);
                                                     for (var element
                                                         in imageslist.value) {
                                                       ref
@@ -499,9 +500,8 @@ class NewProjectScreen extends HookConsumerWidget {
                                                               ProjectAttachFileUseCaseInput(
                                                                   token:
                                                                       apitoken,
-                                                                  orderid: 
-                                                                      r[
-                                                                          "ID"],
+                                                                  orderid:
+                                                                      r["ID"],
                                                                   file: File(
                                                                       element)))
                                                           .then((value) =>
@@ -531,10 +531,13 @@ class NewProjectScreen extends HookConsumerWidget {
                                                                               .value,
                                                                       title:
                                                                           "Your ptoject has been created succesfully");
+
                                                                   context.router
                                                                       .replaceAll([
                                                                     const MainRoute()
-                                                                  ]);
+                                                                  ]).then((value) async =>
+                                                                          await ref
+                                                                              .refresh(getprojectsProvider.future));
                                                                 }
                                                               }));
                                                     }
@@ -592,8 +595,8 @@ class NewProjectScreen extends HookConsumerWidget {
                                                   description:
                                                       desController.text,
                                                   area: areaController.text,
-                                                  location:
-                                                      locationController.text,
+                                                  location: projectbox
+                                                      .get("location"),
                                                   name: titleController.text))
                                               .then(
                                                 (value) => value.fold(
@@ -654,12 +657,15 @@ class NewProjectScreen extends HookConsumerWidget {
                                                                               .value,
                                                                       title:
                                                                           "Your ptoject has been created succesfully");
-                                                                  context.router
+                                                                  await context
+                                                                      .router
                                                                       .replaceAll([
                                                                     NewOrdersRoute(
                                                                         comingroute:
                                                                             "projectscreen")
-                                                                  ]);
+                                                                  ]).then((value) async =>
+                                                                          await ref
+                                                                              .refresh(getprojectsProvider.future));
                                                                 }
                                                               }));
                                                     }

@@ -17,7 +17,6 @@ class AuthFacade implements IAuthFacade {
   static const String inValidEmail = "user-not-found";
   static const String inUse = "email-already-in-use";
   static const String servererror = "server-error";
-  late Box setting;
 
   //sign in return
   @override
@@ -30,7 +29,6 @@ class AuthFacade implements IAuthFacade {
           .get("$baseUrl/Users/GetToken?phone=$phone&password=$password");
       if (result.data["AZSVR"] == "SUCCESS") {
         UserModel user = UserModel.fromJson(result.data["User"]);
-        setting = Hive.box('setting');
         await setting.put("login", true);
         await setting.put('apitoken', result.data["api_token"]);
         await setting.put("name", user.name);
@@ -63,9 +61,7 @@ class AuthFacade implements IAuthFacade {
 
   @override
   Future<void> signOut(BuildContext context) async {
-    setting = Hive.box('setting');
-
-    return await Future.delayed(const Duration(milliseconds: 500), (() async {
+    return await Future.delayed(const Duration(milliseconds: 1000), (() async {
       await setting.clear();
       await projectbox.clear();
       await categorybox.clear();
@@ -86,7 +82,6 @@ class AuthFacade implements IAuthFacade {
       print(result.data);
       print(result.realUri);
       if (result.data["AZSVR"] == "SUCCESS") {
-        setting = Hive.box('setting');
         await setting.put("login", true);
         await setting.put("name", name);
         await setting.put("email", email);

@@ -138,7 +138,7 @@ class ProjectRepository implements IProjectRepository {
   }
 
   @override
-  Future<Either<ApiFailures, dynamic>> getProjects({required String apitoken}) {
+  Future<Either<ApiFailures, dynamic>> getProjects() {
     var dio = Dio();
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
       final result =

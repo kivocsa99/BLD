@@ -7,7 +7,7 @@ const storageUrl = "https://bld-main.bitsblend.org/storage/";
 final setting = Hive.box("setting");
 final categorybox = Hive.box("category");
 final projectbox = Hive.box("project");
-final apitoken = setting.get("apitoken");
+String apitoken = "";
 String supllierItemsUrl(
         {String? supplierid, String? categoryid, String? nexturl}) =>
     nexturl == null || nexturl == ""

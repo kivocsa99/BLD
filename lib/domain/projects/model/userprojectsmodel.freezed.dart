@@ -27,7 +27,8 @@ mixin _$UserProjectsModel {
   String? get area => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
   List<FilesModel>? get files => throw _privateConstructorUsedError;
-  List<OrderItemsModel>? get order_items => throw _privateConstructorUsedError;
+  List<CategoryAndProductsModel>? get order_items =>
+      throw _privateConstructorUsedError;
   String? get created_at => throw _privateConstructorUsedError;
   String? get updated_at => throw _privateConstructorUsedError;
   String? get deleted_at => throw _privateConstructorUsedError;
@@ -53,7 +54,7 @@ abstract class $UserProjectsModelCopyWith<$Res> {
       String? area,
       String? location,
       List<FilesModel>? files,
-      List<OrderItemsModel>? order_items,
+      List<CategoryAndProductsModel>? order_items,
       String? created_at,
       String? updated_at,
       String? deleted_at,
@@ -118,7 +119,7 @@ class _$UserProjectsModelCopyWithImpl<$Res, $Val extends UserProjectsModel>
       order_items: freezed == order_items
           ? _value.order_items
           : order_items // ignore: cast_nullable_to_non_nullable
-              as List<OrderItemsModel>?,
+              as List<CategoryAndProductsModel>?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -155,7 +156,7 @@ abstract class _$$_UserProjectsModelCopyWith<$Res>
       String? area,
       String? location,
       List<FilesModel>? files,
-      List<OrderItemsModel>? order_items,
+      List<CategoryAndProductsModel>? order_items,
       String? created_at,
       String? updated_at,
       String? deleted_at,
@@ -218,7 +219,7 @@ class __$$_UserProjectsModelCopyWithImpl<$Res>
       order_items: freezed == order_items
           ? _value._order_items
           : order_items // ignore: cast_nullable_to_non_nullable
-              as List<OrderItemsModel>?,
+              as List<CategoryAndProductsModel>?,
       created_at: freezed == created_at
           ? _value.created_at
           : created_at // ignore: cast_nullable_to_non_nullable
@@ -250,7 +251,7 @@ class _$_UserProjectsModel extends _UserProjectsModel {
       this.area,
       this.location,
       final List<FilesModel>? files,
-      final List<OrderItemsModel>? order_items,
+      final List<CategoryAndProductsModel>? order_items,
       this.created_at,
       this.updated_at,
       this.deleted_at,
@@ -284,9 +285,9 @@ class _$_UserProjectsModel extends _UserProjectsModel {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<OrderItemsModel>? _order_items;
+  final List<CategoryAndProductsModel>? _order_items;
   @override
-  List<OrderItemsModel>? get order_items {
+  List<CategoryAndProductsModel>? get order_items {
     final value = _order_items;
     if (value == null) return null;
     if (_order_items is EqualUnmodifiableListView) return _order_items;
@@ -375,7 +376,7 @@ abstract class _UserProjectsModel extends UserProjectsModel {
       final String? area,
       final String? location,
       final List<FilesModel>? files,
-      final List<OrderItemsModel>? order_items,
+      final List<CategoryAndProductsModel>? order_items,
       final String? created_at,
       final String? updated_at,
       final String? deleted_at,
@@ -400,7 +401,7 @@ abstract class _UserProjectsModel extends UserProjectsModel {
   @override
   List<FilesModel>? get files;
   @override
-  List<OrderItemsModel>? get order_items;
+  List<CategoryAndProductsModel>? get order_items;
   @override
   String? get created_at;
   @override

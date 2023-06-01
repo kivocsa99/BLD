@@ -93,7 +93,10 @@ class OrdersRepository implements IOrderRepository {
       final result = await dio
           .get("$baseUrl/Shopping/GetOrdersHistory?api_token=$apitoken");
       if (result.data["AZSVR"] == "SUCCESS") {
-        final response = result.data;
+        Map<String, dynamic> map = result.data;
+        List<dynamic> data = map["Orders"];
+        List<CategoryAndProductsModel> response =
+            data.map((e) => CategoryAndProductsModel.fromJson(e)).toList();
         return response;
       } else {
         return const ApiFailures.internalError();

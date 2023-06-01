@@ -19,9 +19,7 @@ abstract class IProjectRepository {
     required String location,
     required int id,
   });
-  Future<Either<ApiFailures, dynamic>> getProjects({
-    required String apitoken,
-  });
+  Future<Either<ApiFailures, dynamic>> getProjects();
   Future<Either<ApiFailures, dynamic>> attachFile({
     required String apitoken,
     required File file,
