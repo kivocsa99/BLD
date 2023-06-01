@@ -11,7 +11,7 @@ final consultationProvider =
     Provider<IConsultationRepository>((ref) => ConsultationRepository());
 @riverpod
 Future<Either<ApiFailures, dynamic>> getconsultation(
-    GetconsultationRef ref, String token) async {
+    GetconsultationRef ref) async {
   final consulation = ref.watch(consultationProvider);
-  return consulation.getConsultations(token: token);
+  return consulation.getConsultations();
 }

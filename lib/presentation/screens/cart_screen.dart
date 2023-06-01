@@ -858,7 +858,7 @@ class CartScreen extends HookConsumerWidget {
                                                     context.router.push(
                                                         PaymentRoute(
                                                             baseurl:
-                                                                "$baseUrl/Shopping/InitPayment?id=${r["OrderID"]}&api_token=$apitoken"));
+                                                                '$baseUrl/Shopping/InitPayment?id=${r["OrderID"]}'));
                                                   }
                                                 }));
                                       },

@@ -17,9 +17,15 @@ class UserProjectScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final animatedlist = useState<List<Widget>>([
+      ProjectInfo(
+        project: project,
+      )
+    ]);
     final snakKey = useState(GlobalKey<ScaffoldMessengerState>());
     final isLoading = useState(false);
     final imageindex = useState(0);
+    final selectedIndex = useState(0);
     final selectedimage =
         useState("$storageUrl${project!.files![imageindex.value].name}");
     return Stack(
@@ -261,8 +267,10 @@ class UserProjectScreen extends HookWidget {
                                   const SizedBox(
                                     height: 30,
                                   ),
-                                  ProjectInfo(
-                                    project: project,
+                                  AnimatedSwitcher(
+                                    duration: const Duration(milliseconds: 500),
+                                    child:
+                                        animatedlist.value[selectedIndex.value],
                                   )
                                 ],
                               ),
