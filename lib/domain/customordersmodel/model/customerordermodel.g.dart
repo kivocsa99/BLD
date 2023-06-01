@@ -9,7 +9,7 @@ part of 'customerordermodel.dart';
 _$_CustomerOrderModel _$$_CustomerOrderModelFromJson(
         Map<String, dynamic> json) =>
     _$_CustomerOrderModel(
-      id: json['id'] as String?,
+      id: json['id'] as int?,
     );
 
 Map<String, dynamic> _$$_CustomerOrderModelToJson(

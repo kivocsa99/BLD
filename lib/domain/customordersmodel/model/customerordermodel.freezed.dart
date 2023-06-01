@@ -20,7 +20,7 @@ CustomerOrderModel _$CustomerOrderModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CustomerOrderModel {
-  String? get id => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +34,7 @@ abstract class $CustomerOrderModelCopyWith<$Res> {
           CustomerOrderModel value, $Res Function(CustomerOrderModel) then) =
       _$CustomerOrderModelCopyWithImpl<$Res, CustomerOrderModel>;
   @useResult
-  $Res call({String? id});
+  $Res call({int? id});
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$CustomerOrderModelCopyWithImpl<$Res, $Val extends CustomerOrderModel>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ) as $Val);
   }
 }
@@ -69,7 +69,7 @@ abstract class _$$_CustomerOrderModelCopyWith<$Res>
       __$$_CustomerOrderModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? id});
+  $Res call({int? id});
 }
 
 /// @nodoc
@@ -89,7 +89,7 @@ class __$$_CustomerOrderModelCopyWithImpl<$Res>
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as int?,
     ));
   }
 }
@@ -103,7 +103,7 @@ class _$_CustomerOrderModel extends _CustomerOrderModel {
       _$$_CustomerOrderModelFromJson(json);
 
   @override
-  final String? id;
+  final int? id;
 
   @override
   String toString() {
@@ -138,14 +138,14 @@ class _$_CustomerOrderModel extends _CustomerOrderModel {
 }
 
 abstract class _CustomerOrderModel extends CustomerOrderModel {
-  const factory _CustomerOrderModel({final String? id}) = _$_CustomerOrderModel;
+  const factory _CustomerOrderModel({final int? id}) = _$_CustomerOrderModel;
   const _CustomerOrderModel._() : super._();
 
   factory _CustomerOrderModel.fromJson(Map<String, dynamic> json) =
       _$_CustomerOrderModel.fromJson;
 
   @override
-  String? get id;
+  int? get id;
   @override
   @JsonKey(ignore: true)
   _$$_CustomerOrderModelCopyWith<_$_CustomerOrderModel> get copyWith =>

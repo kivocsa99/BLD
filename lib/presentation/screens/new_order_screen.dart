@@ -75,282 +75,278 @@ class NewOrdersScreen extends HookConsumerWidget {
                           child: RefreshIndicator(
                             onRefresh: () =>
                                 ref.refresh(getSearchPageProvider.future),
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                        left: 25.0, right: 25.0),
-                                    child: Column(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 25.0, right: 25.0),
+                              child: Column(
+                                children: [
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    height: 62,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const SizedBox(
-                                          height: 10,
-                                        ),
-                                        SizedBox(
-                                          width: double.infinity,
-                                          height: 62,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              GestureDetector(
-                                                onTap: () => comingroute !=
-                                                        "projectscreen"
-                                                    ? context.router.pop()
-                                                    : context.router.replaceAll(
-                                                        [const MainRoute()]),
-                                                child: Container(
-                                                  decoration: const BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(
-                                                                  15.0))),
-                                                  width: 42,
-                                                  height: 42,
-                                                  child: Center(
-                                                    child: Image.asset(
-                                                        "assets/close.png"),
-                                                  ),
-                                                ),
-                                              ),
-                                              const Center(
-                                                child: Text(
-                                                  "Search",
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontSize: 20),
-                                                ),
-                                              ),
-                                              Container(
-                                                decoration: const BoxDecoration(
-                                                    color: Colors.white,
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                15.0))),
-                                                width: 42,
-                                                height: 42,
-                                                child: Center(
-                                                    child: Image.asset(
-                                                        "assets/cart.png")),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 25,
-                                        ),
-                                        Expanded(
-                                          child: ScrollConfiguration(
-                                            behavior: GlowBehavior(),
-                                            child: ListView(
-                                              children: [
-                                                SizedBox(
-                                                  height: 46,
-                                                  child: OrderSearchBar(
-                                                    controller:
-                                                        searchController,
-                                                    finished: (value) {
-                                                      isSearch.value = 1;
-                                                      print(isSearch.value);
-                                                    },
-                                                    onclick: () {
-                                                      if (isSearch.value == 1) {
-                                                        isSearch.value = 0;
-                                                      }
-                                                      print(isSearch.value);
-                                                    },
-                                                    width: double.infinity,
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 40,
-                                                ),
-                                                CategoryGrid(
-                                                  width: constraints.maxWidth,
-                                                  categories: searchPageModel
-                                                      .Categories,
-                                                ),
-                                                const SizedBox(
-                                                  height: 30,
-                                                ),
-                                                AdsBanner(
-                                                  adsList: searchPageModel.Ads,
-                                                ),
-                                                const SizedBox(
-                                                  height: 30,
-                                                ),
-                                                const Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    "Recommended for you",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.normal),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                HorizontalProducts(
-                                                  products: searchPageModel
-                                                      .RandomProducts,
-                                                ),
-                                                const SizedBox(
-                                                  height: 30,
-                                                ),
-                                                const Align(
-                                                  alignment: Alignment.topLeft,
-                                                  child: Text(
-                                                    "All Suppliers",
-                                                    style: TextStyle(
-                                                        fontSize: 20,
-                                                        fontWeight:
-                                                            FontWeight.normal),
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                suppliersprovider.when(
-                                                    data: (data) => data.fold(
-                                                            (l) => Text(
-                                                                l.toString()),
-                                                            (r) {
-                                                          List<SuppliersModel>
-                                                              suppliers = r;
-                                                          return SizedBox(
-                                                            width:
-                                                                double.infinity,
-                                                            height: 400,
-                                                            child: ListView
-                                                                .separated(
-                                                              separatorBuilder:
-                                                                  (context,
-                                                                      index) {
-                                                                return const SizedBox(
-                                                                  height: 50,
-                                                                );
-                                                              },
-                                                              itemCount:
-                                                                  suppliers
-                                                                      .length,
-                                                              itemBuilder:
-                                                                  (context,
-                                                                      index) {
-                                                                final SuppliersModel
-                                                                    supplier =
-                                                                    suppliers[
-                                                                        index];
-                                                                return Stack(
-                                                                  clipBehavior:
-                                                                      Clip.antiAliasWithSaveLayer,
-                                                                  children: [
-                                                                    Container(
-                                                                      decoration: BoxDecoration(
-                                                                          color: const Color.fromRGBO(
-                                                                              255,
-                                                                              255,
-                                                                              255,
-                                                                              1),
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(25)),
-                                                                      width: double
-                                                                          .infinity,
-                                                                      height:
-                                                                          170,
-                                                                      child: FadeInImage
-                                                                          .memoryNetwork(
-                                                                        placeholder:
-                                                                            kTransparentImage,
-                                                                        image:
-                                                                            "$storageUrl${supplier.image}",
-                                                                        fit: BoxFit
-                                                                            .fill,
-                                                                      ),
-                                                                    ),
-                                                                    Positioned(
-                                                                      left: 30,
-                                                                      right: 30,
-                                                                      bottom:
-                                                                          -20,
-                                                                      child:
-                                                                          Container(
-                                                                        padding:
-                                                                            const EdgeInsets.all(15),
-                                                                        decoration: BoxDecoration(
-                                                                            color:
-                                                                                Colors.white,
-                                                                            borderRadius: BorderRadius.circular(25)),
-                                                                        height:
-                                                                            80,
-                                                                        width:
-                                                                            200,
-                                                                        child:
-                                                                            Row(
-                                                                          children: [
-                                                                            Container(
-                                                                              height: 46,
-                                                                              width: 46,
-                                                                              padding: const EdgeInsets.all(5),
-                                                                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(25), border: Border.all(width: 2, color: const Color(0xff3B788B))),
-                                                                              child: Center(
-                                                                                  child: FadeInImage.memoryNetwork(
-                                                                                placeholder: kTransparentImage,
-                                                                                image: "$storageUrl${supplier.image}",
-                                                                              )),
-                                                                            ),
-                                                                            const SizedBox(
-                                                                              width: 15,
-                                                                            ),
-                                                                            Column(
-                                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                              children: [
-                                                                                Text(
-                                                                                  supplier.name!,
-                                                                                  style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
-                                                                                ),
-                                                                                const SizedBox(
-                                                                                  height: 5,
-                                                                                ),
-                                                                                Text(
-                                                                                  supplier.address!,
-                                                                                  style: const TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.normal),
-                                                                                ),
-                                                                              ],
-                                                                            )
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    )
-                                                                  ],
-                                                                );
-                                                              },
-                                                            ),
-                                                          );
-                                                        }),
-                                                    error: (error,
-                                                            stackTrace) =>
-                                                        Text(error.toString()),
-                                                    loading: () => const Center(
-                                                          child:
-                                                              SpinKitCubeGrid(
-                                                            color: Colors.blue,
-                                                          ),
-                                                        ))
-                                              ],
+                                        GestureDetector(
+                                          onTap: () =>
+                                              comingroute != "projectscreen"
+                                                  ? context.router.pop()
+                                                  : context.router.replaceAll(
+                                                      [const MainRoute()]),
+                                          child: Container(
+                                            decoration: const BoxDecoration(
+                                                color: Colors.white,
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(15.0))),
+                                            width: 42,
+                                            height: 42,
+                                            child: Center(
+                                              child: Image.asset(
+                                                  "assets/close.png"),
                                             ),
                                           ),
+                                        ),
+                                        const Center(
+                                          child: Text(
+                                            "Search",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20),
+                                          ),
+                                        ),
+                                        Container(
+                                          decoration: const BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(15.0))),
+                                          width: 42,
+                                          height: 42,
+                                          child: Center(
+                                              child: Image.asset(
+                                                  "assets/cart.png")),
                                         ),
                                       ],
                                     ),
                                   ),
-                                ),
-                              ],
+                                  const SizedBox(
+                                    height: 25,
+                                  ),
+                                  Expanded(
+                                    child: ScrollConfiguration(
+                                      behavior: GlowBehavior(),
+                                      child: ListView(
+                                        children: [
+                                          SizedBox(
+                                            height: 46,
+                                            child: OrderSearchBar(
+                                              controller: searchController,
+                                              finished: (value) {
+                                                isSearch.value = 1;
+                                                print(isSearch.value);
+                                              },
+                                              onclick: () {
+                                                if (isSearch.value == 1) {
+                                                  isSearch.value = 0;
+                                                }
+                                                print(isSearch.value);
+                                              },
+                                              width: double.infinity,
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 40,
+                                          ),
+                                          CategoryGrid(
+                                            width: constraints.maxWidth,
+                                            categories:
+                                                searchPageModel.Categories,
+                                          ),
+                                          const SizedBox(
+                                            height: 30,
+                                          ),
+                                          AdsBanner(
+                                            adsList: searchPageModel.Ads,
+                                          ),
+                                          const SizedBox(
+                                            height: 30,
+                                          ),
+                                          const Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              "Recommended for you",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          HorizontalProducts(
+                                            products:
+                                                searchPageModel.RandomProducts,
+                                          ),
+                                          const SizedBox(
+                                            height: 30,
+                                          ),
+                                          const Align(
+                                            alignment: Alignment.topLeft,
+                                            child: Text(
+                                              "All Suppliers",
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight:
+                                                      FontWeight.normal),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          suppliersprovider.when(
+                                              data:
+                                                  (data) => data.fold(
+                                                          (l) => Text(
+                                                              l.toString()),
+                                                          (r) {
+                                                        List<SuppliersModel>
+                                                            suppliers = r;
+                                                        return SingleChildScrollView(
+                                                          child: ListView
+                                                              .separated(
+                                                            physics:
+                                                                const NeverScrollableScrollPhysics(),
+                                                            shrinkWrap: true,
+                                                            separatorBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              return const SizedBox(
+                                                                height: 50,
+                                                              );
+                                                            },
+                                                            itemCount: suppliers
+                                                                .length,
+                                                            itemBuilder:
+                                                                (context,
+                                                                    index) {
+                                                              final SuppliersModel
+                                                                  supplier =
+                                                                  suppliers[
+                                                                      index];
+                                                              return Stack(
+                                                                clipBehavior:
+                                                                    Clip.none,
+                                                                children: [
+                                                                  Container(
+                                                                    decoration: BoxDecoration(
+                                                                        color: const Color.fromRGBO(
+                                                                            255,
+                                                                            255,
+                                                                            255,
+                                                                            1),
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(25)),
+                                                                    width: double
+                                                                        .infinity,
+                                                                    height: 170,
+                                                                    child: FadeInImage
+                                                                        .memoryNetwork(
+                                                                      placeholder:
+                                                                          kTransparentImage,
+                                                                      image:
+                                                                          "$storageUrl${supplier.image}",
+                                                                      fit: BoxFit
+                                                                          .fill,
+                                                                    ),
+                                                                  ),
+                                                                  Positioned(
+                                                                    left: 30,
+                                                                    right: 30,
+                                                                    bottom: -20,
+                                                                    child:
+                                                                        Container(
+                                                                      padding:
+                                                                          const EdgeInsets.all(
+                                                                              15),
+                                                                      decoration: BoxDecoration(
+                                                                          color: Colors
+                                                                              .white,
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(25)),
+                                                                      height:
+                                                                          80,
+                                                                      width:
+                                                                          200,
+                                                                      child:
+                                                                          Row(
+                                                                        children: [
+                                                                          Container(
+                                                                            height:
+                                                                                46,
+                                                                            width:
+                                                                                46,
+                                                                            padding:
+                                                                                const EdgeInsets.all(5),
+                                                                            decoration:
+                                                                                BoxDecoration(borderRadius: BorderRadius.circular(25), border: Border.all(width: 2, color: const Color(0xff3B788B))),
+                                                                            child: Center(
+                                                                                child: FadeInImage.memoryNetwork(
+                                                                              placeholder: kTransparentImage,
+                                                                              image: "$storageUrl${supplier.image}",
+                                                                            )),
+                                                                          ),
+                                                                          const SizedBox(
+                                                                            width:
+                                                                                15,
+                                                                          ),
+                                                                          Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            mainAxisAlignment:
+                                                                                MainAxisAlignment.center,
+                                                                            children: [
+                                                                              Text(
+                                                                                supplier.name!,
+                                                                                style: const TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                                                                              ),
+                                                                              const SizedBox(
+                                                                                height: 5,
+                                                                              ),
+                                                                              Text(
+                                                                                supplier.address!,
+                                                                                style: const TextStyle(fontSize: 14, color: Colors.grey, fontWeight: FontWeight.normal),
+                                                                              ),
+                                                                            ],
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    ),
+                                                                  )
+                                                                ],
+                                                              );
+                                                            },
+                                                          ),
+                                                        );
+                                                      }),
+                                              error: (error, stackTrace) =>
+                                                  Text(error.toString()),
+                                              loading: () => const Center(
+                                                    child: SpinKitCubeGrid(
+                                                      color: Colors.blue,
+                                                    ),
+                                                  )),
+                                          const SizedBox(
+                                            height: 50,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         );

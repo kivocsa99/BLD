@@ -327,7 +327,7 @@ class HomeScreen extends HookConsumerWidget {
                                 final SuppliersModel supplier =
                                     suppliers[index];
                                 return Stack(
-                                  clipBehavior: Clip.antiAlias,
+                                  clipBehavior: Clip.none,
                                   children: [
                                     Container(
                                       decoration: BoxDecoration(

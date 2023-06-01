@@ -172,38 +172,87 @@ class CartScreen extends HookConsumerWidget {
                                                 ScrollViewKeyboardDismissBehavior
                                                     .onDrag,
                                             children: [
-                                              SizedBox(
-                                                height: cart.length <= 1
-                                                    ? 150
-                                                    : 500,
-                                                width: double.infinity,
-                                                child: ScrollConfiguration(
-                                                  behavior: GlowBehavior(),
-                                                  child: ListView.separated(
-                                                    physics:
-                                                        const ClampingScrollPhysics(),
-                                                    separatorBuilder:
-                                                        (context, index) {
-                                                      return const SizedBox(
-                                                        height: 10,
-                                                      );
-                                                    },
-                                                    itemCount: cart.length,
-                                                    itemBuilder:
-                                                        (context, index) {
-                                                      CategoryAndProductsModel
-                                                          product = cart[index]
-                                                              .supplier_product!;
-                                                      final SuppliersModel
-                                                          supplier =
-                                                          cart[index].supplier!;
+                                              ScrollConfiguration(
+                                                behavior: GlowBehavior(),
+                                                child: ListView.separated(
+                                                  shrinkWrap: true,
+                                                  physics:
+                                                      const NeverScrollableScrollPhysics(),
+                                                  separatorBuilder:
+                                                      (context, index) {
+                                                    return const SizedBox(
+                                                      height: 10,
+                                                    );
+                                                  },
+                                                  itemCount: cart.length,
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    CategoryAndProductsModel
+                                                        product = cart[index]
+                                                            .supplier_product!;
+                                                    final SuppliersModel
+                                                        supplier =
+                                                        cart[index].supplier!;
 
-                                                      return CartContainer(
-                                                        width: constraints
-                                                            .maxWidth,
-                                                        quantity: cart[index]
-                                                            .quantity!,
-                                                        minus: () async {
+                                                    return CartContainer(
+                                                      width:
+                                                          constraints.maxWidth,
+                                                      quantity:
+                                                          cart[index].quantity!,
+                                                      minus: () async {
+                                                        isLoading.value = true;
+
+                                                        ref
+                                                            .read(
+                                                                setcartquantityProvider)
+                                                            .execute(CartQuantityUseCaseInput(
+                                                                cartitemid: cart[
+                                                                        index]
+                                                                    .id
+                                                                    .toString(),
+                                                                quantity: (cart[index]
+                                                                            .quantity! -
+                                                                        1)
+                                                                    .toString()))
+                                                            .then(
+                                                                (value) =>
+                                                                    value.fold(
+                                                                        (l) {
+                                                                      isLoading
+                                                                              .value =
+                                                                          false;
+                                                                      return l.toString() ==
+                                                                              "ApiFailures.noResponse()"
+                                                                          ? showSnack(
+                                                                              title:
+                                                                                  "Please Check Your internet connection",
+                                                                              scaffoldMessengerKey: snakKey
+                                                                                  .value)
+                                                                          : showSnack(
+                                                                              title: "Error Occured please contact us",
+                                                                              scaffoldMessengerKey: snakKey.value);
+                                                                    }, (r) {
+                                                                      ref.refresh(getCartProvider(supplierid).future).then((value) =>
+                                                                          value.fold(
+                                                                              (l) {
+                                                                            isLoading.value =
+                                                                                false;
+                                                                            return l.toString() == "ApiFailures.noResponse()"
+                                                                                ? showSnack(title: "Please Check Your internet connection", scaffoldMessengerKey: snakKey.value)
+                                                                                : showSnack(title: "Error Occured please contact us", scaffoldMessengerKey: snakKey.value);
+                                                                          }, (r) {
+                                                                            if (r.toString() ==
+                                                                                "Your cart is empty") {
+                                                                              isLoading.value = false;
+                                                                              return showSnack(scaffoldMessengerKey: snakKey.value, title: "Your cart is empty");
+                                                                            } else {
+                                                                              isLoading.value = false;
+                                                                            }
+                                                                          }));
+                                                                    }));
+                                                      },
+                                                      increase: () async {
+                                                        {
                                                           isLoading.value =
                                                               true;
 
@@ -216,7 +265,7 @@ class CartScreen extends HookConsumerWidget {
                                                                       .id
                                                                       .toString(),
                                                                   quantity:
-                                                                      (cart[index].quantity! -
+                                                                      (cart[index].quantity! +
                                                                               1)
                                                                           .toString()))
                                                               .then((value) =>
@@ -260,118 +309,68 @@ class CartScreen extends HookConsumerWidget {
                                                                           }
                                                                         }));
                                                                   }));
-                                                        },
-                                                        increase: () async {
-                                                          {
-                                                            isLoading.value =
-                                                                true;
+                                                        }
+                                                      },
+                                                      trash: () async {
+                                                        {
+                                                          isLoading.value =
+                                                              true;
 
-                                                            ref
-                                                                .read(
-                                                                    setcartquantityProvider)
-                                                                .execute(CartQuantityUseCaseInput(
-                                                                    cartitemid:
-                                                                        cart[index]
-                                                                            .id
-                                                                            .toString(),
-                                                                    quantity: (cart[index].quantity! +
-                                                                            1)
-                                                                        .toString()))
-                                                                .then((value) =>
-                                                                    value.fold(
-                                                                        (l) {
-                                                                      isLoading
-                                                                              .value =
-                                                                          false;
-                                                                      return l.toString() ==
-                                                                              "ApiFailures.noResponse()"
-                                                                          ? showSnack(
-                                                                              title:
-                                                                                  "Please Check Your internet connection",
-                                                                              scaffoldMessengerKey: snakKey
-                                                                                  .value)
-                                                                          : showSnack(
-                                                                              title: "Error Occured please contact us",
-                                                                              scaffoldMessengerKey: snakKey.value);
-                                                                    }, (r) {
-                                                                      ref.refresh(getCartProvider(supplierid).future).then((value) =>
-                                                                          value.fold(
-                                                                              (l) {
+                                                          ref
+                                                              .read(
+                                                                  removefromcartProvider)
+                                                              .execute(
+                                                                  RemoveFromCartUseCaseInput(
+                                                                cartitemid: cart[
+                                                                        index]
+                                                                    .id
+                                                                    .toString(),
+                                                              ))
+                                                              .then((value) =>
+                                                                  value.fold(
+                                                                      (l) {
+                                                                    isLoading
+                                                                            .value =
+                                                                        false;
+                                                                    return l.toString() ==
+                                                                            "ApiFailures.noResponse()"
+                                                                        ? showSnack(
+                                                                            title:
+                                                                                "Please Check Your internet connection",
+                                                                            scaffoldMessengerKey: snakKey
+                                                                                .value)
+                                                                        : showSnack(
+                                                                            title:
+                                                                                "Error Occured please contact us",
+                                                                            scaffoldMessengerKey:
+                                                                                snakKey.value);
+                                                                  }, (r) {
+                                                                    ref.refresh(getCartProvider(supplierid).future).then((value) =>
+                                                                        value.fold(
+                                                                            (l) {
+                                                                          isLoading.value =
+                                                                              false;
+                                                                          return l.toString() == "ApiFailures.noResponse()"
+                                                                              ? showSnack(title: "Please Check Your internet connection", scaffoldMessengerKey: snakKey.value)
+                                                                              : showSnack(title: "Error Occured please contact us", scaffoldMessengerKey: snakKey.value);
+                                                                        }, (r) {
+                                                                          if (r.toString() ==
+                                                                              "CART_IS_EMPTY") {
+                                                                            context.router.replaceAll([
+                                                                              const MainRoute()
+                                                                            ]);
+                                                                          } else {
                                                                             isLoading.value =
                                                                                 false;
-                                                                            return l.toString() == "ApiFailures.noResponse()"
-                                                                                ? showSnack(title: "Please Check Your internet connection", scaffoldMessengerKey: snakKey.value)
-                                                                                : showSnack(title: "Error Occured please contact us", scaffoldMessengerKey: snakKey.value);
-                                                                          }, (r) {
-                                                                            if (r.toString() ==
-                                                                                "Your cart is empty") {
-                                                                              isLoading.value = false;
-                                                                              return showSnack(scaffoldMessengerKey: snakKey.value, title: "Your cart is empty");
-                                                                            } else {
-                                                                              isLoading.value = false;
-                                                                            }
-                                                                          }));
-                                                                    }));
-                                                          }
-                                                        },
-                                                        trash: () async {
-                                                          {
-                                                            isLoading.value =
-                                                                true;
-
-                                                            ref
-                                                                .read(
-                                                                    removefromcartProvider)
-                                                                .execute(
-                                                                    RemoveFromCartUseCaseInput(
-                                                                  cartitemid: cart[
-                                                                          index]
-                                                                      .id
-                                                                      .toString(),
-                                                                ))
-                                                                .then((value) =>
-                                                                    value.fold(
-                                                                        (l) {
-                                                                      isLoading
-                                                                              .value =
-                                                                          false;
-                                                                      return l.toString() ==
-                                                                              "ApiFailures.noResponse()"
-                                                                          ? showSnack(
-                                                                              title:
-                                                                                  "Please Check Your internet connection",
-                                                                              scaffoldMessengerKey: snakKey
-                                                                                  .value)
-                                                                          : showSnack(
-                                                                              title: "Error Occured please contact us",
-                                                                              scaffoldMessengerKey: snakKey.value);
-                                                                    }, (r) {
-                                                                      ref.refresh(getCartProvider(supplierid).future).then((value) =>
-                                                                          value.fold(
-                                                                              (l) {
-                                                                            isLoading.value =
-                                                                                false;
-                                                                            return l.toString() == "ApiFailures.noResponse()"
-                                                                                ? showSnack(title: "Please Check Your internet connection", scaffoldMessengerKey: snakKey.value)
-                                                                                : showSnack(title: "Error Occured please contact us", scaffoldMessengerKey: snakKey.value);
-                                                                          }, (r) {
-                                                                            if (r.toString() ==
-                                                                                "CART_IS_EMPTY") {
-                                                                              context.router.replaceAll([
-                                                                                const MainRoute()
-                                                                              ]);
-                                                                            } else {
-                                                                              isLoading.value = false;
-                                                                            }
-                                                                          }));
-                                                                    }));
-                                                          }
-                                                        },
-                                                        product: product,
-                                                        supplier: supplier,
-                                                      );
-                                                    },
-                                                  ),
+                                                                          }
+                                                                        }));
+                                                                  }));
+                                                        }
+                                                      },
+                                                      product: product,
+                                                      supplier: supplier,
+                                                    );
+                                                  },
                                                 ),
                                               ),
                                               const SizedBox(
@@ -394,6 +393,8 @@ class CartScreen extends HookConsumerWidget {
                                                 title: "Visa/Credit Card",
                                                 image: "visa.png",
                                                 ontap: () {
+                                                  categorybox.put(
+                                                      "payment", "MEPS");
                                                   isCash.value = false;
                                                   isVisa.value = true;
                                                 },
@@ -406,6 +407,9 @@ class CartScreen extends HookConsumerWidget {
                                                 title: "Cash",
                                                 image: "cash.png",
                                                 ontap: () {
+                                                  categorybox.put(
+                                                      "payment", "Cash");
+
                                                   isCash.value = true;
                                                   isVisa.value = false;
                                                 },
@@ -518,11 +522,16 @@ class CartScreen extends HookConsumerWidget {
                                                                       .spaceBetween,
                                                               children: [
                                                                 GestureDetector(
-                                                                  onTap: () =>
-                                                                      seletedindex
-                                                                              .value =
-                                                                          index *
-                                                                              2,
+                                                                  onTap: () {
+                                                                    seletedindex
+                                                                            .value =
+                                                                        index *
+                                                                            2;
+                                                                    categorybox.put(
+                                                                        "time",
+                                                                        times[seletedindex.value]
+                                                                            .id);
+                                                                  },
                                                                   child:
                                                                       Container(
                                                                     width: constraints.maxWidth /
@@ -575,6 +584,10 @@ class CartScreen extends HookConsumerWidget {
                                                                             .value =
                                                                         index * 2 +
                                                                             1;
+                                                                    categorybox.put(
+                                                                        "time",
+                                                                        times[seletedindex.value]
+                                                                            .id);
                                                                   },
                                                                   child:
                                                                       Container(
@@ -781,9 +794,15 @@ class CartScreen extends HookConsumerWidget {
                                             .read(placeOrderprovider)
                                             .execute(PlaceOrderUseCaseInput(
                                                 supplierid: supplierid,
-                                                deliverytimeid: "1",
-                                                paymentmethod: "",
-                                                location: ""))
+                                                deliverytimeid: categorybox
+                                                    .get("time")
+                                                    .toString(),
+                                                paymentmethod: categorybox
+                                                    .get("payment")
+                                                    .toString(),
+                                                location: categorybox
+                                                    .get("orderlocation")
+                                                    .toString()))
                                             .then((value) => value.fold((l) {
                                                   isLoading.value = false;
                                                   return l.toString() ==
@@ -839,7 +858,7 @@ class CartScreen extends HookConsumerWidget {
                                                     context.router.push(
                                                         PaymentRoute(
                                                             baseurl:
-                                                                "$storageUrl/Shopping/InitPayment?id=${r["OrderID"]}"));
+                                                                "$baseUrl/Shopping/InitPayment?id=${r["OrderID"]}&api_token=$apitoken"));
                                                   }
                                                 }));
                                       },

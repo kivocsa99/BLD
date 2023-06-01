@@ -162,6 +162,19 @@ class AppRouter extends _$AppRouter {
               ),
             )),
         AutoRoute(
+            page: PaymentRoute.page,
+            type: RouteType.custom(
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) =>
+                      SlideTransition(
+                position: Tween<Offset>(
+                  begin: const Offset(0.0, 1.0),
+                  end: Offset.zero,
+                ).animate(animation),
+                child: FadeTransition(opacity: animation, child: child),
+              ),
+            )),
+        AutoRoute(
             page: OtpRoute.page,
             type: RouteType.custom(
               transitionsBuilder:

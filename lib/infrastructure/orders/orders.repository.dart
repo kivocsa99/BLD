@@ -273,6 +273,8 @@ class OrdersRepository implements IOrderRepository {
     final result = TaskEither<ApiFailures, dynamic>.tryCatch(() async {
       final result = await dio.get(
           "$baseUrl/Shopping/PlaceOrder?supplier_id=$supplierid&delivery_time_id=$deliverytimeid&payment_method=$paymentmethod&location=$location&api_token=$apitoken");
+      print(result.realUri);
+
       if (result.data["AZSVR"] == "SUCCESS") {
         return result.data;
       } else if (result.data["AZSVR"] == "FAILED" &&
@@ -292,10 +294,10 @@ class OrdersRepository implements IOrderRepository {
         return "SUPPLIER NOT FOUND";
       } else {
         return const ApiFailures.internalError();
-        
       }
     }, (error, stackTrace) {
       if (error is DioError) {
+        print(error.requestOptions.uri);
         switch (error.type) {
           case DioErrorType.connectionTimeout:
             return const ApiFailures.connnectionTimeOut();

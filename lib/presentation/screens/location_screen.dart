@@ -25,8 +25,10 @@ class LocationScreen extends HookWidget {
         options: MapOptions(
           onTap: (tapPosition, point) {
             isproject == true
-                ? projectbox.put("location", point.toString())
-                : projectbox.put("orderlocation", point.toString());
+                ? projectbox.put(
+                    "location", "${point.latitude},${point.longitude}")
+                : categorybox.put(
+                    "orderlocation", "${point.latitude},${point.longitude}");
             markpointer.value = point;
           },
           center: LatLng(31.9539, 35.9106),

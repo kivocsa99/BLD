@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:bld/domain/files/model/filesmodel.dart';
 import 'package:bld/domain/projects/model/userprojectsmodel.dart';
+import 'package:bld/presentation/components/projectinfo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -18,7 +19,9 @@ class UserProjectScreen extends HookWidget {
   Widget build(BuildContext context) {
     final snakKey = useState(GlobalKey<ScaffoldMessengerState>());
     final isLoading = useState(false);
-    final selectedimage = useState("$storageUrl${project!.files![0]}");
+    final imageindex = useState(0);
+    final selectedimage =
+        useState("$storageUrl${project!.files![imageindex.value].name}");
     return Stack(
       children: [
         SafeArea(
@@ -84,35 +87,91 @@ class UserProjectScreen extends HookWidget {
                                     ScrollViewKeyboardDismissBehavior.onDrag,
                                 children: [
                                   Container(
-                                    width: double.infinity,
+                                    width: constraints.maxWidth - 50,
                                     height: 200,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                     child: Stack(
+                                      clipBehavior: Clip.none,
                                       children: [
-                                        Image.asset(
-                                          "assets/Logo.png",
-                                          fit: BoxFit.fitWidth,
-                                        ),
-                                        Positioned(
-                                          right: 10,
-                                          top: 60,
-                                          left: 0,
-                                          bottom: 0,
-                                          child: Container(
-                                            width: 40,
-                                            height: 40,
-                                            decoration: BoxDecoration(
+                                        Container(
+                                          width: double.infinity,
+                                          height: 200,
+                                          decoration: BoxDecoration(
                                               borderRadius:
-                                                  BorderRadius.circular(15),
-                                            ),
-                                            child: Center(
-                                              child: Image.asset(
-                                                  "assets/next.png"),
+                                                  BorderRadius.circular(15)),
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                            child: FadeInImage.memoryNetwork(
+                                              placeholder: kTransparentImage,
+                                              image: selectedimage.value,
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
+                                        Visibility(
+                                          visible: imageindex.value !=
+                                                  project!.files!.length - 1
+                                              ? true
+                                              : false,
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(24.0),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  imageindex.value =
+                                                      imageindex.value + 1;
+                                                  selectedimage.value =
+                                                      "$storageUrl${project!.files![imageindex.value].name}";
+                                                },
+                                                child: Container(
+                                                    width: 45,
+                                                    height: 45,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15)),
+                                                    child: Image.asset(
+                                                        "assets/next.png")),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Visibility(
+                                          visible: imageindex.value != 0
+                                              ? true
+                                              : false,
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(24.0),
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  imageindex.value =
+                                                      imageindex.value - 1;
+                                                  selectedimage.value =
+                                                      "$storageUrl${project!.files![imageindex.value].name}";
+                                                },
+                                                child: Container(
+                                                    width: 45,
+                                                    height: 45,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(15)),
+                                                    child: Image.asset(
+                                                        "assets/backarrow.png")),
+                                              ),
+                                            ),
+                                          ),
+                                        )
                                       ],
                                     ),
                                   ),
@@ -122,56 +181,88 @@ class UserProjectScreen extends HookWidget {
                                   SizedBox(
                                     height: 50,
                                     width: double.infinity,
-                                    child: ListView.separated(
-                                      itemCount: project!.files!.length,
-                                      separatorBuilder: (context, index) {
-                                        return const SizedBox(
-                                          width: 20,
-                                        );
-                                      },
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, index) {
-                                        final FilesModel image =
-                                            project!.files![index];
-                                        return Container(
-                                          width: 50,
-                                          height: 50,
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(15)),
-                                          child: ClipRRect(
-                                              borderRadius:
-                                                  BorderRadius.circular(15.0),
-                                              child: FadeInImage.memoryNetwork(
-                                                placeholder: kTransparentImage,
-                                                image:
-                                                    "$storageUrl${image.name}",
-                                                fit: BoxFit.cover,
-                                              )),
-                                        );
-                                      },
+                                    child: ScrollConfiguration(
+                                      behavior: GlowBehavior(),
+                                      child: ListView.separated(
+                                        itemCount: project!.files!.length,
+                                        separatorBuilder: (context, index) {
+                                          return const SizedBox(
+                                            width: 20,
+                                          );
+                                        },
+                                        scrollDirection: Axis.horizontal,
+                                        itemBuilder: (context, index) {
+                                          final FilesModel image =
+                                              project!.files![index];
+                                          return GestureDetector(
+                                            onTap: () {
+                                              imageindex.value = index;
+                                              selectedimage.value =
+                                                  "$storageUrl${project!.files![imageindex.value].name}";
+                                            },
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
+                                              padding: const EdgeInsets.all(5),
+                                              decoration: BoxDecoration(
+                                                  border: imageindex.value ==
+                                                          index
+                                                      ? Border.all(
+                                                          width: 3,
+                                                          color: const Color(
+                                                              0xff3B788B))
+                                                      : null,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          15)),
+                                              child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          10.0),
+                                                  child:
+                                                      FadeInImage.memoryNetwork(
+                                                    placeholder:
+                                                        kTransparentImage,
+                                                    image:
+                                                        "$storageUrl${image.name}",
+                                                    fit: BoxFit.cover,
+                                                  )),
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     ),
                                   ),
                                   const SizedBox(
                                     height: 30,
                                   ),
                                   Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       Container(
                                         height: 40,
                                         width: 120,
-                                        color: Color(0xffDEF0F5),
-                                        child:
-                                            Center(child: Text("Project Info")),
+                                        color: const Color(0xffDEF0F5),
+                                        child: const Center(
+                                            child: Text("Project Info")),
+                                      ),
+                                      const SizedBox(
+                                        width: 10,
                                       ),
                                       Container(
                                         height: 40,
                                         width: 120,
-                                        color: Color(0xffDEF0F5),
-                                        child: Center(
+                                        color: const Color(0xffDEF0F5),
+                                        child: const Center(
                                             child: Text("Orders History")),
                                       ),
                                     ],
+                                  ),
+                                  const SizedBox(
+                                    height: 30,
+                                  ),
+                                  ProjectInfo(
+                                    project: project,
                                   )
                                 ],
                               ),

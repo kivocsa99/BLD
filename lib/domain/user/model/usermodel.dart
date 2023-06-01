@@ -23,7 +23,6 @@ class UserModel with _$UserModel {
     String? image,
     String? cover_image,
     String? location,
-    num? commission_rate,
     int? countryid,
     String? created_at,
     String? updated_at,

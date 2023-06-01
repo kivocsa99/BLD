@@ -33,7 +33,6 @@ mixin _$UserModel {
   String? get image => throw _privateConstructorUsedError;
   String? get cover_image => throw _privateConstructorUsedError;
   String? get location => throw _privateConstructorUsedError;
-  num? get commission_rate => throw _privateConstructorUsedError;
   int? get countryid => throw _privateConstructorUsedError;
   String? get created_at => throw _privateConstructorUsedError;
   String? get updated_at => throw _privateConstructorUsedError;
@@ -68,7 +67,6 @@ abstract class $UserModelCopyWith<$Res> {
       String? image,
       String? cover_image,
       String? location,
-      num? commission_rate,
       int? countryid,
       String? created_at,
       String? updated_at,
@@ -104,7 +102,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? image = freezed,
     Object? cover_image = freezed,
     Object? location = freezed,
-    Object? commission_rate = freezed,
     Object? countryid = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
@@ -166,10 +163,6 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      commission_rate: freezed == commission_rate
-          ? _value.commission_rate
-          : commission_rate // ignore: cast_nullable_to_non_nullable
-              as num?,
       countryid: freezed == countryid
           ? _value.countryid
           : countryid // ignore: cast_nullable_to_non_nullable
@@ -223,7 +216,6 @@ abstract class _$$_UserModelCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String? image,
       String? cover_image,
       String? location,
-      num? commission_rate,
       int? countryid,
       String? created_at,
       String? updated_at,
@@ -257,7 +249,6 @@ class __$$_UserModelCopyWithImpl<$Res>
     Object? image = freezed,
     Object? cover_image = freezed,
     Object? location = freezed,
-    Object? commission_rate = freezed,
     Object? countryid = freezed,
     Object? created_at = freezed,
     Object? updated_at = freezed,
@@ -319,10 +310,6 @@ class __$$_UserModelCopyWithImpl<$Res>
           ? _value.location
           : location // ignore: cast_nullable_to_non_nullable
               as String?,
-      commission_rate: freezed == commission_rate
-          ? _value.commission_rate
-          : commission_rate // ignore: cast_nullable_to_non_nullable
-              as num?,
       countryid: freezed == countryid
           ? _value.countryid
           : countryid // ignore: cast_nullable_to_non_nullable
@@ -372,7 +359,6 @@ class _$_UserModel extends _UserModel {
       this.image,
       this.cover_image,
       this.location,
-      this.commission_rate,
       this.countryid,
       this.created_at,
       this.updated_at,
@@ -414,8 +400,6 @@ class _$_UserModel extends _UserModel {
   @override
   final String? location;
   @override
-  final num? commission_rate;
-  @override
   final int? countryid;
   @override
   final String? created_at;
@@ -448,7 +432,7 @@ class _$_UserModel extends _UserModel {
 
   @override
   String toString() {
-    return 'UserModel(id: $id, name: $name, name_ar: $name_ar, phone: $phone, email: $email, email_verified_at: $email_verified_at, belongable_type: $belongable_type, belongable_id: $belongable_id, active: $active, language: $language, image: $image, cover_image: $cover_image, location: $location, commission_rate: $commission_rate, countryid: $countryid, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, projects: $projects, customer_orders: $customer_orders, fcm_token: $fcm_token)';
+    return 'UserModel(id: $id, name: $name, name_ar: $name_ar, phone: $phone, email: $email, email_verified_at: $email_verified_at, belongable_type: $belongable_type, belongable_id: $belongable_id, active: $active, language: $language, image: $image, cover_image: $cover_image, location: $location, countryid: $countryid, created_at: $created_at, updated_at: $updated_at, deleted_at: $deleted_at, projects: $projects, customer_orders: $customer_orders, fcm_token: $fcm_token)';
   }
 
   @override
@@ -475,8 +459,6 @@ class _$_UserModel extends _UserModel {
                 other.cover_image == cover_image) &&
             (identical(other.location, location) ||
                 other.location == location) &&
-            (identical(other.commission_rate, commission_rate) ||
-                other.commission_rate == commission_rate) &&
             (identical(other.countryid, countryid) ||
                 other.countryid == countryid) &&
             (identical(other.created_at, created_at) ||
@@ -509,7 +491,6 @@ class _$_UserModel extends _UserModel {
         image,
         cover_image,
         location,
-        commission_rate,
         countryid,
         created_at,
         updated_at,
@@ -548,7 +529,6 @@ abstract class _UserModel extends UserModel {
       final String? image,
       final String? cover_image,
       final String? location,
-      final num? commission_rate,
       final int? countryid,
       final String? created_at,
       final String? updated_at,
@@ -587,8 +567,6 @@ abstract class _UserModel extends UserModel {
   String? get cover_image;
   @override
   String? get location;
-  @override
-  num? get commission_rate;
   @override
   int? get countryid;
   @override
